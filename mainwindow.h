@@ -18,6 +18,9 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void createDatabaseBnClicked();
 };
 
 #endif // MAINWINDOW_H
