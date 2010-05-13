@@ -21,6 +21,7 @@ private:
 
 private slots:
     void createDatabaseBnClicked();
+    void newMosaicBnClicked();
 };
 
 #endif // MAINWINDOW_H

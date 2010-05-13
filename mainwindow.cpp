@@ -3,6 +3,7 @@
 
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
+#include "createmosaicdlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,9 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(this->ui->createDatabaseBn,
-            SIGNAL(clicked()),
+            SIGNAL(pressed()),
             this,
             SLOT(createDatabaseBnClicked()));
+    connect(ui->newMosaicButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(newMosaicBnClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -46,4 +51,11 @@ void MainWindow::createDatabaseBnClicked()
         buildDlg.show();
         buildDlg.exec();
     }
+}
+
+void MainWindow::newMosaicBnClicked()
+{
+    CreateMosaicDlg createDlg;
+    createDlg.show();
+    createDlg.exec();
 }

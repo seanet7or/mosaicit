@@ -10,7 +10,9 @@ SOURCES += main.cpp \
     processimagesthread.cpp \
     newdatabasedlg.cpp \
     builddatabasedlg.cpp \
-    indexfilesthread.cpp
+    indexfilesthread.cpp \
+    createmosaicdlg.cpp \
+    mosaicdetailsdlg.cpp
 HEADERS += mainwindow.h \
     pictureinfo.h \
     picturedatabase.h \
@@ -18,7 +20,11 @@ HEADERS += mainwindow.h \
     processimagesthread.h \
     newdatabasedlg.h \
     builddatabasedlg.h \
-    indexfilesthread.h
+    indexfilesthread.h \
+    createmosaicdlg.h \
+    mosaicdetailsdlg.h
 FORMS += mainwindow.ui \
     newdatabasedlg.ui \
-    builddatabasedlg.ui
+    builddatabasedlg.ui \
+    createmosaicdlg.ui \
+    mosaicdetailsdlg.ui
