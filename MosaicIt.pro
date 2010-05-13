@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     databasewizard/processpage.cpp \
     pictureinfo.cpp \
     picturedatabase.cpp \
-    databasewizard/resultpage.cpp
+    databasewizard/resultpage.cpp \
+    processimagesthread.cpp
 HEADERS += mainwindow.h \
     databasewizard/createpage.h \
     databasewizard/databasewizard.h \
@@ -18,5 +19,6 @@ HEADERS += mainwindow.h \
     pictureinfo.h \
     picturedatabase.h \
     databasewizard/resultpage.h \
-    debug.h
+    debug.h \
+    processimagesthread.h
 FORMS += mainwindow.ui

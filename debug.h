@@ -13,6 +13,4 @@ public:
     }
 };
 
-#define log(text)   Debug::log(text)
-
 #endif // DEBUG_H

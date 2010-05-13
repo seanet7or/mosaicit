@@ -21,4 +21,5 @@ void ProcessPage::initializePage()
     PictureDatabase *newDatabase = new PictureDatabase;
     newDatabase->addDirectory(field("directoryEdit").toString(),
                               field("includeSubdirs").toBool());
+    newDatabase->processFiles();
 }

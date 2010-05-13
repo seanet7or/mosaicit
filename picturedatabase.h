@@ -4,15 +4,29 @@
 #include <QVector>
 
 #include "pictureinfo.h"
+#include "processimagesthread.h"
 
-class PictureDatabase
+class PictureDatabase : public QObject
 {
+    Q_OBJECT
 public:
     PictureDatabase();
+    ~PictureDatabase();
     void addDirectory(QString directory, bool subdirs);
-    void addFile(QString file);
+    void processFiles();
+    bool isProcessingRunning();
+public slots:
+    void cancelProcessing();
+signals:
+    void processFinished();
+private slots:
+    void processThreadFinished();
 private:
-    QVector<PictureInfo*> pictureInfo;
+    void addFile(QString file);
+
+    QVector<PictureInfo*> *pictureInfo;
+    ProcessImagesThread *processThread;
+    bool processRunning;
 };
 
 #endif // PICTUREDATABASE_H
