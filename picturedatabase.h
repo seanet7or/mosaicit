@@ -2,9 +2,11 @@
 #define PICTUREDATABASE_H
 
 #include <QVector>
+#include <QString>
 
 #include "pictureinfo.h"
 #include "processimagesthread.h"
+#include "indexfilesthread.h"
 
 class PictureDatabase : public QObject
 {
@@ -12,21 +14,25 @@ class PictureDatabase : public QObject
 public:
     PictureDatabase();
     ~PictureDatabase();
-    void addDirectory(QString directory, bool subdirs);
     void processFiles();
+    void indexFiles(QString directory, bool includeSubdirectories);
+    bool isIndexingRunning();
     bool isProcessingRunning();
 public slots:
     void cancelProcessing();
 signals:
     void processFinished();
+    void indexFinished();
 private slots:
     void processThreadFinished();
+    void indexThreadFinished();
 private:
-    void addFile(QString file);
 
     QVector<PictureInfo*> *pictureInfo;
     ProcessImagesThread *processThread;
+    IndexFilesThread *m_indexThread;
     bool processRunning;
+    bool m_indexRunning;
 };
 
 #endif // PICTUREDATABASE_H

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "databasewizard/databasewizard.h"
+#include "newdatabasedlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,7 +34,10 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::createDatabaseBnClicked()
 {
-    DatabaseWizard wizard;
-    wizard.show();
-    wizard.exec();
+    NewDatabaseDlg newDBDlg;
+    newDBDlg.show();
+    newDBDlg.exec();
+    if (newDBDlg.exitedCorrectly()) {
+
+    }
 }

@@ -11,7 +11,10 @@ SOURCES += main.cpp \
     pictureinfo.cpp \
     picturedatabase.cpp \
     databasewizard/resultpage.cpp \
-    processimagesthread.cpp
+    processimagesthread.cpp \
+    newdatabasedlg.cpp \
+    builddatabasedlg.cpp \
+    indexfilesthread.cpp
 HEADERS += mainwindow.h \
     databasewizard/createpage.h \
     databasewizard/databasewizard.h \
@@ -20,5 +23,10 @@ HEADERS += mainwindow.h \
     picturedatabase.h \
     databasewizard/resultpage.h \
     debug.h \
-    processimagesthread.h
-FORMS += mainwindow.ui
+    processimagesthread.h \
+    newdatabasedlg.h \
+    builddatabasedlg.h \
+    indexfilesthread.h
+FORMS += mainwindow.ui \
+    newdatabasedlg.ui \
+    builddatabasedlg.ui
