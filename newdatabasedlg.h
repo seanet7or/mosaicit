@@ -28,6 +28,7 @@ private slots:
     void buildButtonPressed();
     void selectDirButtonPressed();
     void cancelButtonPressed();
+    void selectFileButtonPressed();
 
 private:
     Ui::NewDatabaseDlg *ui;

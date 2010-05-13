@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
+#include <QFile>
 
 NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
         QDialog(parent),
@@ -13,7 +14,7 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
     ui->setupUi(this);
     m_canceled = true;
     ui->directoryEdit->setText(QDir::homePath());
-    ui->nameEdit->setText(tr("<New Database>"));
+    ui->nameEdit->setText(QDir::homePath() + tr("/newdatabase.mib"));
     ui->includeSubdirectories->setChecked(true);
 
     connect(ui->buildButton,
@@ -28,6 +29,20 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(cancelButtonPressed()));
+    connect(ui->selectFileButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(selectFileButtonPressed()));
+}
+
+void NewDatabaseDlg::selectFileButtonPressed()
+{
+    ui->nameEdit->setText(
+            QFileDialog::getSaveFileName(this,
+                                         tr("Database file to write"),
+                                         ui->nameEdit->text(),
+                                         tr("Database file (*.mib)")
+                                         ));
 }
 
 void NewDatabaseDlg::buildButtonPressed()
@@ -36,16 +51,26 @@ void NewDatabaseDlg::buildButtonPressed()
     if ("" == ui->nameEdit->text()) {
         QMessageBox::warning(this,
                              tr("Error"),
-                             tr("You have to specify a name for the new database"),
+                             tr("You have to specify a file for the new database."),
                              QMessageBox::Ok);
         return;
     } else if (!rootDir.exists()) {
         QMessageBox::warning(this,
                              tr("Error"),
-                             tr("You have to specify a valid directory"),
+                             tr("You have to specify a valid directory."),
                              QMessageBox::Ok);
         return;
     }
+    QFile outFile(ui->nameEdit->text());
+    if (!outFile.open(QIODevice::WriteOnly)) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("The database file you specified can not be written. Specify another one."),
+                             QMessageBox::Ok);
+        return;
+    }
+    outFile.close();
+    outFile.remove();
     m_canceled = false;
     this->m_directory = ui->directoryEdit->text();
     this->m_name = ui->nameEdit->text();

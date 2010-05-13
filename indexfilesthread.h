@@ -16,17 +16,19 @@ public:
                         QString directory,
                         bool subdirs);
 
-protected:
-    void run();
-
 signals:
 
 public slots:
+    void cancel();
+
+protected:
+    void run();
 
 private:
     void addDirectory(QString directory, bool subdirs);
     void addFile(QString file);
 
+    bool m_canceled;
     QString m_directory;
     QVector<PictureInfo*> *m_pictures;
     bool m_includeSubdirectories;

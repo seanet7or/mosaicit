@@ -2,52 +2,87 @@
 
 PictureInfo::PictureInfo()
 {
-    valid = false;
-    filename = "";
+    m_processed = false;
+    m_validFile = false;
+    m_filename = "";
 }
 
 void PictureInfo::setFile(const QString &filename)
 {
-    this->filename = filename;
-    valid = false;
+    this->m_filename = filename;
+    m_processed = false;
+    m_validFile = false;
+}
+
+bool PictureInfo::validFile()
+{
+    return this->m_validFile;
+}
+
+void PictureInfo::setValidFile(bool valid)
+{
+    this->m_validFile = valid;
+}
+
+QDateTime PictureInfo::lastChanged()
+{
+    return this->m_lastChanged;
+}
+
+void PictureInfo::setLastChanged(const QDateTime &lastChanged)
+{
+    this->m_lastChanged = lastChanged;
+}
+
+void PictureInfo::toStream(QDataStream &out)
+{
+    out << this->m_blue;
+    out << this->m_filename;
+    out << this->m_green;
+    out << this->m_height;
+    out << this->m_lastChanged;
+    out << this->m_processed;
+    out << this->m_red;
+    out << this->m_validFile;
+    out << this->m_width;
 }
 
 QString PictureInfo::getFile()
 {
-    return this->filename;
+    return this->m_filename;
 }
 
-void PictureInfo::setValid(bool valid)
+void PictureInfo::setProcessed(bool processed)
 {
-    this->valid = valid;
+    this->m_processed = processed;
 }
 
-bool PictureInfo::getValid()
+bool PictureInfo::processed()
 {
-    return this->valid;
+    return this->m_processed;
 }
 
 int PictureInfo::getHeight()
 {
-    return this->height;
+    return this->m_height;
 }
 
 int PictureInfo::getWidth()
 {
-    return this->width;
+    return this->m_width;
 }
 
 void PictureInfo::setDimensions(int width, int height)
 {
-    this->width = width;
-    this->height = height;
+    this->m_width = width;
+    this->m_height = height;
 }
 
 void PictureInfo::setColor(unsigned char red,
                            unsigned char green,
                            unsigned char blue)
 {
-    this->red = red;
-    this->green = green;
-    this->blue = blue;
+    this->m_red = red;
+    this->m_green = green;
+    this->m_blue = blue;
 }

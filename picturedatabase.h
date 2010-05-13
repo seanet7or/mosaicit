@@ -18,14 +18,20 @@ public:
     void indexFiles(QString directory, bool includeSubdirectories);
     bool isIndexingRunning();
     bool isProcessingRunning();
+    bool toFile(const QString &file);
+    void setName(const QString &name);
+    QString name();
+    void cancelIndexing();
 public slots:
     void cancelProcessing();
 signals:
     void processFinished();
     void indexFinished();
+    void processProgress(float percent);
 private slots:
     void processThreadFinished();
     void indexThreadFinished();
+    void processProgressFromThread(float percent);
 private:
 
     QVector<PictureInfo*> *pictureInfo;
@@ -33,6 +39,7 @@ private:
     IndexFilesThread *m_indexThread;
     bool processRunning;
     bool m_indexRunning;
+    QString m_name;
 };
 
 #endif // PICTUREDATABASE_H

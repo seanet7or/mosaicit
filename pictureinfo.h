@@ -2,6 +2,8 @@
 #define PICTUREINFO_H
 
 #include <QString>
+#include <QDateTime>
+#include <QDataStream>
 
 class PictureInfo
 {
@@ -9,18 +11,25 @@ public:
     PictureInfo();
     void setFile(const QString &filename);
     QString getFile();
-    void setValid(bool valid);
-    bool getValid();
+    void setProcessed(bool processed);
+    bool processed();
+    bool validFile();
+    void setValidFile(bool valid);
     int getWidth();
     int getHeight();
     void setDimensions(int width, int height);
     void setColor(unsigned char red, unsigned char green, unsigned char blue);
+    QDateTime lastChanged();
+    void setLastChanged(const QDateTime &lastChanged);
+    void toStream(QDataStream &out);
 private:
-    QString filename;
-    bool valid;
-    int width;
-    int height;
-    unsigned char red, green, blue;
+    QString m_filename;
+    bool m_processed;
+    bool m_validFile;
+    QDateTime m_lastChanged;
+    int m_width;
+    int m_height;
+    unsigned char m_red, m_green, m_blue;
 };
 
 #endif // PICTUREINFO_H

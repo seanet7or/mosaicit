@@ -1,6 +1,7 @@
 #include "processimagesthread.h"
 
 #include <QImage>
+#include <QFileInfo>
 
 #include "debug.h"
 
@@ -34,7 +35,7 @@ void ProcessImagesThread::run()
             log("ProcessImagesThread::run was canceled");
             return;
         }
-        emit complete(i / (pictures->size() - 1));
+        emit complete(100.f * (float)i / (float)(pictures->size() - 1));
     }
     log("ProcessImagesThread::run done completly");
 }
@@ -44,12 +45,20 @@ bool ProcessImagesThread::processImage(PictureInfo *picture)
     Q_ASSERT(picture != 0);
     log("ProcessImagesThread::processImage called for file " +
         picture->getFile());
+    picture->setProcessed(true);
+    QFileInfo fileInfo(picture->getFile());
+    if (!fileInfo.exists()) {
+        picture->setValidFile(false);
+        return false;
+    }
+    picture->setLastChanged(fileInfo.lastModified());
     QImage *image = new QImage(picture->getFile());
     if (image->isNull()) {
+        picture->setValidFile(false);
         delete image;
         return false;
     }
-    picture->setValid(true);
+    picture->setValidFile(true);
     picture->setDimensions(image->width(), image->height());
     unsigned long long red = 0, green = 0, blue = 0;
     for (int i = 0; i < image->width(); i++) {

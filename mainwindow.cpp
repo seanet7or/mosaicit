@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "databasewizard/databasewizard.h"
 #include "newdatabasedlg.h"
+#include "builddatabasedlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,10 +34,16 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::createDatabaseBnClicked()
 {
-    NewDatabaseDlg newDBDlg;
+    NewDatabaseDlg newDBDlg(this);
     newDBDlg.show();
     newDBDlg.exec();
     if (newDBDlg.exitedCorrectly()) {
-
+        BuildDatabaseDlg buildDlg(this,
+                                  newDBDlg.name(),
+                                  newDBDlg.directory(),
+                                  newDBDlg.includeSubdirectories()
+                                  );
+        buildDlg.show();
+        buildDlg.exec();
     }
 }
