@@ -19,9 +19,11 @@ public:
     bool isIndexingRunning();
     bool isProcessingRunning();
     bool toFile(const QString &file);
+    bool fromFile(const QString &file);
     void setName(const QString &name);
     QString name();
     void cancelIndexing();
+    void clearPictureInfo();
 public slots:
     void cancelProcessing();
 signals:

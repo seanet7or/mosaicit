@@ -2,12 +2,16 @@
 #include "ui_createmosaicdlg.h"
 
 #include <QFileDialog>
+#include <QImage>
+#include <QFile>
+#include <QMessageBox>
 
 CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::CreateMosaicDlg)
 {
     ui->setupUi(this);
+    this->m_canceled = true;
     connect(ui->selectDatabase,
             SIGNAL(pressed()),
             this,
@@ -20,6 +24,19 @@ CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
             SIGNAL(textChanged(QString)),
             this,
             SLOT(imageChanged()));
+    connect(ui->nextButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(nextBnPressed()));
+    connect(ui->cancelButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(cancelBnPressed()));
+}
+
+bool CreateMosaicDlg::exitedCorrectly()
+{
+    return !this->m_canceled;
 }
 
 void CreateMosaicDlg::imageChanged()
@@ -52,6 +69,45 @@ void CreateMosaicDlg::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void CreateMosaicDlg::cancelBnPressed()
+{
+    done(0);
+}
+
+void CreateMosaicDlg::nextBnPressed()
+{
+    QFile dbFile(ui->databaseEdit->text());
+    if (!dbFile.exists()) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("Select a database file!"),
+                             QMessageBox::Ok);
+        return;
+    }
+    QImage image(ui->imageEdit->text());
+    if (image.isNull()) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("Select a valid image file!"),
+                             QMessageBox::Ok);
+        return;
+    }
+    this->m_canceled = false;
+    this->m_image = ui->imageEdit->text();
+    this->m_database = ui->databaseEdit->text();
+    done(0);
+}
+
+QString CreateMosaicDlg::image()
+{
+    return this->m_image;
+}
+
+QString CreateMosaicDlg::database()
+{
+    return this->m_database;
 }
 
 void CreateMosaicDlg::selectDBBnPressed()

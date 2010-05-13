@@ -22,6 +22,7 @@ public:
     QDateTime lastChanged();
     void setLastChanged(const QDateTime &lastChanged);
     void toStream(QDataStream &out);
+    void fromStream(QDataStream &in);
 private:
     QString m_filename;
     bool m_processed;

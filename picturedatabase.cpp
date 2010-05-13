@@ -36,6 +36,41 @@ bool PictureDatabase::toFile(const QString &file)
     return true;
 }
 
+void PictureDatabase::clearPictureInfo()
+{
+    for (int i = 0; i < this->pictureInfo->size(); i++) {
+        delete pictureInfo->value(i);
+    }
+    pictureInfo->clear();
+}
+
+bool PictureDatabase::fromFile(const QString &file)
+{
+    this->clearPictureInfo();
+    QFile inFile(file);
+    if (!inFile.open(QIODevice::ReadOnly)) {
+        return false;
+    }
+    QDataStream in(&inFile);
+    quint32 identifier = 0;
+    quint32 majorVersion;
+    quint32 minorVersion;
+    QString name;
+    quint32 entryCount;
+    in >> identifier;
+    in >> majorVersion;
+    in >> minorVersion;
+    in >> name;
+    in >> entryCount;
+    for (unsigned int i = 0; i < entryCount; i++) {
+        PictureInfo *newEntry = new PictureInfo;
+        newEntry->fromStream(in);
+        this->pictureInfo->append(newEntry);
+    }
+    inFile.close();
+    return true;
+}
+
 void PictureDatabase::cancelIndexing()
 {
     while (this->m_indexThread->isRunning()) {
@@ -129,6 +164,7 @@ PictureDatabase::~PictureDatabase()
     if (this->m_indexThread) {
         delete this->m_indexThread;
     }
+    this->clearPictureInfo();
 }
 
 void PictureDatabase::processProgressFromThread(float percent)

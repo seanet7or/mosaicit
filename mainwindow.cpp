@@ -4,6 +4,7 @@
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
 #include "createmosaicdlg.h"
+#include "picturedatabase.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -58,4 +59,7 @@ void MainWindow::newMosaicBnClicked()
     CreateMosaicDlg createDlg;
     createDlg.show();
     createDlg.exec();
+    if (createDlg.exitedCorrectly()) {
+
+    }
 }

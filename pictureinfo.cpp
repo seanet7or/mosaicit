@@ -47,6 +47,19 @@ void PictureInfo::toStream(QDataStream &out)
     out << this->m_width;
 }
 
+void PictureInfo::fromStream(QDataStream &in)
+{
+    in >> this->m_blue;
+    in >> this->m_filename;
+    in >> this->m_green;
+    in >> this->m_height;
+    in >> this->m_lastChanged;
+    in >> this->m_processed;
+    in >> this->m_red;
+    in >> this->m_validFile;
+    in >> this->m_width;
+}
+
 QString PictureInfo::getFile()
 {
     return this->m_filename;
