@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QMessageBox>
+
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
 #include "createmosaicdlg.h"
 #include "picturedatabase.h"
+#include "mosaicdetailsdlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -60,6 +63,16 @@ void MainWindow::newMosaicBnClicked()
     createDlg.show();
     createDlg.exec();
     if (createDlg.exitedCorrectly()) {
-
+        PictureDatabase database;
+        if (!database.fromFile(createDlg.database())) {
+            QMessageBox::warning(this,
+                                 tr("Error"),
+                                 tr("Could not load the selected database!"),
+                                 QMessageBox::Ok);
+            return;
+        }
+        MosaicDetailsDlg detailsDlg(this, createDlg.image());
+        detailsDlg.show();
+        detailsDlg.exec();
     }
 }
