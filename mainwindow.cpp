@@ -8,6 +8,7 @@
 #include "createmosaicdlg.h"
 #include "picturedatabase.h"
 #include "mosaicdetailsdlg.h"
+#include "rendermosaicdlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -74,5 +75,17 @@ void MainWindow::newMosaicBnClicked()
         MosaicDetailsDlg detailsDlg(this, createDlg.image());
         detailsDlg.show();
         detailsDlg.exec();
+        if (detailsDlg.exitedCorrectly()) {
+            RenderMosaicDlg renderDlg(this,
+                                      &database,
+                                      createDlg.image(),
+                                      detailsDlg.tileWidth(),
+                                      detailsDlg.tileHeight(),
+                                      detailsDlg.tileCount(),
+                                      detailsDlg.cutEdges(),
+                                      detailsDlg.alphaChannel());
+            renderDlg.show();
+            renderDlg.exec();
+        }
     }
 }

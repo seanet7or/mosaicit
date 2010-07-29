@@ -6,6 +6,7 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
         ui(new Ui::MosaicDetailsDlg)
 {
     ui->setupUi(this);
+    this->m_canceled = true;
     m_image = QImage(imageFile);
     if (m_image.isNull()) {
         ui->previewImage->clear();
@@ -25,6 +26,14 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
     ui->totalTiles->setValue(200);
     ui->alphaChannel->setValue(30);
     this->updateResultLabel();
+    connect(ui->cancelButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(cancelButtonPressed()));
+    connect(ui->renderButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(renderButtonPressed()));
     connect(ui->tileHeight,
             SIGNAL(valueChanged(int)),
             this,
@@ -53,6 +62,11 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
             SIGNAL(valueChanged(int)),
             this,
             SLOT(updateResultLabel()));
+}
+
+bool MosaicDetailsDlg::exitedCorrectly()
+{
+    return !this->m_canceled;
 }
 
 void MosaicDetailsDlg::updateResultLabel()
@@ -118,6 +132,47 @@ void MosaicDetailsDlg::aspectRatioChanged()
 MosaicDetailsDlg::~MosaicDetailsDlg()
 {
     delete ui;
+}
+
+void MosaicDetailsDlg::cancelButtonPressed()
+{
+    done(0);
+}
+
+void MosaicDetailsDlg::renderButtonPressed()
+{
+    this->m_canceled = false;
+    this->m_alphaChannel = ui->alphaChannel->value();
+    this->m_cutEdges = ui->cutTileEdges->isChecked();
+    this->m_tileCount = ui->totalTiles->value();
+    this->m_tileHeight = ui->tileHeight->value();
+    this->m_tileWidth = ui->tileWidth->value();
+    done(0);
+}
+
+int MosaicDetailsDlg::tileWidth()
+{
+    return this->m_tileWidth;
+}
+
+int MosaicDetailsDlg::tileHeight()
+{
+    return this->m_tileHeight;
+}
+
+int MosaicDetailsDlg::tileCount()
+{
+    return this->m_tileCount;
+}
+
+bool MosaicDetailsDlg::cutEdges()
+{
+    return this->m_cutEdges;
+}
+
+int MosaicDetailsDlg::alphaChannel()
+{
+    return this->m_alphaChannel;
 }
 
 void MosaicDetailsDlg::changeEvent(QEvent *e)
