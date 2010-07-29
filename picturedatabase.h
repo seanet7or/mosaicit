@@ -24,6 +24,8 @@ public:
     QString name();
     void cancelIndexing();
     void clearPictureInfo();
+    int size();
+    PictureInfo *pictureAt(int index);
 public slots:
     void cancelProcessing();
 signals:
@@ -36,7 +38,7 @@ private slots:
     void processProgressFromThread(float percent);
 private:
 
-    QVector<PictureInfo*> *pictureInfo;
+    QVector<PictureInfo*> *m_pictureInfo;
     ProcessImagesThread *processThread;
     IndexFilesThread *m_indexThread;
     bool processRunning;

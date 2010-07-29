@@ -99,3 +99,18 @@ void PictureInfo::setColor(unsigned char red,
     this->m_green = green;
     this->m_blue = blue;
 }
+
+unsigned char PictureInfo::getBlue()
+{
+    return this->m_blue;
+}
+
+unsigned char PictureInfo::getRed()
+{
+    return this->m_red;
+}
+
+unsigned char PictureInfo::getGreen()
+{
+    return this->m_green;
+}

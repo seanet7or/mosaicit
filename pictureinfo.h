@@ -19,6 +19,9 @@ public:
     int getHeight();
     void setDimensions(int width, int height);
     void setColor(unsigned char red, unsigned char green, unsigned char blue);
+    unsigned char getRed();
+    unsigned char getGreen();
+    unsigned char getBlue();
     QDateTime lastChanged();
     void setLastChanged(const QDateTime &lastChanged);
     void toStream(QDataStream &out);

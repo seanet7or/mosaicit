@@ -16,7 +16,7 @@ bool PictureDatabase::toFile(const QString &file)
     quint32 identifier = FILE_ID;
     quint32 majorVersion = 1;
     quint32 minorVersion = 0;
-    quint32 entryCount = this->pictureInfo->size();
+    quint32 entryCount = this->m_pictureInfo->size();
     QFile outFile(file);
     if (!outFile.open(QIODevice::WriteOnly)) {
         log("  unable to open file");
@@ -28,8 +28,8 @@ bool PictureDatabase::toFile(const QString &file)
     out << minorVersion;
     out << this->m_name;
     out << entryCount;
-    for (int i = 0; i < this->pictureInfo->size(); i++) {
-        this->pictureInfo->at(i)->toStream(out);
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        this->m_pictureInfo->at(i)->toStream(out);
     }
     outFile.close();
     log("PictureDatabase::toFile done with success");
@@ -38,10 +38,10 @@ bool PictureDatabase::toFile(const QString &file)
 
 void PictureDatabase::clearPictureInfo()
 {
-    for (int i = 0; i < this->pictureInfo->size(); i++) {
-        delete pictureInfo->value(i);
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        delete m_pictureInfo->value(i);
     }
-    pictureInfo->clear();
+    m_pictureInfo->clear();
 }
 
 bool PictureDatabase::fromFile(const QString &file)
@@ -65,7 +65,7 @@ bool PictureDatabase::fromFile(const QString &file)
     for (unsigned int i = 0; i < entryCount; i++) {
         PictureInfo *newEntry = new PictureInfo;
         newEntry->fromStream(in);
-        this->pictureInfo->append(newEntry);
+        this->m_pictureInfo->append(newEntry);
     }
     inFile.close();
     return true;
@@ -99,7 +99,7 @@ void PictureDatabase::processFiles()
             this,
             SLOT(processProgressFromThread(float)));
     this->processRunning = true;
-    this->processThread->processImages(this->pictureInfo);
+    this->processThread->processImages(this->m_pictureInfo);
 }
 
 void PictureDatabase::indexFiles(QString directory,
@@ -110,7 +110,7 @@ void PictureDatabase::indexFiles(QString directory,
             this,
             SLOT(indexThreadFinished()));
     this->m_indexRunning = true;
-    this->m_indexThread->indexDirectory(this->pictureInfo,
+    this->m_indexThread->indexDirectory(this->m_pictureInfo,
                                         directory,
                                         includeSubdirectories);
 }
@@ -146,7 +146,7 @@ bool PictureDatabase::isIndexingRunning()
 
 PictureDatabase::PictureDatabase()
 {
-    this->pictureInfo = new QVector<PictureInfo*>;
+    this->m_pictureInfo = new QVector<PictureInfo*>;
     this->processThread = new ProcessImagesThread;
     this->m_indexThread = new IndexFilesThread;
     this->processRunning = false;
@@ -155,8 +155,8 @@ PictureDatabase::PictureDatabase()
 
 PictureDatabase::~PictureDatabase()
 {
-    if (this->pictureInfo) {
-        delete this->pictureInfo;
+    if (this->m_pictureInfo) {
+        delete this->m_pictureInfo;
     }
     if (this->processThread) {
         delete this->processThread;
@@ -172,4 +172,17 @@ void PictureDatabase::processProgressFromThread(float percent)
     log("PictureDatabase::processProgressFromThread called, "
         + QString::number(percent));
     emit this->processProgress(percent);
+}
+
+int PictureDatabase::size()
+{
+    return this->m_pictureInfo->size();
+}
+
+PictureInfo *PictureDatabase::pictureAt(int index)
+{
+    if ((index >= 0) && (index < this->m_pictureInfo->size())) {
+        return this->m_pictureInfo->value(index);
+    }
+    return 0;
 }
