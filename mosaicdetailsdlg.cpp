@@ -19,11 +19,11 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
                                                   Qt::KeepAspectRatio,
                                                   Qt::SmoothTransformation)));
     }
-    ui->tileWidth->setValue(300);
-    ui->tileHeight->setValue(300);
+    ui->tileWidth->setValue(150);
+    ui->tileHeight->setValue(150);
     ui->aspect11->setChecked(true);
     ui->cutTileEdges->setChecked(true);
-    ui->totalTiles->setValue(200);
+    ui->totalTiles->setValue(800);
     ui->alphaChannel->setValue(30);
     this->updateResultLabel();
     connect(ui->cancelButton,

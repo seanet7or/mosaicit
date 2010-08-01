@@ -22,6 +22,7 @@ public:
 
 signals:
     void logText(const QString &text);
+    void renderComplete(float percent);
 
 public slots:
 

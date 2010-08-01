@@ -21,6 +21,10 @@ RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
             SIGNAL(logText(QString)),
             this,
             SLOT(logText(QString)));
+    connect(this->m_renderThread,
+            SIGNAL(renderComplete(float)),
+            this,
+            SLOT(renderComplete(float)));
     this->m_renderThread->renderMosaic(database,
                                        imageFile,
                                        tileWidth,
@@ -57,4 +61,9 @@ void RenderMosaicDlg::changeEvent(QEvent *e)
 void RenderMosaicDlg::logText(const QString &text)
 {
     ui->textLog->appendPlainText(text);
+}
+
+void RenderMosaicDlg::renderComplete(float percent)
+{
+    ui->progressBar->setValue((int)percent);
 }

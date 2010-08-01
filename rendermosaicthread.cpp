@@ -39,6 +39,7 @@ void RenderMosaicThread::run()
 {
     //this function will build the new mosaic picture according to the infos
     //passed to the corresponding class
+    emit renderComplete(0.f);
     emit logText(tr("Rendering mosaic"));
 
     //first, load the original image into memory
@@ -88,7 +89,10 @@ void RenderMosaicThread::run()
     }
     QPainter mosaicPainter(&mosaic);
 
+    emit renderComplete(1.f);
+
     //loop through all tiles
+    int tilesDone = 0;
     for (int i = 0; i < tilesX; i++) {
         for (int j = 0; j < tilesY; j++) {
 
@@ -176,7 +180,8 @@ void RenderMosaicThread::run()
             } else {
                 emit logText("no matching tile found!");
             }
-
+            tilesDone++;
+            emit renderComplete(98.f*(float)tilesDone/(float)(tilesX*tilesY) + 1.f);
         }
     }
 
@@ -191,5 +196,6 @@ void RenderMosaicThread::run()
     }
 
     mosaic.save("/media/data/m.jpg");
+    emit renderComplete(100.f);
     emit logText(tr("Mosaic created."));
 }

@@ -27,6 +27,9 @@ public:
 public slots:
     void logText(const QString &text);
 
+private slots:
+    void renderComplete(float percent);
+
 protected:
     void changeEvent(QEvent *e);
 
