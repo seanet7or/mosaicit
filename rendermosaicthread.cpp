@@ -94,9 +94,11 @@ void RenderMosaicThread::run()
         for (int j = 0; j < tilesY; j++) {
 
             //look for best matching tile for current pixel
-            QRgb thisPixel = mosaic.pixel(i, j);
+            QRgb thisPixel = tilesImages.pixel(i, j);
             int minDiff = 1000;
             int nearestIndex = -1;
+            //loop through all tiles and look for the one with the best matching
+            //color
             for (int k = 0; k < this->m_database->size(); k++) {
                 if (this->m_database->pictureAt(k)->processed()) {
                     int diff = 0;
@@ -114,6 +116,9 @@ void RenderMosaicThread::run()
             }
             //found matching tile
             if (nearestIndex != -1) {
+                emit logText(tr("found matching tile!"));
+                emit logText(tr("filename is %1").arg(
+                        this->m_database->pictureAt(nearestIndex)->getFile()));
                 //load tile image
                 QImage tileImage(
                         this->m_database->pictureAt(nearestIndex)->getFile());
@@ -130,11 +135,13 @@ void RenderMosaicThread::run()
                 mosaicPainter.drawImage(i * this->m_tileWidth,
                                         j * this->m_tileHeight,
                                         tileImage);
+            } else {
+                emit logText("no matching tile found!");
             }
 
         }
     }
 
-    mosaic.save("d:\\m.jpg");
+    mosaic.save("/media/data/m.jpg");
     emit logText(tr("Mosaic created."));
 }
