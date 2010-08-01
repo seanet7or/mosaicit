@@ -156,6 +156,7 @@ PictureDatabase::PictureDatabase()
 PictureDatabase::~PictureDatabase()
 {
     if (this->m_pictureInfo) {
+        this->clearPictureInfo();
         delete this->m_pictureInfo;
     }
     if (this->processThread) {
@@ -164,7 +165,6 @@ PictureDatabase::~PictureDatabase()
     if (this->m_indexThread) {
         delete this->m_indexThread;
     }
-    this->clearPictureInfo();
 }
 
 void PictureDatabase::processProgressFromThread(float percent)
