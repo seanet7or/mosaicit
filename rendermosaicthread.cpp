@@ -122,6 +122,51 @@ void RenderMosaicThread::run()
                 //load tile image
                 QImage tileImage(
                         this->m_database->pictureAt(nearestIndex)->getFile());
+                //if tile aspect ratio doesn't fit the tile aspect ratio given
+                //for the mosaic
+                float currentTileAspectRatio =
+                        ((float)tileImage.width()/(float)tileImage.height());
+                float generalTileAspectRatio =
+                        ((float)m_tileWidth/(float)m_tileHeight);
+                if (qAbs(currentTileAspectRatio - generalTileAspectRatio)
+                    > 0.001) {
+                    //do we have to cut the edges?
+                    if (this->m_cutEdges) {
+                        if (currentTileAspectRatio > generalTileAspectRatio) {
+                            //example: tileWidth = 100
+                            //tileHeight = 100
+                            //tileImage.width() = 2000
+                            //tileImage.height() = 1000
+                            // => currentTileAspectRatio = 2.0
+                            // => generalTileAspectRatio = 1.0
+                            // => newCurrentTileWith = (1000 / 100) * 100 = 1000
+                            int newCurrentTileWidth =
+                                    ((float)tileImage.height()
+                                     / (float)m_tileHeight) * m_tileWidth;
+                            tileImage = tileImage.copy(
+                                    (tileImage.width()-newCurrentTileWidth) / 2,
+                                    0,
+                                    newCurrentTileWidth,
+                                    tileImage.height());
+                        } else {
+                            //example: tileWidth = 100
+                            //tileHeight = 100
+                            //tileImage.width() = 10
+                            //tileImage.height() = 20
+                            // => currentTileAspectRatio = 0.5
+                            // => generalTileAspectRatio = 1.0
+                            // => newCurrentTileHeight = (10 / 100) * 100 = 10
+                            int newCurrentTileHeight =
+                                    ((float)tileImage.width()
+                                     / (float)m_tileWidth) * m_tileHeight;
+                            tileImage = tileImage.copy(
+                                    0,
+                                    (tileImage.height()-newCurrentTileHeight)/2,
+                                    tileImage.width(),
+                                    newCurrentTileHeight);
+                        }
+                    }
+                }
                 tileImage = tileImage.scaled(this->m_tileWidth,
                                              this->m_tileHeight,
                                              Qt::IgnoreAspectRatio,
