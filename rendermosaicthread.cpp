@@ -61,11 +61,9 @@ void RenderMosaicThread::run()
       => ty * ty = tileCount / aspectFactor
       => ty = sqrt(tileCount / aspectFactor)
       */
-    double aspectFactor = ((double)this->m_tileHeight
-                           / (double)this->m_tileWidth)
-                          * ((double)originalImage.width()
-                             / (double)originalImage.height());
-    int tilesY = (int)sqrt((double)this->m_tileCount / aspectFactor);
+    double aspectFactor = ((double)this->m_tileHeight / (double)this->m_tileWidth)
+                          * ((double)originalImage.width() / (double)originalImage.height());
+    int tilesY = qRound(sqrt(((double)this->m_tileCount) / aspectFactor));
     int tilesX = this->m_tileCount / tilesY;
     emit logText(tr("The mosaic will be built of %1 x %2 tiles").arg(
             QString::number(tilesX), QString::number(tilesY)));
@@ -88,6 +86,7 @@ void RenderMosaicThread::run()
         emit logText(tr("Error reserving memory for the mosaic!"));
         return;
     }
+    QPainter mosaicPainter(&mosaic);
 
     //loop through all tiles
     for (int i = 0; i < tilesX; i++) {
@@ -120,14 +119,11 @@ void RenderMosaicThread::run()
                 emit logText(tr("filename is %1").arg(
                         this->m_database->pictureAt(nearestIndex)->getFile()));
                 //load tile image
-                QImage tileImage(
-                        this->m_database->pictureAt(nearestIndex)->getFile());
+                QImage tileImage(this->m_database->pictureAt(nearestIndex)->getFile());
                 //if tile aspect ratio doesn't fit the tile aspect ratio given
                 //for the mosaic
-                float currentTileAspectRatio =
-                        ((float)tileImage.width()/(float)tileImage.height());
-                float generalTileAspectRatio =
-                        ((float)m_tileWidth/(float)m_tileHeight);
+                float currentTileAspectRatio = ((float)tileImage.width()/(float)tileImage.height());
+                float generalTileAspectRatio = ((float)m_tileWidth/(float)m_tileHeight);
                 if (qAbs(currentTileAspectRatio - generalTileAspectRatio)
                     > 0.001) {
                     //do we have to cut the edges?
@@ -141,8 +137,7 @@ void RenderMosaicThread::run()
                             // => generalTileAspectRatio = 1.0
                             // => newCurrentTileWith = (1000 / 100) * 100 = 1000
                             int newCurrentTileWidth =
-                                    ((float)tileImage.height()
-                                     / (float)m_tileHeight) * m_tileWidth;
+                                    ((float)tileImage.height() / (float)m_tileHeight) * m_tileWidth;
                             tileImage = tileImage.copy(
                                     (tileImage.width()-newCurrentTileWidth) / 2,
                                     0,
@@ -157,8 +152,7 @@ void RenderMosaicThread::run()
                             // => generalTileAspectRatio = 1.0
                             // => newCurrentTileHeight = (10 / 100) * 100 = 10
                             int newCurrentTileHeight =
-                                    ((float)tileImage.width()
-                                     / (float)m_tileWidth) * m_tileHeight;
+                                    ((float)tileImage.width()  / (float)m_tileWidth) * m_tileHeight;
                             tileImage = tileImage.copy(
                                     0,
                                     (tileImage.height()-newCurrentTileHeight)/2,
@@ -176,7 +170,6 @@ void RenderMosaicThread::run()
                     return;
                 }
                 //copy into mosaic
-                QPainter mosaicPainter(&mosaic);
                 mosaicPainter.drawImage(i * this->m_tileWidth,
                                         j * this->m_tileHeight,
                                         tileImage);
@@ -185,6 +178,16 @@ void RenderMosaicThread::run()
             }
 
         }
+    }
+
+    //blend in alpha channel now
+    if (this->m_alphaChannel > 0) {
+        QRect srcRect(0, 0, originalImage.width(), originalImage.height());
+        QRect destRect(0, 0, mosaic.width(), mosaic.height());
+        mosaicPainter.setOpacity((float)this->m_alphaChannel / 100.f);
+        mosaicPainter.drawImage(destRect,
+                                originalImage,
+                                srcRect);
     }
 
     mosaic.save("/media/data/m.jpg");
