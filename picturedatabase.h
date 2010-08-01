@@ -29,7 +29,7 @@ public:
 public slots:
     void cancelProcessing();
 signals:
-    void processFinished();
+    void processFinished(bool wasCanceled);
     void indexFinished();
     void processProgress(float percent);
 private slots:
@@ -39,10 +39,11 @@ private slots:
 private:
 
     QVector<PictureInfo*> *m_pictureInfo;
-    ProcessImagesThread *processThread;
+    ProcessImagesThread *m_processThread;
     IndexFilesThread *m_indexThread;
-    bool processRunning;
+    bool m_processRunning;
     bool m_indexRunning;
+    bool m_processingWasCanceled;
     QString m_name;
 };
 

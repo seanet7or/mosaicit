@@ -27,7 +27,7 @@ protected:
 
 private slots:
     void indexingFinished();
-    void processingFinished();
+    void processingFinished(bool wasCanceled);
     void closeButtonPressed();
 
 private:

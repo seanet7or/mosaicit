@@ -90,16 +90,17 @@ QString PictureDatabase::name()
 
 void PictureDatabase::processFiles()
 {
-    connect(this->processThread,
+    connect(this->m_processThread,
             SIGNAL(finished()),
             this,
             SLOT(processThreadFinished()));
-    connect(this->processThread,
+    connect(this->m_processThread,
             SIGNAL(complete(float)),
             this,
             SLOT(processProgressFromThread(float)));
-    this->processRunning = true;
-    this->processThread->processImages(this->m_pictureInfo);
+    this->m_processRunning = true;
+    this->m_processingWasCanceled = false;
+    this->m_processThread->processImages(this->m_pictureInfo);
 }
 
 void PictureDatabase::indexFiles(QString directory,
@@ -117,8 +118,8 @@ void PictureDatabase::indexFiles(QString directory,
 
 void PictureDatabase::processThreadFinished()
 {
-    this->processRunning = false;
-    emit this->processFinished();
+    this->m_processRunning = false;
+    emit this->processFinished(this->m_processingWasCanceled);
 }
 
 void PictureDatabase::indexThreadFinished()
@@ -129,13 +130,14 @@ void PictureDatabase::indexThreadFinished()
 
 bool PictureDatabase::isProcessingRunning()
 {
-    return this->processRunning;
+    return this->m_processRunning;
 }
 
 void PictureDatabase::cancelProcessing()
 {
-    while (this->processThread->isRunning()) {
-        this->processThread->cancel();
+    while (this->m_processThread->isRunning()) {
+        this->m_processThread->cancel();
+        this->m_processingWasCanceled = true;
     }
 }
 
@@ -147,10 +149,11 @@ bool PictureDatabase::isIndexingRunning()
 PictureDatabase::PictureDatabase()
 {
     this->m_pictureInfo = new QVector<PictureInfo*>;
-    this->processThread = new ProcessImagesThread;
+    this->m_processThread = new ProcessImagesThread;
     this->m_indexThread = new IndexFilesThread;
-    this->processRunning = false;
+    this->m_processRunning = false;
     this->m_indexRunning = false;
+    this->m_processingWasCanceled = false;
 }
 
 PictureDatabase::~PictureDatabase()
@@ -159,8 +162,8 @@ PictureDatabase::~PictureDatabase()
         this->clearPictureInfo();
         delete this->m_pictureInfo;
     }
-    if (this->processThread) {
-        delete this->processThread;
+    if (this->m_processThread) {
+        delete this->m_processThread;
     }
     if (this->m_indexThread) {
         delete this->m_indexThread;

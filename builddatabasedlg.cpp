@@ -56,7 +56,6 @@ void BuildDatabaseDlg::closeButtonPressed()
                 this->m_newDatabase->cancelProcessing();
             }
             ui->label->setText(tr("The build process was canceled!"));
-            ui->textLog->appendPlainText(tr("Canceled the build process! You won't be able to use the database."));
             if (ui->progressBar->minimum() == ui->progressBar->maximum()) {
                 ui->progressBar->setMaximum(100);
                 ui->progressBar->setMinimum(0);
@@ -75,9 +74,9 @@ void BuildDatabaseDlg::indexingFinished()
     if (this->m_canceled) return;
     ui->textLog->appendPlainText(tr("Indexing files finished."));
     connect(this->m_newDatabase,
-            SIGNAL(processFinished()),
+            SIGNAL(processFinished(bool)),
             this,
-            SLOT(processingFinished()));
+            SLOT(processingFinished(bool)));
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(100);
     ui->progressBar->setValue(0);
@@ -89,9 +88,15 @@ void BuildDatabaseDlg::indexingFinished()
     this->m_newDatabase->processFiles();
 }
 
-void BuildDatabaseDlg::processingFinished()
+void BuildDatabaseDlg::processingFinished(bool wasCanceled)
 {
-    ui->textLog->appendPlainText(tr("Analyzing found files finished."));
+    if (!wasCanceled) {
+        ui->textLog->appendPlainText(tr("Analyzing found files finished."));
+    } else {
+        ui->textLog->appendPlainText(tr("Analyzing was canceled!"));
+        ui->textLog->appendPlainText(tr("The database will be incomplete."));
+        ui->textLog->appendPlainText(tr("Use \"Edit Database\" to analyse the missing files."));
+    }
     bool saved = false;
     while (!saved) {
         ui->textLog->appendPlainText(
@@ -116,7 +121,11 @@ void BuildDatabaseDlg::processingFinished()
         }
     }
     ui->textLog->appendPlainText(tr("Saved database."));
-    ui->label->setText("The database was built successfully.");
+    if (!wasCanceled) {
+        ui->label->setText(tr("The database was built successfully."));
+    } else {
+        ui->label->setText(tr("The database will be incomplete!"));
+    }
     ui->closeButton->setText(tr("Close"));
 }
 

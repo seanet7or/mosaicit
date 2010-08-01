@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>415</width>
-    <height>128</height>
+    <width>596</width>
+    <height>140</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Build new picture database</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -30,7 +30,14 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="nameEdit"/>
+      <widget class="QLineEdit" name="nameEdit">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -40,7 +47,14 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="directoryEdit"/>
+      <widget class="QLineEdit" name="directoryEdit">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="selectDirButton">
