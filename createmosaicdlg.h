@@ -16,6 +16,7 @@ public:
     bool exitedCorrectly();
     QString image();
     QString database();
+    QString outputImage();
 
 protected:
     void changeEvent(QEvent *e);
@@ -23,6 +24,7 @@ protected:
 private slots:
     void selectDBBnPressed();
     void selectImageBnPressed();
+    void selectOutputBnPressed();
     void imageChanged();
     void nextBnPressed();
     void cancelBnPressed();
@@ -32,6 +34,7 @@ private:
     bool m_canceled;
     QString m_database;
     QString m_image;
+    QString m_outputImage;
 
 };
 

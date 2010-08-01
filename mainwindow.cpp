@@ -83,7 +83,8 @@ void MainWindow::newMosaicBnClicked()
                                       detailsDlg.tileHeight(),
                                       detailsDlg.tileCount(),
                                       detailsDlg.cutEdges(),
-                                      detailsDlg.alphaChannel());
+                                      detailsDlg.alphaChannel(),
+                                      createDlg.outputImage());
             renderDlg.show();
             renderDlg.exec();
         }

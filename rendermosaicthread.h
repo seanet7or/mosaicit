@@ -17,7 +17,8 @@ public:
                       int tileHeight,
                       int tileCount,
                       bool cutEdges,
-                      int alphaChannel);
+                      int alphaChannel,
+                      const QString &outputFile);
     void cancel();
 
 signals:
@@ -38,6 +39,7 @@ private:
     int m_tileCount;
     bool m_cutEdges;
     int m_alphaChannel;
+    QString m_outputFile;
 };
 
 #endif // RENDERMOSAICTHREAD_H

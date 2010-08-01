@@ -11,7 +11,8 @@ RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
                                  int tileHeight,
                                  int tileCount,
                                  bool cutEdges,
-                                 int alphaChannel) :
+                                 int alphaChannel,
+                                 const QString &outputFile) :
     QDialog(parent),
     ui(new Ui::RenderMosaicDlg)
 {
@@ -31,7 +32,8 @@ RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
                                        tileHeight,
                                        tileCount,
                                        cutEdges,
-                                       alphaChannel);
+                                       alphaChannel,
+                                       outputFile);
 }
 
 RenderMosaicDlg::~RenderMosaicDlg()

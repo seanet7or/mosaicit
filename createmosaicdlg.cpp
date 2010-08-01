@@ -32,6 +32,10 @@ CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(cancelBnPressed()));
+    connect(ui->selectOutput,
+            SIGNAL(pressed()),
+            this,
+            SLOT(selectOutputBnPressed()));
 }
 
 bool CreateMosaicDlg::exitedCorrectly()
@@ -94,9 +98,17 @@ void CreateMosaicDlg::nextBnPressed()
                              QMessageBox::Ok);
         return;
     }
+    if (QString(ui->outputEdit->text()).length() == 0) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("Select a mosaic output image file!"),
+                             QMessageBox::Ok);
+        return;
+    }
     this->m_canceled = false;
     this->m_image = ui->imageEdit->text();
     this->m_database = ui->databaseEdit->text();
+    this->m_outputImage = ui->outputEdit->text();
     done(0);
 }
 
@@ -110,6 +122,11 @@ QString CreateMosaicDlg::database()
     return this->m_database;
 }
 
+QString CreateMosaicDlg::outputImage()
+{
+    return this->m_outputImage;
+}
+
 void CreateMosaicDlg::selectDBBnPressed()
 {
     ui->databaseEdit->setText(
@@ -117,6 +134,15 @@ void CreateMosaicDlg::selectDBBnPressed()
                                          tr("Select database file"),
                                          ui->databaseEdit->text(),
                                          tr("Database files (*.mib);;All files (*.*)")));
+}
+
+void CreateMosaicDlg::selectOutputBnPressed()
+{
+    ui->outputEdit->setText(
+            QFileDialog::getSaveFileName(this,
+                                         tr("Select image output file"),
+                                         QDir::homePath() + "/mosaic.jpg",
+                                         tr("Images (*.jpg)")));
 }
 
 void CreateMosaicDlg::selectImageBnPressed()

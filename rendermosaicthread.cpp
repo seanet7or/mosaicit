@@ -17,7 +17,8 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       int tileHeight,
                                       int tileCount,
                                       bool cutEdges,
-                                      int alphaChannel)
+                                      int alphaChannel,
+                                      const QString &outputFile)
 {
     m_cancelNow = false;
     this->m_database = database;
@@ -27,6 +28,7 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
     this->m_tileCount = tileCount;
     this->m_cutEdges = cutEdges;
     this->m_alphaChannel = alphaChannel;
+    this->m_outputFile = outputFile;
     start();
 }
 
@@ -195,7 +197,7 @@ void RenderMosaicThread::run()
                                 srcRect);
     }
 
-    mosaic.save("/media/data/m.jpg");
+    mosaic.save(this->m_outputFile);
     emit renderComplete(100.f);
     emit logText(tr("Mosaic created."));
 }
