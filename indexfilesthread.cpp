@@ -63,6 +63,8 @@ void IndexFilesThread::addFile(QString file)
 {
     PictureInfo *newEntry = new PictureInfo;
     newEntry->setFile(file);
+    newEntry->setProcessed(false);
+    newEntry->setValidFile(true);
     this->m_pictures->append(newEntry);
 }
 

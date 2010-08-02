@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QDataStream>
 
 #include "debug.h"
@@ -58,6 +59,10 @@ bool PictureDatabase::fromFile(const QString &file)
     QString name;
     quint32 entryCount;
     in >> identifier;
+    if (identifier != FILE_ID) {
+        inFile.close();
+        return false;
+    }
     in >> majorVersion;
     in >> minorVersion;
     in >> name;
@@ -188,4 +193,21 @@ PictureInfo *PictureDatabase::pictureAt(int index)
         return this->m_pictureInfo->value(index);
     }
     return 0;
+}
+
+bool PictureDatabase::allUpToDate()
+{
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        if (this->m_pictureInfo->at(i)->validFile()) {
+            if (this->m_pictureInfo->at(i)->processed()) {
+                QFileInfo fileInfo(this->m_pictureInfo->at(i)->getFile());
+                if (fileInfo.lastModified() != this->m_pictureInfo->at(i)->lastChanged()) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
 }

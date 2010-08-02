@@ -26,6 +26,7 @@ public:
     void clearPictureInfo();
     int size();
     PictureInfo *pictureAt(int index);
+    bool allUpToDate();
 public slots:
     void cancelProcessing();
 signals:
