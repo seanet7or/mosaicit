@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     createmosaicdlg.cpp \
     mosaicdetailsdlg.cpp \
     rendermosaicdlg.cpp \
-    rendermosaicthread.cpp
+    rendermosaicthread.cpp \
+    editdatabasedlg.cpp
 HEADERS += mainwindow.h \
     pictureinfo.h \
     picturedatabase.h \
@@ -26,10 +27,12 @@ HEADERS += mainwindow.h \
     createmosaicdlg.h \
     mosaicdetailsdlg.h \
     rendermosaicdlg.h \
-    rendermosaicthread.h
+    rendermosaicthread.h \
+    editdatabasedlg.h
 FORMS += mainwindow.ui \
     newdatabasedlg.ui \
     builddatabasedlg.ui \
     createmosaicdlg.ui \
     mosaicdetailsdlg.ui \
-    rendermosaicdlg.ui
+    rendermosaicdlg.ui \
+    editdatabasedlg.ui

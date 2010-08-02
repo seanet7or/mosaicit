@@ -9,6 +9,7 @@
 #include "picturedatabase.h"
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
+#include "editdatabasedlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(newMosaicBnClicked()));
+    connect(ui->editDatabaseButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(editDatabaseBnClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -60,7 +65,7 @@ void MainWindow::createDatabaseBnClicked()
 
 void MainWindow::newMosaicBnClicked()
 {
-    CreateMosaicDlg createDlg;
+    CreateMosaicDlg createDlg(this);
     createDlg.show();
     createDlg.exec();
     if (createDlg.exitedCorrectly()) {
@@ -89,4 +94,11 @@ void MainWindow::newMosaicBnClicked()
             renderDlg.exec();
         }
     }
+}
+
+void MainWindow::editDatabaseBnClicked()
+{
+    EditDatabaseDlg editDBDlg(this);
+    editDBDlg.show();
+    editDBDlg.exec();
 }
