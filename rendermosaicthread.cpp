@@ -9,6 +9,7 @@ RenderMosaicThread::RenderMosaicThread(QObject *parent) :
         QThread(parent)
 {
     m_cancelNow = false;
+    m_criticalError = false;
 }
 
 void RenderMosaicThread::renderMosaic(PictureDatabase *database,
@@ -21,6 +22,7 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       const QString &outputFile)
 {
     m_cancelNow = false;
+    this->m_criticalError = false;
     this->m_database = database;
     this->m_imageFile = imageFile;
     this->m_tileWidth = tileWidth;
@@ -44,11 +46,22 @@ void RenderMosaicThread::run()
     emit renderComplete(0.f);
     emit logText(tr("Rendering mosaic"));
 
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
+        return;
+    }
+
     //first, load the original image into memory
     emit logText(tr("loading original image %1").arg(this->m_imageFile));
     QImage originalImage(this->m_imageFile);
     if (originalImage.isNull()) {
         emit logText(tr("Error loading the original image!"));
+        this->m_criticalError = true;
+        return;
+    }
+
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
 
@@ -68,7 +81,7 @@ void RenderMosaicThread::run()
                           * ((double)originalImage.width() / (double)originalImage.height());
     int tilesY = qRound(sqrt(((double)this->m_tileCount) / aspectFactor));
     int tilesX = this->m_tileCount / tilesY;
-    emit logText(tr("The mosaic will be built of %1 x %2 tiles").arg(
+    emit logText(tr("The mosaic will be built of %1 x %2 tiles.").arg(
             QString::number(tilesX), QString::number(tilesY)));
 
     //resize the original file to get the color values for the
@@ -78,7 +91,13 @@ void RenderMosaicThread::run()
                                               Qt::SmoothTransformation
                                               );
     if (tilesImages.isNull()) {
-        emit logText(tr("Error scaling the original picture"));
+        emit logText(tr("Error scaling the original picture!"));
+        this->m_criticalError = true;
+        return;
+    }
+
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
 
@@ -86,17 +105,28 @@ void RenderMosaicThread::run()
     QImage mosaic(tilesX * this->m_tileWidth, tilesY * this->m_tileHeight,
                   QImage::Format_ARGB32);
     if (mosaic.isNull()) {
-        emit logText(tr("Error reserving memory for the mosaic!"));
+        emit logText(tr("Error reserving memory for the mosaic image!"));
+        this->m_criticalError = true;
         return;
     }
     QPainter mosaicPainter(&mosaic);
 
     emit renderComplete(1.f);
 
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
+        return;
+    }
+
     //loop through all tiles
     int tilesDone = 0;
     for (int i = 0; i < tilesX; i++) {
         for (int j = 0; j < tilesY; j++) {
+
+            if (this->m_cancelNow) {
+                emit logText(tr("Rendering was canceled - no mosaic was saved!"));
+                return;
+            }
 
             //look for best matching tile for current pixel
             QRgb thisPixel = tilesImages.pixel(i, j);
@@ -121,11 +151,17 @@ void RenderMosaicThread::run()
             }
             //found matching tile
             if (nearestIndex != -1) {
-                emit logText(tr("found matching tile!"));
-                emit logText(tr("filename is %1").arg(
-                        this->m_database->pictureAt(nearestIndex)->getFile()));
+                //emit logText(tr("found matching tile!"));
+                //emit logText(tr("filename is %1").arg(
+                //        this->m_database->pictureAt(nearestIndex)->getFile()));
                 //load tile image
                 QImage tileImage(this->m_database->pictureAt(nearestIndex)->getFile());
+                if (tileImage.isNull()) {
+                    emit logText(tr("Error loading the tile image %1!").arg(
+                            this->m_database->pictureAt(nearestIndex)->getFile()));
+                    this->m_criticalError = true;
+                    return;
+                }
                 //if tile aspect ratio doesn't fit the tile aspect ratio given
                 //for the mosaic
                 float currentTileAspectRatio = ((float)tileImage.width()/(float)tileImage.height());
@@ -172,7 +208,9 @@ void RenderMosaicThread::run()
                                              Qt::IgnoreAspectRatio,
                                              Qt::SmoothTransformation);
                 if (tileImage.isNull()) {
-                    emit logText(tr("Error loading and scaling tile!"));
+                    emit logText(tr("Error scaling tile image %1!").arg(
+                            this->m_database->pictureAt(nearestIndex)->getFile()));
+                    this->m_criticalError = true;
                     return;
                 }
                 //copy into mosaic
@@ -180,11 +218,19 @@ void RenderMosaicThread::run()
                                         j * this->m_tileHeight,
                                         tileImage);
             } else {
-                emit logText("no matching tile found!");
+                emit logText(tr("Error - no matching tile found!"));
+                emit logText(tr("Edit the tile image database or select another one."));
+                this->m_criticalError = true;
+                return;
             }
             tilesDone++;
             emit renderComplete(98.f*(float)tilesDone/(float)(tilesX*tilesY) + 1.f);
         }
+    }
+
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
+        return;
     }
 
     //blend in alpha channel now
@@ -197,7 +243,26 @@ void RenderMosaicThread::run()
                                 srcRect);
     }
 
-    mosaic.save(this->m_outputFile);
+    if (this->m_cancelNow) {
+        emit logText(tr("Rendering was canceled - no mosaic was saved!"));
+        return;
+    }
+
+    if (!mosaic.save(this->m_outputFile)) {
+        emit logText(tr("Error saving the built mosaic in the file %1!").arg(this->m_outputFile));
+        this->m_criticalError = true;
+        return;
+    }
     emit renderComplete(100.f);
     emit logText(tr("Mosaic created."));
+}
+
+bool RenderMosaicThread::criticalError()
+{
+    return this->m_criticalError;
+}
+
+bool RenderMosaicThread::wasCanceled()
+{
+    return this->m_cancelNow;
 }

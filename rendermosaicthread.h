@@ -20,6 +20,8 @@ public:
                       int alphaChannel,
                       const QString &outputFile);
     void cancel();
+    bool criticalError();
+    bool wasCanceled();
 
 signals:
     void logText(const QString &text);
@@ -32,6 +34,7 @@ protected:
 
 private:
     bool m_cancelNow;
+    bool m_criticalError;
     PictureDatabase *m_database;
     QString m_imageFile;
     int m_tileWidth;

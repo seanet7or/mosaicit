@@ -30,6 +30,8 @@ public slots:
 
 private slots:
     void renderComplete(float percent);
+    void cancelBnPressed();
+    void renderThreadFinished();
 
 protected:
     void changeEvent(QEvent *e);
@@ -37,6 +39,7 @@ protected:
 private:
     Ui::RenderMosaicDlg *ui;
     RenderMosaicThread *m_renderThread;
+    QString m_outputFile;
 };
 
 #endif // RENDERMOSAICDLG_H
