@@ -45,11 +45,15 @@ bool ProcessImagesThread::processImage(PictureInfo *picture)
     Q_ASSERT(picture != 0);
     log("ProcessImagesThread::processImage called for file " +
         picture->getFile());
-    picture->setProcessed(true);
     QFileInfo fileInfo(picture->getFile());
     if (!fileInfo.exists()) {
         picture->setValidFile(false);
+        picture->setProcessed(false);
         return false;
+    }
+    if ((picture->processed()) && (picture->lastChanged() == fileInfo.lastModified())) {
+        //picture info is up to date
+        return;
     }
     picture->setLastChanged(fileInfo.lastModified());
     QImage *image = new QImage(picture->getFile());
@@ -75,6 +79,7 @@ bool ProcessImagesThread::processImage(PictureInfo *picture)
     blue /= pixels;
     picture->setColor(red, green, blue);
     delete image;
+    picture->setProcessed(true);
     log("ProcessImagesThread::processImage done with success");
     return true;
 }

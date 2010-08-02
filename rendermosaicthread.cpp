@@ -135,7 +135,8 @@ void RenderMosaicThread::run()
             //loop through all tiles and look for the one with the best matching
             //color
             for (int k = 0; k < this->m_database->size(); k++) {
-                if (this->m_database->pictureAt(k)->processed()) {
+                if ((this->m_database->pictureAt(k)->processed())
+                    && (this->m_database->pictureAt(k)->validFile())) {
                     int diff = 0;
                     diff += qAbs(qRed(thisPixel)
                                  - this->m_database->pictureAt(k)->getRed());
