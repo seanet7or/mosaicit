@@ -45,6 +45,14 @@ void PictureDatabase::clearPictureInfo()
     m_pictureInfo->clear();
 }
 
+void PictureDatabase::removeEntry(int index)
+{
+    if ((index >= 0) && (index < this->m_pictureInfo->size())) {
+        delete this->m_pictureInfo->value(index);
+        this->m_pictureInfo->remove(index);
+    }
+}
+
 bool PictureDatabase::fromFile(const QString &file)
 {
     this->clearPictureInfo();
@@ -95,6 +103,9 @@ QString PictureDatabase::name()
 
 void PictureDatabase::processFiles()
 {
+    this->m_processingWasCanceled = false;
+    this->m_processRunning = true;
+    this->m_processThread->processImages(this->m_pictureInfo);
     connect(this->m_processThread,
             SIGNAL(finished()),
             this,
@@ -103,9 +114,6 @@ void PictureDatabase::processFiles()
             SIGNAL(complete(float)),
             this,
             SLOT(processProgressFromThread(float)));
-    this->m_processRunning = true;
-    this->m_processingWasCanceled = false;
-    this->m_processThread->processImages(this->m_pictureInfo);
 }
 
 void PictureDatabase::indexFiles(QString directory,

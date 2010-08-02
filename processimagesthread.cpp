@@ -9,19 +9,20 @@
 
 ProcessImagesThread::ProcessImagesThread()
 {
-    cancelNow = false;
+    m_cancelNow = false;
     this->pictures = 0;
 }
 
 void ProcessImagesThread::cancel()
 {
-    cancelNow = true;
+    m_cancelNow = true;
 }
 
 void ProcessImagesThread::processImages(QVector<PictureInfo *> *pictures)
 {
     Q_ASSERT (pictures != 0);
     this->pictures = pictures;
+    m_cancelNow = false;
     start();
 }
 
@@ -31,7 +32,7 @@ void ProcessImagesThread::run()
     log("ProcessImagesThread::run called");
     for (int i = 0; i < this->pictures->size(); i++) {
         processImage(pictures->value(i));
-        if (cancelNow) {
+        if (m_cancelNow) {
             log("ProcessImagesThread::run was canceled");
             return;
         }

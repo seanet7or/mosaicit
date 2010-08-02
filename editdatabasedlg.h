@@ -20,10 +20,15 @@ protected:
 
 private slots:
     void onFileSelected(int row);
+    void onDelEntryButtonPressed();
+    void onUpdateDBButtonPressed();
 
 private:
+    void updateUIElements();
+
     Ui::EditDatabaseDlg *ui;
     PictureDatabase *m_database;
+    QString m_databaseFile;
 };
 
 #endif // EDITDATABASEDLG_H

@@ -26,6 +26,7 @@ public:
     void clearPictureInfo();
     int size();
     PictureInfo *pictureAt(int index);
+    void removeEntry(int index);
     bool allUpToDate();
     int filesNotUpToDate();
 public slots:

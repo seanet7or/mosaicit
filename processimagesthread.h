@@ -25,7 +25,7 @@ protected:
 private:
     bool processImage(PictureInfo *picture);
     QVector<PictureInfo*> *pictures;
-    bool cancelNow;
+    bool m_cancelNow;
 };
 
 #endif // PROCESSIMAGESTHREAD_H

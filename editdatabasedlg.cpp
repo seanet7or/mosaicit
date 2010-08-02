@@ -11,6 +11,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
         ui(new Ui::EditDatabaseDlg)
 {
     ui->setupUi(this);
+    this->m_databaseFile = databaseFile;
 
     //load database and prepare if necessary
     this->m_database = new PictureDatabase;
@@ -32,21 +33,58 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             UpdateDatabaseDlg updateDlg(this, this->m_database);
             updateDlg.show();
             updateDlg.exec();
-
         }
     }
 
+    connect(ui->removeFileButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(onDelEntryButtonPressed()));
+    connect(ui->updateDatabaseButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(onUpdateDBButtonPressed()));
     connect(ui->fileList,
             SIGNAL(currentRowChanged(int)),
             this,
             SLOT(onFileSelected(int)));
 
     //update ui elements
+    this->updateUIElements();
+}
+
+void EditDatabaseDlg::onUpdateDBButtonPressed()
+{
+    if (!this->m_database->allUpToDate()) {
+        UpdateDatabaseDlg updateDlg(this, this->m_database);
+        updateDlg.show();
+        updateDlg.exec();
+        this->updateUIElements();
+    } else {
+        QMessageBox::warning(this,
+                             tr("Nothing to do"),
+                             tr("All database entries are up to date!"),
+                             QMessageBox::Ok);
+    }
+}
+
+void EditDatabaseDlg::onDelEntryButtonPressed()
+{
+    if ((ui->fileList->currentRow() >= 0)
+        && (ui->fileList->currentRow() < this->m_database->size())) {
+        this->m_database->removeEntry(ui->fileList->currentRow());
+        this->updateUIElements();
+    }
+}
+
+void EditDatabaseDlg::updateUIElements()
+{
     ui->databaseInfoLabel->setText(
             tr("%1 files in database \"%2\"; %3 do not exist or are untracked yet").arg(
                     QString::number(this->m_database->size()),
-                    databaseFile,
+                    this->m_databaseFile,
                     QString::number(this->m_database->filesNotUpToDate())));
+    ui->fileList->clear();
     for (int i = 0; i < this->m_database->size(); i++) {
         ui->fileList->addItem(this->m_database->pictureAt(i)->getFile());
     }
