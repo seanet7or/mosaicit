@@ -11,6 +11,7 @@
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
 #include "editdatabasedlg.h"
+#include "aboutdlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -29,6 +30,10 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(editDatabaseBnClicked()));
+    connect(ui->aboutButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(aboutBnClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -116,4 +121,11 @@ void MainWindow::editDatabaseBnClicked()
     EditDatabaseDlg editDBDlg(this, databaseFile);
     editDBDlg.show();
     editDBDlg.exec();
+}
+
+void MainWindow::aboutBnClicked()
+{
+    AboutDlg aboutDlg;
+    aboutDlg.show();
+    aboutDlg.exec();
 }
