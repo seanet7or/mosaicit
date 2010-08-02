@@ -18,6 +18,9 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
+private slots:
+    void onFileSelected(int row);
+
 private:
     Ui::EditDatabaseDlg *ui;
     PictureDatabase *m_database;

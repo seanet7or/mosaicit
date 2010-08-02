@@ -36,8 +36,29 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="1" colspan="2">
+      <widget class="QPushButton" name="removeFileButton">
+       <property name="text">
+        <string>Remove this file from database</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="2">
+      <widget class="QLabel" name="imagePathLabel">
+       <property name="text">
+        <string>ImagePath</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="processedLabel">
+       <property name="text">
+        <string>WasAlreadyProcessed</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
-      <widget class="QLabel" name="ImagePreview">
+      <widget class="QLabel" name="imagePreview">
        <property name="minimumSize">
         <size>
          <width>200</width>
@@ -55,27 +76,6 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <widget class="QPushButton" name="removeFileButton">
-       <property name="text">
-        <string>Remove this file from database</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="imagePathLabel">
-       <property name="text">
-        <string>ImagePath</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="processedLabel">
-       <property name="text">
-        <string>WasAlreadyProcessed</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -87,17 +87,24 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
+     <item row="0" column="1">
       <widget class="QPushButton" name="addDirButton">
        <property name="text">
         <string>Add directory to database</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <widget class="QPushButton" name="adFileButton">
        <property name="text">
         <string>Add file to database</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="updateDatabaseButton">
+       <property name="text">
+        <string>Update database</string>
        </property>
       </widget>
      </item>

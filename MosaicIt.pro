@@ -1,41 +1,37 @@
-# -------------------------------------------------
-# Project created by QtCreator 2010-05-10T09:38:54
-# -------------------------------------------------
-TARGET = MosaicIt
-TEMPLATE = app
-SOURCES += main.cpp \
-    mainwindow.cpp \
-    pictureinfo.cpp \
-    picturedatabase.cpp \
-    processimagesthread.cpp \
-    newdatabasedlg.cpp \
-    builddatabasedlg.cpp \
-    indexfilesthread.cpp \
-    createmosaicdlg.cpp \
-    mosaicdetailsdlg.cpp \
-    rendermosaicdlg.cpp \
-    rendermosaicthread.cpp \
-    editdatabasedlg.cpp \
-    updatedatabasedlg.cpp
-HEADERS += mainwindow.h \
+OTHER_FILES += 
+HEADERS += updatedatabasedlg.h \
+    rendermosaicthread.h \
+    rendermosaicdlg.h \
+    processimagesthread.h \
     pictureinfo.h \
     picturedatabase.h \
-    debug.h \
-    processimagesthread.h \
     newdatabasedlg.h \
-    builddatabasedlg.h \
-    indexfilesthread.h \
-    createmosaicdlg.h \
     mosaicdetailsdlg.h \
-    rendermosaicdlg.h \
-    rendermosaicthread.h \
+    mainwindow.h \
+    indexfilesthread.h \
     editdatabasedlg.h \
-    updatedatabasedlg.h
-FORMS += mainwindow.ui \
-    newdatabasedlg.ui \
-    builddatabasedlg.ui \
-    createmosaicdlg.ui \
-    mosaicdetailsdlg.ui \
+    debug.h \
+    createmosaicdlg.h \
+    builddatabasedlg.h
+SOURCES += main.cpp \
+    indexfilesthread.cpp \
+    editdatabasedlg.cpp \
+    createmosaicdlg.cpp \
+    builddatabasedlg.cpp \
+    updatedatabasedlg.cpp \
+    rendermosaicthread.cpp \
+    rendermosaicdlg.cpp \
+    processimagesthread.cpp \
+    pictureinfo.cpp \
+    picturedatabase.cpp \
+    newdatabasedlg.cpp \
+    mosaicdetailsdlg.cpp \
+    mainwindow.cpp
+FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
+    newdatabasedlg.ui \
+    mosaicdetailsdlg.ui \
+    mainwindow.ui \
     editdatabasedlg.ui \
-    updatedatabasedlg.ui
+    createmosaicdlg.ui \
+    builddatabasedlg.ui

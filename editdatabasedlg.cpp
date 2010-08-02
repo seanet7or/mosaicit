@@ -2,6 +2,7 @@
 #include "ui_editdatabasedlg.h"
 
 #include <QMessageBox>
+#include <QPainter>
 
 #include "updatedatabasedlg.h"
 
@@ -10,6 +11,8 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
         ui(new Ui::EditDatabaseDlg)
 {
     ui->setupUi(this);
+
+    //load database and prepare if necessary
     this->m_database = new PictureDatabase;
     if (!this->m_database->fromFile(databaseFile)) {
         QMessageBox::warning(this,
@@ -31,6 +34,59 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             updateDlg.exec();
 
         }
+    }
+
+    connect(ui->fileList,
+            SIGNAL(currentRowChanged(int)),
+            this,
+            SLOT(onFileSelected(int)));
+
+    //update ui elements
+    ui->databaseInfoLabel->setText(
+            tr("%1 files in database \"%2\"; %3 do not exist or are untracked yet").arg(
+                    QString::number(this->m_database->size()),
+                    databaseFile,
+                    QString::number(this->m_database->filesNotUpToDate())));
+    for (int i = 0; i < this->m_database->size(); i++) {
+        ui->fileList->addItem(this->m_database->pictureAt(i)->getFile());
+    }
+}
+
+void EditDatabaseDlg::onFileSelected(int row)
+{
+    if ((row >= 0) && (row < this->m_database->size())) {
+        ui->imagePathLabel->setText(this->m_database->pictureAt(row)->getFile());;
+        if (this->m_database->pictureAt(row)->validFile()) {
+            int lw = ui->imagePreview->width();
+            int lh = ui->imagePreview->height();
+            QImage image(this->m_database->pictureAt(row)->getFile());
+            if (!image.isNull()) {
+                ui->imagePreview->setPixmap(
+                        QPixmap::fromImage(image.scaled(QSize(lw, lh),
+                                                        Qt::KeepAspectRatio,
+                                                        Qt::SmoothTransformation)));
+            } else {
+                ui->imagePreview->clear();
+            }
+            if (this->m_database->pictureAt(row)->processed()) {
+                //file was already processed
+                ui->processedLabel->setText(tr("The average color is (%1, %2, %3)").arg(
+                        QString::number(this->m_database->pictureAt(row)->getRed()),
+                        QString::number(this->m_database->pictureAt(row)->getGreen()),
+                        QString::number(this->m_database->pictureAt(row)->getBlue())));
+            } else {
+                //file not processed
+                ui->processedLabel->setText(tr("This file was not analysed yet."));
+            }
+        } else {
+            //no valid file
+            ui->imagePreview->clear();
+            ui->processedLabel->setText(tr("This seems not to be a valid image file."));
+        }
+    } else {
+        //no valid row
+        ui->imagePreview->clear();
+        ui->imagePathLabel->clear();
     }
 }
 

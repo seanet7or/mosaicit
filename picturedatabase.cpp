@@ -219,8 +219,7 @@ int PictureDatabase::filesNotUpToDate()
         if (this->m_pictureInfo->at(i)->validFile()) {
             if (this->m_pictureInfo->at(i)->processed()) {
                 QFileInfo fileInfo(this->m_pictureInfo->at(i)->getFile());
-                if (fileInfo.lastModified()
-                    != this->m_pictureInfo->at(i)->lastChanged()) {
+                if (fileInfo.lastModified() != this->m_pictureInfo->at(i)->lastChanged()) {
                     //file changed since last analysis
                     result++;
                 }
