@@ -27,6 +27,7 @@ public:
     int size();
     PictureInfo *pictureAt(int index);
     bool allUpToDate();
+    int filesNotUpToDate();
 public slots:
     void cancelProcessing();
 signals:

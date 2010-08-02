@@ -211,3 +211,27 @@ bool PictureDatabase::allUpToDate()
     }
     return true;
 }
+
+int PictureDatabase::filesNotUpToDate()
+{
+    int result = 0;
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        if (this->m_pictureInfo->at(i)->validFile()) {
+            if (this->m_pictureInfo->at(i)->processed()) {
+                QFileInfo fileInfo(this->m_pictureInfo->at(i)->getFile());
+                if (fileInfo.lastModified()
+                    != this->m_pictureInfo->at(i)->lastChanged()) {
+                    //file changed since last analysis
+                    result++;
+                }
+            } else {
+                //file not processed yet
+                result++;
+            }
+        } else {
+            //not a valid file
+            result++;
+        }
+    }
+    return result;
+}
