@@ -151,5 +151,5 @@ void CreateMosaicDlg::selectImageBnPressed()
             QFileDialog::getOpenFileName(this,
                                          tr("Select image file"),
                                          ui->imageEdit->text(),
-                                         tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*")));
+                                         tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)")));
 }

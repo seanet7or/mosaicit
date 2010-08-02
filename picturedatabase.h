@@ -16,6 +16,7 @@ public:
     ~PictureDatabase();
     void processFiles();
     void indexFiles(QString directory, bool includeSubdirectories);
+    void indexFile(const QString &filename);
     bool isIndexingRunning();
     bool isProcessingRunning();
     bool toFile(const QString &file);

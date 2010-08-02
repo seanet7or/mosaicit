@@ -22,6 +22,9 @@ private slots:
     void onFileSelected(int row);
     void onDelEntryButtonPressed();
     void onUpdateDBButtonPressed();
+    void onAddDirButtonPressed();
+    void onAddFileButtonPressed();
+    void onCloseButtonPressed();
 
 private:
     void updateUIElements();

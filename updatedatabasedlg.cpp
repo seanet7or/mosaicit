@@ -7,7 +7,8 @@
 
 #define log(text) Debug::log(text)
 
-UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent, PictureDatabase *database) :
+UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent,
+                                     PictureDatabase *database) :
         QDialog(parent),
         ui(new Ui::UpdateDatabaseDlg)
 {

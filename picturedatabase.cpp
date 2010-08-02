@@ -129,6 +129,15 @@ void PictureDatabase::indexFiles(QString directory,
                                         includeSubdirectories);
 }
 
+void PictureDatabase::indexFile(const QString &filename)
+{
+    PictureInfo *newEntry = new PictureInfo;
+    newEntry->setFile(filename);
+    newEntry->setProcessed(false);
+    newEntry->setValidFile(true);
+    this->m_pictureInfo->append(newEntry);
+}
+
 void PictureDatabase::processThreadFinished()
 {
     this->m_processRunning = false;

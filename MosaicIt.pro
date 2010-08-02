@@ -12,7 +12,8 @@ HEADERS += updatedatabasedlg.h \
     editdatabasedlg.h \
     debug.h \
     createmosaicdlg.h \
-    builddatabasedlg.h
+    builddatabasedlg.h \
+    indexdirdlg.h
 SOURCES += main.cpp \
     indexfilesthread.cpp \
     editdatabasedlg.cpp \
@@ -26,7 +27,8 @@ SOURCES += main.cpp \
     picturedatabase.cpp \
     newdatabasedlg.cpp \
     mosaicdetailsdlg.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    indexdirdlg.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \
@@ -34,4 +36,5 @@ FORMS += updatedatabasedlg.ui \
     mainwindow.ui \
     editdatabasedlg.ui \
     createmosaicdlg.ui \
-    builddatabasedlg.ui
+    builddatabasedlg.ui \
+    indexdirdlg.ui
