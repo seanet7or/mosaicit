@@ -53,7 +53,7 @@ bool ProcessImagesThread::processImage(PictureInfo *picture)
     }
     if ((picture->processed()) && (picture->lastChanged() == fileInfo.lastModified())) {
         //picture info is up to date
-        return;
+        return true;
     }
     picture->setLastChanged(fileInfo.lastModified());
     QImage *image = new QImage(picture->getFile());

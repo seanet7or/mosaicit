@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
@@ -12,8 +13,8 @@
 #include "editdatabasedlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+        QMainWindow(parent),
+        ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     connect(this->ui->createDatabaseBn,
@@ -98,7 +99,21 @@ void MainWindow::newMosaicBnClicked()
 
 void MainWindow::editDatabaseBnClicked()
 {
-    EditDatabaseDlg editDBDlg(this);
+    QString databaseFile;
+    databaseFile = QFileDialog::getOpenFileName(this,
+                                                tr("Select database file"),
+                                                QDir::homePath(),
+                                                tr("Database files (*.mib);;All files (*.*)"));
+    if (databaseFile.isNull() || (databaseFile.length()==0)) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("You have to select a valid image database to edit!"),
+                             QMessageBox::Ok,
+                             QMessageBox::Ok);
+        return;
+    }
+
+    EditDatabaseDlg editDBDlg(this, databaseFile);
     editDBDlg.show();
     editDBDlg.exec();
 }

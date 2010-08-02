@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "picturedatabase.h"
+
 namespace Ui {
     class EditDatabaseDlg;
 }
@@ -10,7 +12,7 @@ namespace Ui {
 class EditDatabaseDlg : public QDialog {
     Q_OBJECT
 public:
-    EditDatabaseDlg(QWidget *parent = 0);
+    EditDatabaseDlg(QWidget *parent, const QString &databaseFile);
     ~EditDatabaseDlg();
 
 protected:
@@ -18,6 +20,7 @@ protected:
 
 private:
     Ui::EditDatabaseDlg *ui;
+    PictureDatabase *m_database;
 };
 
 #endif // EDITDATABASEDLG_H

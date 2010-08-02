@@ -1,11 +1,12 @@
 #include "editdatabasedlg.h"
 #include "ui_editdatabasedlg.h"
 
-EditDatabaseDlg::EditDatabaseDlg(QWidget *parent) :
+EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
     QDialog(parent),
     ui(new Ui::EditDatabaseDlg)
 {
     ui->setupUi(this);
+    this->m_database = new PictureDatabase;
 }
 
 EditDatabaseDlg::~EditDatabaseDlg()
