@@ -101,6 +101,11 @@ void RenderMosaicDlg::cancelBnPressed()
     }
 }
 
+void RenderMosaicDlg::reject()
+{
+    this->cancelBnPressed();
+}
+
 void RenderMosaicDlg::closeEvent(QCloseEvent *e)
 {
     if (this->m_renderThread) {

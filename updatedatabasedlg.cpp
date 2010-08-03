@@ -87,10 +87,14 @@ void UpdateDatabaseDlg::cancelButtonPressed()
                 return;
             }
         } else {
-            done(0);
+            return;
         }
     }
-    done(0);
+}
+
+void UpdateDatabaseDlg::reject()
+{
+    this->cancelButtonPressed();
 }
 
 void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)

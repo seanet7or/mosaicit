@@ -17,6 +17,7 @@ public:
 
 public slots:
     void closeEvent(QCloseEvent *e);
+    void reject();
 
 protected:
     void changeEvent(QEvent *e);

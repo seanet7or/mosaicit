@@ -105,6 +105,29 @@ void BuildDatabaseDlg::closeButtonPressed()
     }
 }
 
+void BuildDatabaseDlg::reject()
+{
+    disconnect(this->m_newDatabase,
+               SIGNAL(indexFinished()),
+               this,
+               SLOT(indexingFinished()));
+    disconnect(this->m_newDatabase,
+               SIGNAL(processFinished(bool)),
+               this,
+               SLOT(processingFinished(bool)));
+    disconnect(this->m_newDatabase,
+               SIGNAL(processProgress(float)),
+               this,
+               SLOT(processProgress(float)));
+    if (this->m_newDatabase->isIndexingRunning()) {
+        this->m_newDatabase->cancelIndexing();
+    }
+    if (this->m_newDatabase->isProcessingRunning()) {
+        this->m_newDatabase->cancelProcessing();
+    }
+    done(0);
+}
+
 void BuildDatabaseDlg::indexingFinished()
 {
     if (this->m_canceled) return;

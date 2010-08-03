@@ -52,6 +52,11 @@ void IndexDirDlg::onCancelButtonPressed()
     }
 }
 
+void IndexDirDlg::reject()
+{
+    this->onCancelButtonPressed();
+}
+
 void IndexDirDlg::closeEvent(QCloseEvent *e)
 {
     if (this->m_database->isIndexingRunning()) {
