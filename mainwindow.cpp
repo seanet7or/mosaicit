@@ -34,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(aboutBnClicked()));
+    connect(ui->exitButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(exitBnClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -128,4 +132,9 @@ void MainWindow::aboutBnClicked()
     AboutDlg aboutDlg;
     aboutDlg.show();
     aboutDlg.exec();
+}
+
+void MainWindow::exitBnClicked()
+{
+    this->close();
 }

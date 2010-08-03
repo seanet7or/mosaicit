@@ -24,6 +24,7 @@ private slots:
     void newMosaicBnClicked();
     void editDatabaseBnClicked();
     void aboutBnClicked();
+    void exitBnClicked();
 };
 
 #endif // MAINWINDOW_H
