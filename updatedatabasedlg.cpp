@@ -15,10 +15,18 @@ UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent,
 {
     ui->setupUi(this);
     this->m_database = database;
+    disconnect(this->m_database,
+               SIGNAL(processProgress(float)),
+               this,
+               SLOT(processDone(float)));
     connect(this->m_database,
             SIGNAL(processProgress(float)),
             this,
             SLOT(processDone(float)));
+    disconnect(this->m_database,
+               SIGNAL(processFinished(bool)),
+               this,
+               SLOT(processComplete(bool)));
     connect(this->m_database,
             SIGNAL(processFinished(bool)),
             this,

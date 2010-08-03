@@ -106,10 +106,18 @@ void PictureDatabase::processFiles()
     this->m_processingWasCanceled = false;
     this->m_processRunning = true;
     this->m_processThread->processImages(this->m_pictureInfo);
+    disconnect(this->m_processThread,
+               SIGNAL(finished()),
+               this,
+               SLOT(processThreadFinished()));
     connect(this->m_processThread,
             SIGNAL(finished()),
             this,
             SLOT(processThreadFinished()));
+    disconnect(this->m_processThread,
+               SIGNAL(complete(float)),
+               this,
+               SLOT(processProgressFromThread(float)));
     connect(this->m_processThread,
             SIGNAL(complete(float)),
             this,
