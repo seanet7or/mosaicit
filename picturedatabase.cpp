@@ -72,6 +72,9 @@ void PictureDatabase::removeDoubleFiles()
                     == this->m_pictureInfo->at(k)->getFile()) {
                     this->removeEntry(k);
                     k--;
+                    if (i > k) {
+                        i--;
+                    }
                 }
             }
         }
@@ -144,7 +147,6 @@ QString PictureDatabase::name()
 
 void PictureDatabase::processFiles()
 {
-    this->removeDoubleFiles();
     this->m_processingWasCanceled = false;
     this->m_processRunning = true;
     this->m_processThread->processImages(this->m_pictureInfo);
