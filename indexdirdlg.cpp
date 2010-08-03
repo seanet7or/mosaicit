@@ -21,6 +21,8 @@ IndexDirDlg::IndexDirDlg(QWidget *parent,
     } else {
         subDirs = false;
     }
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(0);
     connect(ui->cancelButton,
             SIGNAL(pressed()),
             this,
