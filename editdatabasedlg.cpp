@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QPainter>
 #include <QFileDialog>
+#include <QCloseEvent>
 
 #include "updatedatabasedlg.h"
 #include "indexdirdlg.h"
@@ -195,16 +196,39 @@ void EditDatabaseDlg::onCloseButtonPressed()
                               tr("Do you want to save the changes you made to the %1 \"%2\"?").arg(
                                       "database", this->m_databaseFile),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-        if (!this->m_database->toFile(this->m_databaseFile)) {
-            QMessageBox::warning(this,
-                                 tr("Error!"),
-                                 tr("Could not write the file \"%1\"!").arg(
-                                         this->m_databaseFile),
-                                 QMessageBox::Ok);
-            return;
+        bool saved = false;
+        while (!saved) {
+            if ((saved = this->m_database->toFile(this->m_databaseFile)) == false) {
+                if (QMessageBox::question(this,
+                                          tr("Error"),
+                                          tr("Could not write database file! Do you %1").arg(
+                                                  "want to specify another one?"),
+                                          QMessageBox::Yes | QMessageBox::No,
+                                          QMessageBox::Yes) == QMessageBox::Yes) {
+                    this->m_databaseFile =
+                            QFileDialog::getSaveFileName(this,
+                                                         tr("Database file to write"),
+                                                         this->m_databaseFile,
+                                                         tr("Database file (*.mib)"));
+                } else {
+                    saved = true;
+                }
+            }
         }
     }
     done(0);
+}
+
+void EditDatabaseDlg::closeEvent(QCloseEvent *e)
+{
+    if (QMessageBox::question(this,
+                              tr("Revert all changes?"),
+                              tr("Do you really want to close and loose all changes?"),
+                              QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+        e->accept();
+    } else {
+        e->ignore();
+    }
 }
 
 EditDatabaseDlg::~EditDatabaseDlg()

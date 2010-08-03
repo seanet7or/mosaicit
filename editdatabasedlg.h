@@ -15,6 +15,9 @@ public:
     EditDatabaseDlg(QWidget *parent, const QString &databaseFile);
     ~EditDatabaseDlg();
 
+public slots:
+    void closeEvent(QCloseEvent *e);
+
 protected:
     void changeEvent(QEvent *e);
 
