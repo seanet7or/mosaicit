@@ -23,13 +23,6 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
                                                   Qt::KeepAspectRatio,
                                                   Qt::SmoothTransformation)));
     }
-    ui->tileWidth->setValue(150);
-    ui->tileHeight->setValue(150);
-    ui->aspect11->setChecked(true);
-    ui->cutTileEdges->setChecked(true);
-    ui->totalTiles->setValue(800);
-    ui->alphaChannel->setValue(30);
-    this->updateResultLabel();
     connect(ui->cancelButton,
             SIGNAL(pressed()),
             this,
@@ -149,11 +142,7 @@ void MosaicDetailsDlg::cancelButtonPressed()
 void MosaicDetailsDlg::renderButtonPressed()
 {
     this->m_canceled = false;
-    this->m_alphaChannel = ui->alphaChannel->value();
-    this->m_cutEdges = ui->cutTileEdges->isChecked();
-    this->m_tileCount = ui->totalTiles->value();
-    this->m_tileHeight = ui->tileHeight->value();
-    this->m_tileWidth = ui->tileWidth->value();
+    this->updateValuesFromForms();
     done(0);
 }
 
@@ -202,11 +191,39 @@ void MosaicDetailsDlg::closeEvent(QCloseEvent *e)
 
 void MosaicDetailsDlg::writeSettings()
 {
+    this->updateValuesFromForms();
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateMosaicDetailsDlg");
     settings->setValue("size", this->size());
     settings->setValue("pos", this->pos());
     settings->endGroup();
+    settings->beginGroup("InputMosaicDetailsDlg");
+    settings->setValue("tilewidth", this->m_tileWidth);
+    settings->setValue("tileheight", this->m_tileHeight);
+    int tileAspectRatioSelection = 3;
+    if (ui->aspect11->isChecked()) {
+        tileAspectRatioSelection = 1;
+    } else if (ui->aspect169->isChecked()) {
+        tileAspectRatioSelection = 2;
+    } else if (ui->aspect43->isChecked()) {
+        tileAspectRatioSelection = 3;
+    } else if (ui->aspectFree->isChecked()) {
+        tileAspectRatioSelection = 4;
+    }
+    settings->setValue("tileaspectratioselection", tileAspectRatioSelection);
+    settings->setValue("cutedges", this->m_cutEdges);
+    settings->setValue("totaltilenumber", this->m_tileCount);
+    settings->setValue("alphachannel", this->m_alphaChannel);
+    settings->endGroup();
+}
+
+void MosaicDetailsDlg::updateValuesFromForms()
+{
+    this->m_alphaChannel = ui->alphaChannel->value();
+    this->m_cutEdges = ui->cutTileEdges->isChecked();
+    this->m_tileCount = ui->totalTiles->value();
+    this->m_tileHeight = ui->tileHeight->value();
+    this->m_tileWidth = ui->tileWidth->value();
 }
 
 void MosaicDetailsDlg::readSettings()
@@ -216,4 +233,33 @@ void MosaicDetailsDlg::readSettings()
     this->resize(settings->value("size", QSize(577, 355)).toSize());
     this->move(settings->value("pos", QPoint(180, 175)).toPoint());
     settings->endGroup();
+    settings->beginGroup("InputMosaicDetailsDlg");
+    ui->tileWidth->setValue(settings->value("tilewidth", 150).toInt());
+    ui->tileHeight->setValue(settings->value("tileheight", 150).toInt());
+    int tileAspectRatioSelection = settings->value("tileaspectratioselection", 3).toInt();
+    switch (tileAspectRatioSelection) {
+    case 1:
+        ui->aspect11->setChecked(true);
+        break;
+    case 2:
+        ui->aspect169->setChecked(true);
+        break;
+    case 3:
+        ui->aspect43->setChecked(true);
+        break;
+    case 4:
+        ui->aspectFree->setChecked(true);
+        break;
+    default:
+        ui->aspect43->setChecked(true);
+    }
+    if (settings->value("cutedges", true).toBool()) {
+        ui->cutTileEdges->setChecked(true);
+    } else {
+        ui->scaleTile->setChecked(true);
+    }
+    ui->totalTiles->setValue(settings->value("totaltilenumber", 800).toInt());
+    ui->alphaChannel->setValue(settings->value("alphachannel", 30).toInt());
+    settings->endGroup();
+    this->updateResultLabel();
 }

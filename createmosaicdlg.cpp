@@ -156,8 +156,7 @@ void CreateMosaicDlg::selectOutputBnPressed()
                                                          tr("Select image output file"),
                                                          QDir::toNativeSeparators(
                                                                  QDir::cleanPath(
-                                                                         QDir::homePath()
-                                                                         + "/mosaic.jpg")),
+                                                                         ui->outputEdit->text())),
                                                          tr("Images (*.jpg)")))));
 }
 
@@ -182,6 +181,11 @@ void CreateMosaicDlg::writeSettings()
     settings->setValue("size", this->size());
     settings->setValue("pos", this->pos());
     settings->endGroup();
+    settings->beginGroup("InputCreateMosaicDlg");
+    settings->setValue("databasefile", ui->databaseEdit->text());
+    settings->setValue("imageinputfile", ui->imageEdit->text());
+    settings->setValue("outputfile", ui->outputEdit->text());
+    settings->endGroup();
 }
 
 void CreateMosaicDlg::readSettings()
@@ -190,5 +194,19 @@ void CreateMosaicDlg::readSettings()
     settings->beginGroup("GUIStateCreateMosaicDlg");
     this->resize(settings->value("size", QSize(644, 222)).toSize());
     this->move(settings->value("pos", QPoint(25, 135)).toPoint());
+    settings->endGroup();
+    settings->beginGroup("InputCreateMosaicDlg");
+    ui->databaseEdit->setText(
+            settings->value("databasefile",
+                            QDir::toNativeSeparators(QDir::cleanPath(
+                                    QDir::homePath()))).toString());
+    ui->imageEdit->setText(
+            settings->value("imageinputfile",
+                            QDir::toNativeSeparators(QDir::cleanPath(
+                                    QDir::homePath()))).toString());;
+    ui->outputEdit->setText(
+            settings->value("outputfile",
+                            QDir::toNativeSeparators(QDir::cleanPath(
+                                    QDir::homePath() + "/mosaic.jpg"))).toString());
     settings->endGroup();
 }

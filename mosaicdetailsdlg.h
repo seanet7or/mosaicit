@@ -33,6 +33,7 @@ private slots:
     void closeEvent(QCloseEvent *e);
 
 private:
+    void updateValuesFromForms();
     void writeSettings();
     void readSettings();
 
