@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include <QString>
+#include <QWidget>
 
 #include "picturedatabase.h"
 
@@ -18,10 +19,12 @@ public:
                       int tileCount,
                       bool cutEdges,
                       int alphaChannel,
-                      const QString &outputFile);
+                      const QString &outputFile,
+                      QWidget *parentWindow);
     void cancel();
     bool criticalError();
     bool wasCanceled();
+    QString outputFile();
 
 signals:
     void logText(const QString &text);
@@ -43,6 +46,7 @@ private:
     bool m_cutEdges;
     int m_alphaChannel;
     QString m_outputFile;
+    QWidget *m_parentWindow;
 };
 
 #endif // RENDERMOSAICTHREAD_H

@@ -4,6 +4,8 @@
 
 #include <QImage>
 #include <QPainter>
+#include <QMessageBox>
+#include <QFileDialog>
 
 RenderMosaicThread::RenderMosaicThread(QObject *parent) :
         QThread(parent)
@@ -19,7 +21,8 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       int tileCount,
                                       bool cutEdges,
                                       int alphaChannel,
-                                      const QString &outputFile)
+                                      const QString &outputFile,
+                                      QWidget *parentWindow)
 {
     m_cancelNow = false;
     this->m_criticalError = false;
@@ -31,6 +34,7 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
     this->m_cutEdges = cutEdges;
     this->m_alphaChannel = alphaChannel;
     this->m_outputFile = outputFile;
+    this->m_parentWindow = parentWindow;
     start();
 }
 
@@ -251,8 +255,28 @@ void RenderMosaicThread::run()
 
     if (!mosaic.save(this->m_outputFile)) {
         emit logText(tr("Error saving the built mosaic in the file %1!").arg(this->m_outputFile));
-        this->m_criticalError = true;
-        return;
+        bool tryAgain = true;
+        while (tryAgain) {
+            if (QMessageBox::question(this->m_parentWindow,
+                                      tr("Error saving mosaic"),
+                                      tr("The mosaic could not be saved as \"%1\"! %2").arg(
+                                              this->m_outputFile,
+                                              "Do you want to select another file to write to?"),
+                                      QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+                this->m_outputFile =
+                        QFileDialog::getSaveFileName(this->m_parentWindow,
+                                                     tr("Select image output file"),
+                                                     QDir::homePath() + "/mosaic.jpg",
+                                                     tr("Images (*.jpg)"));
+                if (mosaic.save(this->m_outputFile)) {
+                    tryAgain = false;
+                }
+            } else {
+                tryAgain = false;
+                this->m_criticalError = true;
+                return;
+            }
+        }
     }
     emit renderComplete(100.f);
     emit logText(tr("Mosaic created."));
@@ -266,4 +290,9 @@ bool RenderMosaicThread::criticalError()
 bool RenderMosaicThread::wasCanceled()
 {
     return this->m_cancelNow;
+}
+
+QString RenderMosaicThread::outputFile()
+{
+    return this->m_outputFile;
 }

@@ -44,7 +44,8 @@ ui(new Ui::RenderMosaicDlg)
                                        tileCount,
                                        cutEdges,
                                        alphaChannel,
-                                       outputFile);
+                                       outputFile,
+                                       this);
 }
 
 RenderMosaicDlg::~RenderMosaicDlg()
@@ -134,7 +135,8 @@ void RenderMosaicDlg::renderThreadFinished()
         } else if (this->m_renderThread->criticalError()) {
             ui->label->setText(tr("A critical error occured, view detailed output!"));
         } else {
-            ui->label->setText(tr("The mosaic was built and saved to %1.").arg(this->m_outputFile));
+            ui->label->setText(tr("The mosaic was built and saved to %1.").arg(
+                    this->m_renderThread->outputFile()));
         }
     }
     ui->cancelButton->setText(tr("Close"));
