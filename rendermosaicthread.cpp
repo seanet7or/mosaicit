@@ -260,13 +260,18 @@ void RenderMosaicThread::run()
             if (QMessageBox::question(this->m_parentWindow,
                                       tr("Error saving mosaic"),
                                       tr("The mosaic could not be saved as \"%1\"! %2").arg(
-                                              this->m_outputFile,
+                                              QDir::toNativeSeparators(
+                                                      QDir::cleanPath(
+                                                              this->m_outputFile)),
                                               "Do you want to select another file to write to?"),
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_outputFile =
                         QFileDialog::getSaveFileName(this->m_parentWindow,
                                                      tr("Select image output file"),
-                                                     QDir::homePath() + "/mosaic.jpg",
+                                                     QDir::toNativeSeparators(
+                                                             QDir::cleanPath(
+                                                                     QDir::homePath()
+                                                                     + "/mosaic.jpg")),
                                                      tr("Images (*.jpg)"));
                 if (mosaic.save(this->m_outputFile)) {
                     tryAgain = false;

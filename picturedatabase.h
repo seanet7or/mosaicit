@@ -30,6 +30,8 @@ public:
     void removeEntry(int index);
     bool allUpToDate();
     int filesNotUpToDate();
+    bool doubleFiles();
+    void removeDoubleFiles();
 public slots:
     void cancelProcessing();
 signals:

@@ -62,7 +62,7 @@ void IndexFilesThread::addDirectory(QString directory, bool subdirs)
 void IndexFilesThread::addFile(QString file)
 {
     PictureInfo *newEntry = new PictureInfo;
-    newEntry->setFile(file);
+    newEntry->setFile(QDir::toNativeSeparators(QDir::cleanPath(file)));
     newEntry->setProcessed(false);
     newEntry->setValidFile(true);
     this->m_pictures->append(newEntry);

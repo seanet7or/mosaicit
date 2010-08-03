@@ -130,26 +130,41 @@ QString CreateMosaicDlg::outputImage()
 void CreateMosaicDlg::selectDBBnPressed()
 {
     ui->databaseEdit->setText(
-            QFileDialog::getOpenFileName(this,
-                                         tr("Select database file"),
-                                         ui->databaseEdit->text(),
-                                         tr("Database files (*.mib);;All files (*.*)")));
+            QDir::toNativeSeparators(
+                    QDir::cleanPath(
+                            QFileDialog::getOpenFileName(this,
+                                                         tr("Select database file"),
+                                                         QDir::toNativeSeparators(
+                                                                 QDir::cleanPath(
+                                                                         ui->databaseEdit->text())),
+                                                         tr("Database files (*.mib);;%1").arg(
+                                                                 "All files (*.*)")))));
 }
 
 void CreateMosaicDlg::selectOutputBnPressed()
 {
     ui->outputEdit->setText(
-            QFileDialog::getSaveFileName(this,
-                                         tr("Select image output file"),
-                                         QDir::homePath() + "/mosaic.jpg",
-                                         tr("Images (*.jpg)")));
+            QDir::toNativeSeparators(
+                    QDir::cleanPath(
+                            QFileDialog::getSaveFileName(this,
+                                                         tr("Select image output file"),
+                                                         QDir::toNativeSeparators(
+                                                                 QDir::cleanPath(
+                                                                         QDir::homePath()
+                                                                         + "/mosaic.jpg")),
+                                                         tr("Images (*.jpg)")))));
 }
 
 void CreateMosaicDlg::selectImageBnPressed()
 {
     ui->imageEdit->setText(
-            QFileDialog::getOpenFileName(this,
-                                         tr("Select image file"),
-                                         ui->imageEdit->text(),
-                                         tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)")));
+            QDir::toNativeSeparators(
+                    QDir::cleanPath(
+                            QFileDialog::getOpenFileName(this,
+                                                         tr("Select image file"),
+                                                         QDir::toNativeSeparators(
+                                                                 QDir::cleanPath(
+                                                                         ui->imageEdit->text())),
+                                                         tr("Images (*.png *.bmp *.xpm %1").arg(
+                                                                 "*.jpg);;All files (*.*)")))));
 }

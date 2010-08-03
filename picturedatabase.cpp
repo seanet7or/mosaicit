@@ -37,6 +37,47 @@ bool PictureDatabase::toFile(const QString &file)
     return true;
 }
 
+bool PictureDatabase::doubleFiles()
+{
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        //QFileInfo iFile(this->m_pictureInfo->at(i)->getFile());
+        for (int k = 0; k < this->m_pictureInfo->size(); k++) {
+            if (i != k) {
+                /*QFileInfo kFile(this->m_pictureInfo->at(k)->getFile());
+                if (kFile.canonicalFilePath() == iFile.canonicalFilePath()) {
+                    return true;
+                }*/
+                if (this->m_pictureInfo->at(i)->getFile()
+                    == this->m_pictureInfo->at(k)->getFile()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+void PictureDatabase::removeDoubleFiles()
+{
+    for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+        //QFileInfo iFile(this->m_pictureInfo->at(i)->getFile());
+        for (int k = 0; k < this->m_pictureInfo->size(); k++) {
+            if (i != k) {
+                /*QFileInfo kFile(this->m_pictureInfo->at(k)->getFile());
+                if (kFile.canonicalFilePath() == iFile.canonicalFilePath()) {
+                    this->removeEntry(k);
+                    k--;
+                }*/
+                if (this->m_pictureInfo->at(i)->getFile()
+                    == this->m_pictureInfo->at(k)->getFile()) {
+                    this->removeEntry(k);
+                    k--;
+                }
+            }
+        }
+    }
+}
+
 void PictureDatabase::clearPictureInfo()
 {
     for (int i = 0; i < this->m_pictureInfo->size(); i++) {
@@ -103,6 +144,7 @@ QString PictureDatabase::name()
 
 void PictureDatabase::processFiles()
 {
+    this->removeDoubleFiles();
     this->m_processingWasCanceled = false;
     this->m_processRunning = true;
     this->m_processThread->processImages(this->m_pictureInfo);
@@ -135,15 +177,17 @@ void PictureDatabase::indexFiles(QString directory,
     this->m_indexThread->indexDirectory(this->m_pictureInfo,
                                         directory,
                                         includeSubdirectories);
+    this->removeDoubleFiles();
 }
 
 void PictureDatabase::indexFile(const QString &filename)
 {
     PictureInfo *newEntry = new PictureInfo;
-    newEntry->setFile(filename);
+    newEntry->setFile(QDir::toNativeSeparators(QDir::cleanPath(filename)));
     newEntry->setProcessed(false);
     newEntry->setValidFile(true);
     this->m_pictureInfo->append(newEntry);
+    this->removeDoubleFiles();
 }
 
 void PictureDatabase::processThreadFinished()

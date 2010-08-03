@@ -169,7 +169,9 @@ void BuildDatabaseDlg::processingFinished(bool wasCanceled)
                                       QMessageBox::Yes) == QMessageBox::Yes) {
                 this->m_name = QFileDialog::getSaveFileName(this,
                                                             tr("Database file to write"),
-                                                            this->m_name,
+                                                            QDir::toNativeSeparators(
+                                                                    QDir::cleanPath(
+                                                                            this->m_name)),
                                                             tr("Database file (*.mib)"));
             } else {
                 ui->textLog->appendPlainText(

@@ -2,6 +2,7 @@
 #include "ui_rendermosaicdlg.h"
 
 #include <QMessageBox>
+#include <QDir>
 
 #include "rendermosaicthread.h"
 #include "picturedatabase.h"
@@ -141,7 +142,7 @@ void RenderMosaicDlg::renderThreadFinished()
             ui->label->setText(tr("A critical error occured, view detailed output!"));
         } else {
             ui->label->setText(tr("The mosaic was built and saved to %1.").arg(
-                    this->m_renderThread->outputFile()));
+                    QDir::toNativeSeparators(QDir::cleanPath(this->m_renderThread->outputFile()))));
         }
     }
     ui->cancelButton->setText(tr("Close"));

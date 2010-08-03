@@ -22,7 +22,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
         QMessageBox::warning(this,
                              tr("Error"),
                              tr("Could not open the selected database file \"%1\"!").arg(
-                                     databaseFile),
+                                     QDir::toNativeSeparators(QDir::cleanPath(databaseFile))),
                              QMessageBox::Ok,
                              QMessageBox::Ok);
     }
@@ -38,7 +38,6 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             updateDlg.exec();
         }
     }
-
     connect(ui->removeFileButton,
             SIGNAL(pressed()),
             this,
@@ -64,7 +63,8 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             this,
             SLOT(onCloseButtonPressed()));
 
-    this->setWindowTitle(tr("Edit database \"%1\"").arg(this->m_databaseFile));
+    this->setWindowTitle(tr("Edit database \"%1\"").arg(
+            QDir::toNativeSeparators(QDir::cleanPath(this->m_databaseFile))));
     //update ui elements
     this->updateUIElements();
 }
@@ -98,7 +98,7 @@ void EditDatabaseDlg::updateUIElements()
     ui->databaseInfoLabel->setText(
             tr("%1 files in database \"%2\"; %3 do not exist or are untracked yet.").arg(
                     QString::number(this->m_database->size()),
-                    this->m_databaseFile,
+                    QDir::toNativeSeparators(QDir::cleanPath(this->m_databaseFile)),
                     QString::number(this->m_database->filesNotUpToDate())));
     ui->fileList->clear();
     for (int i = 0; i < this->m_database->size(); i++) {
@@ -151,7 +151,7 @@ void EditDatabaseDlg::onAddDirButtonPressed()
     QString dirToAdd = QFileDialog::getExistingDirectory(
             this,
             tr("Select picture folder"),
-            QDir::homePath(),
+            QDir::toNativeSeparators(QDir::cleanPath(QDir::homePath())),
             QFileDialog::ShowDirsOnly);
     if (dirToAdd.isNull() || (dirToAdd.length() == 0)) {
         return;
@@ -175,7 +175,8 @@ void EditDatabaseDlg::onAddFileButtonPressed()
     QString filename
             = QFileDialog::getOpenFileName(this,
                                            tr("Select image file"),
-                                           QDir::homePath(),
+                                           QDir::toNativeSeparators(QDir::cleanPath(
+                                                   QDir::homePath())),
                                            tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)"));
     if (filename.isNull() || (filename.length() == 0)) {
         return;
@@ -194,7 +195,9 @@ void EditDatabaseDlg::onCloseButtonPressed()
     if (QMessageBox::question(this,
                               tr("Save changes?"),
                               tr("Do you want to save the changes you made to the %1 \"%2\"?").arg(
-                                      "database", this->m_databaseFile),
+                                      "database", QDir::toNativeSeparators(
+                                              QDir::cleanPath(
+                                                      this->m_databaseFile))),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
         bool saved = false;
         while (!saved) {
@@ -208,7 +211,9 @@ void EditDatabaseDlg::onCloseButtonPressed()
                     this->m_databaseFile =
                             QFileDialog::getSaveFileName(this,
                                                          tr("Database file to write"),
-                                                         this->m_databaseFile,
+                                                         QDir::toNativeSeparators(
+                                                                 QDir::cleanPath(
+                                                                         this->m_databaseFile)),
                                                          tr("Database file (*.mib)"));
                 } else {
                     saved = true;

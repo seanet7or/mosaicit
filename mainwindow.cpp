@@ -111,7 +111,8 @@ void MainWindow::editDatabaseBnClicked()
     QString databaseFile;
     databaseFile = QFileDialog::getOpenFileName(this,
                                                 tr("Select database file"),
-                                                QDir::homePath(),
+                                                QDir::toNativeSeparators(QDir::cleanPath(
+                                                        QDir::homePath())),
                                                 tr("Database files (*.mib);;All files (*.*)"));
     if (databaseFile.isNull() || (databaseFile.length()==0)) {
         QMessageBox::warning(this,

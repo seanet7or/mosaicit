@@ -13,8 +13,9 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
 {
     ui->setupUi(this);
     m_canceled = true;
-    ui->directoryEdit->setText(QDir::homePath());
-    ui->nameEdit->setText(QDir::homePath() + tr("/newdatabase.mib"));
+    ui->directoryEdit->setText(QDir::toNativeSeparators(QDir::cleanPath(QDir::homePath())));
+    ui->nameEdit->setText(
+            QDir::toNativeSeparators(QDir::cleanPath(QDir::homePath() + tr("/newdatabase.mib"))));
     ui->includeSubdirectories->setChecked(true);
 
     connect(ui->buildButton,
@@ -38,11 +39,15 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
 void NewDatabaseDlg::selectFileButtonPressed()
 {
     ui->nameEdit->setText(
-            QFileDialog::getSaveFileName(this,
-                                         tr("Database file to write"),
-                                         ui->nameEdit->text(),
-                                         tr("Database file (*.mib)")
-                                         ));
+            QDir::toNativeSeparators(
+                    QDir::cleanPath(
+                            QFileDialog::getSaveFileName(this,
+                                                         tr("Database file to write"),
+                                                         QDir::toNativeSeparators(
+                                                                 QDir::cleanPath(
+                                                                         ui->nameEdit->text())),
+                                                         tr("Database file (*.mib)")
+                                                         ))));
 }
 
 void NewDatabaseDlg::buildButtonPressed()
@@ -65,7 +70,8 @@ void NewDatabaseDlg::buildButtonPressed()
     if (!outFile.open(QIODevice::WriteOnly)) {
         QMessageBox::warning(this,
                              tr("Error"),
-                             tr("The database file you specified can not be written. Specify another one."),
+                             tr("The database file you specified can not be written. %1").arg(
+                                     "Specify another one."),
                              QMessageBox::Ok);
         return;
     }
@@ -102,11 +108,12 @@ void NewDatabaseDlg::closeEvent(QCloseEvent *e)
 
 void NewDatabaseDlg::selectDirButtonPressed()
 {
-    ui->directoryEdit->setText(QFileDialog::getExistingDirectory(
-            this,
-            tr("Select picture folder"),
-            ui->directoryEdit->text(),
-            QFileDialog::ShowDirsOnly));
+    ui->directoryEdit->setText(QDir::toNativeSeparators(QDir::cleanPath(
+            QFileDialog::getExistingDirectory(
+                    this,
+                    tr("Select picture folder"),
+                    QDir::toNativeSeparators(QDir::cleanPath(ui->directoryEdit->text())),
+                    QFileDialog::ShowDirsOnly))));
 }
 
 NewDatabaseDlg::~NewDatabaseDlg()
