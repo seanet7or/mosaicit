@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QMessageBox>
 
+#include "appsettings.h"
+
 CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::CreateMosaicDlg)
@@ -36,6 +38,7 @@ CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(selectOutputBnPressed()));
+    this->readSettings();
 }
 
 bool CreateMosaicDlg::exitedCorrectly()
@@ -60,6 +63,7 @@ void CreateMosaicDlg::imageChanged()
 
 CreateMosaicDlg::~CreateMosaicDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -77,6 +81,7 @@ void CreateMosaicDlg::changeEvent(QEvent *e)
 
 void CreateMosaicDlg::cancelBnPressed()
 {
+    this->writeSettings();
     done(0);
 }
 
@@ -109,6 +114,7 @@ void CreateMosaicDlg::nextBnPressed()
     this->m_image = ui->imageEdit->text();
     this->m_database = ui->databaseEdit->text();
     this->m_outputImage = ui->outputEdit->text();
+    this->writeSettings();
     done(0);
 }
 
@@ -167,4 +173,22 @@ void CreateMosaicDlg::selectImageBnPressed()
                                                                          ui->imageEdit->text())),
                                                          tr("Images (*.png *.bmp *.xpm %1").arg(
                                                                  "*.jpg);;All files (*.*)")))));
+}
+
+void CreateMosaicDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateCreateMosaicDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void CreateMosaicDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateCreateMosaicDlg");
+    this->resize(settings->value("size", QSize(644, 222)).toSize());
+    this->move(settings->value("pos", QPoint(25, 135)).toPoint());
+    settings->endGroup();
 }

@@ -1,4 +1,4 @@
-OTHER_FILES += 
+OTHER_FILES += doc/header.txt
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \
@@ -14,7 +14,8 @@ HEADERS += updatedatabasedlg.h \
     createmosaicdlg.h \
     builddatabasedlg.h \
     indexdirdlg.h \
-    aboutdlg.h
+    aboutdlg.h \
+    appsettings.h
 SOURCES += main.cpp \
     indexfilesthread.cpp \
     editdatabasedlg.cpp \
@@ -30,7 +31,8 @@ SOURCES += main.cpp \
     mosaicdetailsdlg.cpp \
     mainwindow.cpp \
     indexdirdlg.cpp \
-    aboutdlg.cpp
+    aboutdlg.cpp \
+    appsettings.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \

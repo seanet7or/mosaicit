@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QCloseEvent>
 
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
@@ -38,11 +39,19 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(exitBnClicked()));
+    this->readSettings();
 }
 
 MainWindow::~MainWindow()
 {
+    this->writeSettings();
     delete ui;
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    this->writeSettings();
+    e->accept();
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -137,5 +146,24 @@ void MainWindow::aboutBnClicked()
 
 void MainWindow::exitBnClicked()
 {
+    this->writeSettings();
     this->close();
+}
+
+void MainWindow::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateMainWindow");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void MainWindow::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateMainWindow");
+    this->resize(settings->value("size", QSize(600, 400)).toSize());
+    this->move(settings->value("pos", QPoint(90, 90)).toPoint());
+    settings->endGroup();
 }

@@ -31,6 +31,9 @@ private slots:
     void selectFileButtonPressed();
 
 private:
+    void readSettings();
+    void writeSettings();
+
     Ui::NewDatabaseDlg *ui;
 
     QString m_name;

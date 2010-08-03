@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 
+#include "appsettings.h"
+
 IndexDirDlg::IndexDirDlg(QWidget *parent,
                          PictureDatabase *database,
                          const QString &newDir) :
@@ -32,10 +34,12 @@ IndexDirDlg::IndexDirDlg(QWidget *parent,
             this,
             SLOT(onIndexingFinished()));
     database->indexFiles(newDir, subDirs);
+    this->readSettings();
 }
 
 IndexDirDlg::~IndexDirDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -66,17 +70,20 @@ void IndexDirDlg::closeEvent(QCloseEvent *e)
                                           "directory will be added!"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             this->m_database->cancelIndexing();
+            this->writeSettings();
             e->accept();
         } else {
             e->ignore();
         }
     } else {
+        this->writeSettings();
         e->accept();
     }
 }
 
 void IndexDirDlg::onIndexingFinished()
 {
+    this->writeSettings();
     done(0);
 }
 
@@ -90,4 +97,22 @@ void IndexDirDlg::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void IndexDirDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateIndexDirDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void IndexDirDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateIndexDirDlg");
+    this->resize(settings->value("size", QSize(400, 91)).toSize());
+    this->move(settings->value("pos", QPoint(225, 295)).toPoint());
+    settings->endGroup();
 }

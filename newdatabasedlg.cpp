@@ -7,6 +7,8 @@
 #include <QCloseEvent>
 #include <QFile>
 
+#include "appsettings.h"
+
 NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::NewDatabaseDlg)
@@ -34,6 +36,7 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(selectFileButtonPressed()));
+    this->readSettings();
 }
 
 void NewDatabaseDlg::selectFileButtonPressed()
@@ -81,11 +84,13 @@ void NewDatabaseDlg::buildButtonPressed()
     this->m_directory = ui->directoryEdit->text();
     this->m_name = ui->nameEdit->text();
     this->m_includeSubdirs = ui->includeSubdirectories->isChecked();
+    this->writeSettings();
     close();
 }
 
 void NewDatabaseDlg::cancelButtonPressed()
 {
+    this->writeSettings();
     close();
 }
 
@@ -99,9 +104,11 @@ void NewDatabaseDlg::closeEvent(QCloseEvent *e)
                                   QMessageBox::No) != QMessageBox::Yes) {
             e->ignore();
         } else {
+            this->writeSettings();
             e->accept();
         }
     } else {
+        this->writeSettings();
         e->accept();
     }
 }
@@ -118,6 +125,7 @@ void NewDatabaseDlg::selectDirButtonPressed()
 
 NewDatabaseDlg::~NewDatabaseDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -151,4 +159,22 @@ QString NewDatabaseDlg::directory()
 bool NewDatabaseDlg::includeSubdirectories()
 {
     return this->m_includeSubdirs;
+}
+
+void NewDatabaseDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateNewDatabaseDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void NewDatabaseDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateNewDatabaseDlg");
+    this->resize(settings->value("size", QSize(596, 140)).toSize());
+    this->move(settings->value("pos", QPoint(180, 280)).toPoint());
+    settings->endGroup();
 }

@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "appsettings.h"
+
 namespace Ui {
     class AboutDlg;
 }
@@ -20,6 +22,8 @@ private slots:
     void onOkButtonPressed();
 
 private:
+    void writeSettings();
+    void readSettings();
     Ui::AboutDlg *ui;
 };
 

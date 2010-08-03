@@ -10,10 +10,12 @@ AboutDlg::AboutDlg(QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(onOkButtonPressed()));
+    this->readSettings();
 }
 
 AboutDlg::~AboutDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -31,5 +33,24 @@ void AboutDlg::changeEvent(QEvent *e)
 
 void AboutDlg::onOkButtonPressed()
 {
+    this->writeSettings();
     done(0);
+}
+
+void AboutDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateAboutDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void AboutDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateAboutDlg");
+    this->resize(settings->value("size", QSize(400, 151)).toSize());
+    this->move(settings->value("pos", QPoint(310, 270)).toPoint());
+    settings->endGroup();
 }

@@ -39,6 +39,9 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
+    void writeSettings();
+    void readSettings();
+
     Ui::RenderMosaicDlg *ui;
     RenderMosaicThread *m_renderThread;
     QString m_outputFile;

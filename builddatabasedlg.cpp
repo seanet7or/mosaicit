@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QFileDialog>
 
+#include "appsettings.h"
+
 BuildDatabaseDlg::BuildDatabaseDlg(QWidget *parent,
                                    const QString &name,
                                    const QString &directory,
@@ -32,10 +34,12 @@ ui(new Ui::BuildDatabaseDlg)
             SIGNAL(pressed()),
             this,
             SLOT(closeButtonPressed()));
+    readSettings();
 }
 
 BuildDatabaseDlg::~BuildDatabaseDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -64,11 +68,13 @@ void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
             }
             ui->progressBar->setEnabled(false);
             ui->closeButton->setText(tr("Close"));
+            this->writeSettings();
             e->accept();
         } else {
             e->ignore();
         }
     } else {
+        this->writeSettings();
         e->accept();
     }
 
@@ -101,6 +107,7 @@ void BuildDatabaseDlg::closeButtonPressed()
             ui->closeButton->setText(tr("Close"));
         }
     } else {
+        this->writeSettings();
         done(0);
     }
 }
@@ -125,6 +132,7 @@ void BuildDatabaseDlg::reject()
     if (this->m_newDatabase->isProcessingRunning()) {
         this->m_newDatabase->cancelProcessing();
     }
+    this->writeSettings();
     done(0);
 }
 
@@ -206,4 +214,22 @@ void BuildDatabaseDlg::changeEvent(QEvent *e)
 void BuildDatabaseDlg::processProgress(float percent)
 {
     ui->progressBar->setValue((int)percent);
+}
+
+void BuildDatabaseDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateBuildDatabaseDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void BuildDatabaseDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateBuildDatabaseDlg");
+    this->resize(settings->value("size", QSize(370, 234)).toSize());
+    this->move(settings->value("pos", QPoint(310, 270)).toPoint());
+    settings->endGroup();
 }

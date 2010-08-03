@@ -32,6 +32,8 @@ private slots:
 
 private:
     void updateUIElements();
+    void readSettings();
+    void writeSettings();
 
     Ui::EditDatabaseDlg *ui;
     PictureDatabase *m_database;

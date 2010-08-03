@@ -6,6 +6,7 @@
 
 #include "rendermosaicthread.h"
 #include "picturedatabase.h"
+#include "appsettings.h"
 
 RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
                                  PictureDatabase *database,
@@ -47,10 +48,12 @@ ui(new Ui::RenderMosaicDlg)
                                        alphaChannel,
                                        outputFile,
                                        this);
+    this->readSettings();
 }
 
 RenderMosaicDlg::~RenderMosaicDlg()
 {
+    this->writeSettings();
     delete ui;
     if (this->m_renderThread) {
         while (this->m_renderThread->isRunning()) {
@@ -97,8 +100,12 @@ void RenderMosaicDlg::cancelBnPressed()
                 }
             }
         } else {
+            this->writeSettings();
             done(0);
         }
+    } else {
+        this->writeSettings();
+        done(0);
     }
 }
 
@@ -119,14 +126,17 @@ void RenderMosaicDlg::closeEvent(QCloseEvent *e)
                 while (this->m_renderThread->isRunning()) {
                     this->m_renderThread->cancel();
                 }
+                this->writeSettings();
                 e->accept();
             } else {
                 e->ignore();
             }
         } else {
+            this->writeSettings();
             e->accept();
         }
     } else {
+        this->writeSettings();
         e->accept();
     }
 }
@@ -146,4 +156,22 @@ void RenderMosaicDlg::renderThreadFinished()
         }
     }
     ui->cancelButton->setText(tr("Close"));
+}
+
+void RenderMosaicDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateRenderMosaicDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void RenderMosaicDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateRenderMosaicDlg");
+    this->resize(settings->value("size", QSize(412, 274)).toSize());
+    this->move(settings->value("pos", QPoint(265, 215)).toPoint());
+    settings->endGroup();
 }

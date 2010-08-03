@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "appsettings.h"
+
 namespace Ui {
     class MainWindow;
 }
@@ -16,15 +18,20 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
-private:
-    Ui::MainWindow *ui;
-
 private slots:
     void createDatabaseBnClicked();
     void newMosaicBnClicked();
     void editDatabaseBnClicked();
     void aboutBnClicked();
     void exitBnClicked();
+    void closeEvent(QCloseEvent *e);
+
+private:
+    void readSettings();
+    void writeSettings();
+
+    Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

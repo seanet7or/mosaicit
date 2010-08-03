@@ -30,6 +30,9 @@ private slots:
     void cancelBnPressed();
 
 private:
+    void readSettings();
+    void writeSettings();
+
     Ui::CreateMosaicDlg *ui;
     bool m_canceled;
     QString m_database;

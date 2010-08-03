@@ -27,6 +27,9 @@ private slots:
     void onIndexingFinished();
 
 private:
+    void readSettings();
+    void writeSettings();
+
     Ui::IndexDirDlg *ui;
     PictureDatabase *m_database;
 };

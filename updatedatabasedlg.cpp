@@ -5,6 +5,7 @@
 #include <QCloseEvent>
 
 #include "debug.h"
+#include "appsettings.h"
 
 #define log(text) Debug::log(text)
 
@@ -35,11 +36,13 @@ UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent,
             SIGNAL(pressed()),
             this,
             SLOT(cancelButtonPressed()));
+    this->readSettings();
     this->m_database->processFiles();
 }
 
 UpdateDatabaseDlg::~UpdateDatabaseDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -71,6 +74,7 @@ void UpdateDatabaseDlg::processComplete(bool wasCanceled)
         ui->label->setText(tr("Files were analysed!"));
     }
     ui->cancelButton->setText(tr("Close"));
+    this->writeSettings();
     done(0);
 }
 
@@ -107,14 +111,35 @@ void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_database->cancelProcessing();
                 log("\nUpdating the database was canceled!");
+                this->writeSettings();
                 e->accept();
             } else {
                 e->ignore();
             }
         } else {
+            this->writeSettings();
             e->accept();
         }
     } else {
+        this->writeSettings();
         e->accept();
     }
+}
+
+void UpdateDatabaseDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateUpdateDatabaseDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void UpdateDatabaseDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateUpdateDatabaseDlg");
+    this->resize(settings->value("size", QSize(400, 93)).toSize());
+    this->move(settings->value("pos", QPoint(180, 330)).toPoint());
+    settings->endGroup();
 }

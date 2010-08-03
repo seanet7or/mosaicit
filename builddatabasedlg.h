@@ -33,6 +33,9 @@ private slots:
     void closeButtonPressed();
 
 private:
+    void readSettings();
+    void writeSettings();
+
     Ui::BuildDatabaseDlg *ui;
     QString m_name;
     QString m_directory;

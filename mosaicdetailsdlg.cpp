@@ -1,6 +1,10 @@
 #include "mosaicdetailsdlg.h"
 #include "ui_mosaicdetailsdlg.h"
 
+#include <QCloseEvent>
+
+#include "appsettings.h"
+
 MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
         QDialog(parent),
         ui(new Ui::MosaicDetailsDlg)
@@ -62,6 +66,7 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
             SIGNAL(valueChanged(int)),
             this,
             SLOT(updateResultLabel()));
+    this->readSettings();
 }
 
 bool MosaicDetailsDlg::exitedCorrectly()
@@ -131,11 +136,13 @@ void MosaicDetailsDlg::aspectRatioChanged()
 
 MosaicDetailsDlg::~MosaicDetailsDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
 void MosaicDetailsDlg::cancelButtonPressed()
 {
+    this->writeSettings();
     done(0);
 }
 
@@ -185,4 +192,28 @@ void MosaicDetailsDlg::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MosaicDetailsDlg::closeEvent(QCloseEvent *e)
+{
+    this->writeSettings();
+    e->accept();
+}
+
+void MosaicDetailsDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateMosaicDetailsDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void MosaicDetailsDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateMosaicDetailsDlg");
+    this->resize(settings->value("size", QSize(577, 355)).toSize());
+    this->move(settings->value("pos", QPoint(180, 175)).toPoint());
+    settings->endGroup();
 }

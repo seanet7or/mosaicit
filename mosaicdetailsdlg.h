@@ -30,8 +30,12 @@ private slots:
     void updateResultLabel();
     void renderButtonPressed();
     void cancelButtonPressed();
+    void closeEvent(QCloseEvent *e);
 
 private:
+    void writeSettings();
+    void readSettings();
+
     Ui::MosaicDetailsDlg *ui;
     QString m_imageFile;
     QImage m_image;

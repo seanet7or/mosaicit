@@ -8,6 +8,7 @@
 
 #include "updatedatabasedlg.h"
 #include "indexdirdlg.h"
+#include "appsettings.h"
 
 EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
         QDialog(parent),
@@ -67,6 +68,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             QDir::toNativeSeparators(QDir::cleanPath(this->m_databaseFile))));
     //update ui elements
     this->updateUIElements();
+    this->readSettings();
 }
 
 void EditDatabaseDlg::onUpdateDBButtonPressed()
@@ -221,6 +223,7 @@ void EditDatabaseDlg::onCloseButtonPressed()
             }
         }
     }
+    this->writeSettings();
     done(0);
 }
 
@@ -230,6 +233,7 @@ void EditDatabaseDlg::closeEvent(QCloseEvent *e)
                               tr("Revert all changes?"),
                               tr("Do you really want to close and loose all changes?"),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+        this->writeSettings();
         e->accept();
     } else {
         e->ignore();
@@ -242,6 +246,7 @@ void EditDatabaseDlg::reject()
                               tr("Revert all changes?"),
                               tr("Do you really want to close and loose all changes?"),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+        this->writeSettings();
         done(0);
     } else {
         return;
@@ -250,6 +255,7 @@ void EditDatabaseDlg::reject()
 
 EditDatabaseDlg::~EditDatabaseDlg()
 {
+    this->writeSettings();
     delete ui;
 }
 
@@ -263,4 +269,22 @@ void EditDatabaseDlg::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void EditDatabaseDlg::writeSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateEditDatabaseDlg");
+    settings->setValue("size", this->size());
+    settings->setValue("pos", this->pos());
+    settings->endGroup();
+}
+
+void EditDatabaseDlg::readSettings()
+{
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("GUIStateEditDatabaseDlg");
+    this->resize(settings->value("size", QSize(400, 398)).toSize());
+    this->move(settings->value("pos", QPoint(85, 70)).toPoint());
+    settings->endGroup();
 }

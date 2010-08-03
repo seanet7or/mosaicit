@@ -28,6 +28,9 @@ private slots:
     void processComplete(bool wasCanceled);
 
 private:
+    void readSettings();
+    void writeSettings();
+
     Ui::UpdateDatabaseDlg *ui;
     PictureDatabase *m_database;
 };
