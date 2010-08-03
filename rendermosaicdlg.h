@@ -27,6 +27,7 @@ public:
 
 public slots:
     void logText(const QString &text);
+    void closeEvent(QCloseEvent *e);
 
 private slots:
     void renderComplete(float percent);

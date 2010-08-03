@@ -39,6 +39,41 @@ BuildDatabaseDlg::~BuildDatabaseDlg()
     delete ui;
 }
 
+void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
+{
+    if (this->m_newDatabase->isIndexingRunning() ||
+        this->m_newDatabase->isProcessingRunning()) {
+        if (QMessageBox::question(this,
+                                  tr("Cancel?"),
+                                  tr("Do you really want to cancel? The database will be %1").arg(
+                                          "incomplete!"),
+                                  QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::No) == QMessageBox::Yes) {
+            this->m_canceled = true;
+            if (this->m_newDatabase->isIndexingRunning()) {
+                this->m_newDatabase->cancelIndexing();
+            }
+            if (this->m_newDatabase->isProcessingRunning()) {
+                this->m_newDatabase->cancelProcessing();
+            }
+            ui->label->setText(tr("The build process was canceled!"));
+            if (ui->progressBar->minimum() == ui->progressBar->maximum()) {
+                ui->progressBar->setMaximum(100);
+                ui->progressBar->setMinimum(0);
+                ui->progressBar->setValue(0);
+            }
+            ui->progressBar->setEnabled(false);
+            ui->closeButton->setText(tr("Close"));
+            e->accept();
+        } else {
+            e->ignore();
+        }
+    } else {
+        e->accept();
+    }
+
+}
+
 void BuildDatabaseDlg::closeButtonPressed()
 {
     if (this->m_newDatabase->isIndexingRunning() ||

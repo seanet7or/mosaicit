@@ -100,6 +100,30 @@ void RenderMosaicDlg::cancelBnPressed()
     }
 }
 
+void RenderMosaicDlg::closeEvent(QCloseEvent *e)
+{
+    if (this->m_renderThread) {
+        if (this->m_renderThread->isRunning()) {
+            if (QMessageBox::question(this,
+                                      tr("Do you want to cancel?"),
+                                      tr("Do you want to cancel the build?"),
+                                      QMessageBox::No | QMessageBox::Yes
+                                      ) == QMessageBox::Yes) {
+                while (this->m_renderThread->isRunning()) {
+                    this->m_renderThread->cancel();
+                }
+                e->accept();
+            } else {
+                e->ignore();
+            }
+        } else {
+            e->accept();
+        }
+    } else {
+        e->accept();
+    }
+}
+
 void RenderMosaicDlg::renderThreadFinished()
 {
     if (this->m_renderThread) {

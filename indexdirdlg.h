@@ -15,6 +15,9 @@ public:
     IndexDirDlg(QWidget *parent, PictureDatabase *database, const QString &newDir);
     ~IndexDirDlg();
 
+public slots:
+    void closeEvent(QCloseEvent *e);
+
 protected:
     void changeEvent(QEvent *e);
 

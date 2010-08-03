@@ -15,6 +15,9 @@ public:
     UpdateDatabaseDlg(QWidget *parent, PictureDatabase *database);
     ~UpdateDatabaseDlg();
 
+public slots:
+    void closeEvent(QCloseEvent *e);
+
 protected:
     void changeEvent(QEvent *e);
 

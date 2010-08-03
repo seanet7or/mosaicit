@@ -2,6 +2,7 @@
 #include "ui_updatedatabasedlg.h"
 
 #include <QMessageBox>
+#include <QCloseEvent>
 
 #include "debug.h"
 
@@ -82,4 +83,26 @@ void UpdateDatabaseDlg::cancelButtonPressed()
         }
     }
     done(0);
+}
+
+void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
+{
+    if (this->m_database) {
+        if (this->m_database->isProcessingRunning()) {
+            if (QMessageBox::question(this,
+                                      tr("Do you want to cancel?"),
+                                      tr("Do you want to cancel? The database will be incomplete!"),
+                                      QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+                this->m_database->cancelProcessing();
+                log("\nUpdating the database was canceled!");
+                e->accept();
+            } else {
+                e->ignore();
+            }
+        } else {
+            e->accept();
+        }
+    } else {
+        e->accept();
+    }
 }

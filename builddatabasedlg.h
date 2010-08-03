@@ -21,6 +21,7 @@ public:
 
 public slots:
     void processProgress(float percent);
+    void closeEvent(QCloseEvent *e);
 
 protected:
     void changeEvent(QEvent *e);

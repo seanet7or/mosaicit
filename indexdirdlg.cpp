@@ -2,6 +2,7 @@
 #include "ui_indexdirdlg.h"
 
 #include <QMessageBox>
+#include <QCloseEvent>
 
 IndexDirDlg::IndexDirDlg(QWidget *parent,
                          PictureDatabase *database,
@@ -46,6 +47,24 @@ void IndexDirDlg::onCancelButtonPressed()
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             this->m_database->cancelIndexing();
         }
+    }
+}
+
+void IndexDirDlg::closeEvent(QCloseEvent *e)
+{
+    if (this->m_database->isIndexingRunning()) {
+        if (QMessageBox::question(this,
+                                  tr("Cancel indexing?"),
+                                  tr("Do you want to cancel? Not all files in the selected %1").arg(
+                                          "directory will be added!"),
+                                  QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+            this->m_database->cancelIndexing();
+            e->accept();
+        } else {
+            e->ignore();
+        }
+    } else {
+        e->accept();
     }
 }
 
