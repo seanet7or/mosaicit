@@ -19,6 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
         ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
+    setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
+    setTabOrder(ui->editDatabaseButton, ui->aboutButton);
+    setTabOrder(ui->aboutButton, ui->exitButton);
+
     connect(this->ui->createDatabaseBn,
             SIGNAL(pressed()),
             this,

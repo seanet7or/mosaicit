@@ -10,6 +10,23 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
         ui(new Ui::MosaicDetailsDlg)
 {
     ui->setupUi(this);
+
+    setTabOrder(ui->tileWidth, ui->tileHeight);
+    setTabOrder(ui->tileHeight, ui->aspect11);
+    setTabOrder(ui->aspect11, ui->aspect43);
+    setTabOrder(ui->aspect43, ui->aspect169);
+    setTabOrder(ui->aspect169, ui->aspectFree);
+    setTabOrder(ui->aspectFree, ui->cutTileEdges);
+    setTabOrder(ui->cutTileEdges, ui->scaleTile);
+    setTabOrder(ui->scaleTile, ui->totalTiles);
+    setTabOrder(ui->totalTiles, ui->minDistanceChecker);
+    setTabOrder(ui->minDistanceChecker, ui->minDistanceSpinner);
+    setTabOrder(ui->minDistanceSpinner, ui->repeatTilesChecker);
+    setTabOrder(ui->repeatTilesChecker, ui->repeatTilesSpinner);
+    setTabOrder(ui->repeatTilesSpinner, ui->alphaChannel);
+    setTabOrder(ui->alphaChannel, ui->renderButton);
+    setTabOrder(ui->renderButton, ui->cancelButton);
+
     this->m_canceled = true;
     m_image = QImage(imageFile);
     if (m_image.isNull()) {

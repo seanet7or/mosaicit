@@ -252,7 +252,7 @@
        <item row="6" column="2">
         <widget class="QSpinBox" name="repeatTilesSpinner">
          <property name="minimum">
-          <number>300</number>
+          <number>1</number>
          </property>
          <property name="maximum">
           <number>999999999</number>

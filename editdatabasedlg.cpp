@@ -17,6 +17,14 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
     ui->setupUi(this);
     this->m_databaseFile = databaseFile;
 
+    setTabOrder(ui->fileList, ui->removeFileButton);
+    setTabOrder(ui->removeFileButton, ui->invalidFiles);
+    setTabOrder(ui->invalidFiles, ui->untrackedFiles);
+    setTabOrder(ui->untrackedFiles, ui->updateDatabaseButton);
+    setTabOrder(ui->updateDatabaseButton, ui->addDirButton);
+    setTabOrder(ui->addDirButton, ui->adFileButton);
+    setTabOrder(ui->adFileButton, ui->closeButton);
+
     //load database and prepare if necessary
     this->m_database = new PictureDatabase;
     if (!this->m_database->fromFile(databaseFile)) {

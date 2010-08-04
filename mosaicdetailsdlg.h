@@ -53,7 +53,7 @@ private:
     bool m_minDistanceChecker;
     int m_minDistance;
     bool m_repeatTilesChecker;
-    bool m_repeatTilesMax;
+    int m_repeatTilesMax;
 };
 
 #endif // MOSAICDETAILSDLG_H

@@ -14,6 +14,11 @@ CreateMosaicDlg::CreateMosaicDlg(QWidget *parent) :
 {
     ui->setupUi(this);
     this->m_canceled = true;
+    setTabOrder(ui->databaseEdit, ui->selectDatabase);
+    setTabOrder(ui->selectDatabase, ui->imageEdit);
+    setTabOrder(ui->imageEdit, ui->selectImage);
+    setTabOrder(ui->selectImage, ui->nextButton);
+    setTabOrder(ui->nextButton, ui->cancelButton);
     connect(ui->selectDatabase,
             SIGNAL(pressed()),
             this,

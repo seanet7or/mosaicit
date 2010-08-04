@@ -14,6 +14,14 @@ NewDatabaseDlg::NewDatabaseDlg(QWidget *parent) :
         ui(new Ui::NewDatabaseDlg)
 {
     ui->setupUi(this);
+
+    setTabOrder(ui->nameEdit, ui->selectFileButton);
+    setTabOrder(ui->selectFileButton, ui->directoryEdit);
+    setTabOrder(ui->directoryEdit, ui->selectDirButton);
+    setTabOrder(ui->selectDirButton, ui->includeSubdirectories);
+    setTabOrder(ui->includeSubdirectories, ui->buildButton);
+    setTabOrder(ui->buildButton, ui->cancelButton);
+
     m_canceled = true;
 
     connect(ui->buildButton,
