@@ -6,17 +6,17 @@
     <message>
         <location filename="aboutdlg.ui" line="17"/>
         <source>About MosaicIt</source>
-        <translation type="unfinished">Über MosaicIt</translation>
+        <translation>Über MosaicIt</translation>
     </message>
     <message>
         <location filename="aboutdlg.ui" line="28"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="aboutdlg.ui" line="74"/>
         <source>MosaicIt</source>
-        <translation type="unfinished">MosaicIt</translation>
+        <translation>MosaicIt</translation>
     </message>
     <message>
         <location filename="aboutdlg.ui" line="87"/>
@@ -27,7 +27,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Version 1.0&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Written in 2010 by Benjamin Caspari (becaspari@googlemail.com) using C++ and the Qt Toolkit by Nokia.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This program is licensed under the GPL.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -41,41 +41,41 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="builddatabasedlg.ui" line="17"/>
         <source>Building database...</source>
-        <translation type="unfinished">Datenbank wird erstellt...</translation>
+        <translation>Datenbank wird erstellt...</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.ui" line="28"/>
         <source>Building the database. This may take a long time.</source>
-        <translation type="unfinished">Die Datenbank wird erstellt. Dies könnte einige Zeit benötigen.</translation>
+        <translation>Die Datenbank wird erstellt. Dies könnte eine Weile dauern.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.ui" line="56"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="25"/>
         <source>Indexing files in directory </source>
-        <translation type="unfinished">Indiziere die Dateien im Verzeichnis</translation>
+        <translation>Indiziere die Dateien im Verzeichnis</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="51"/>
         <location filename="builddatabasedlg.cpp" line="87"/>
         <source>Cancel?</source>
-        <translation type="unfinished">Abbrechen?</translation>
+        <translation>Abbrechen?</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="52"/>
         <location filename="builddatabasedlg.cpp" line="88"/>
         <source>Do you really want to cancel? The database will be incomplete!</source>
         <oldsource>Do you really want to cancel? The database will be %1</oldsource>
-        <translation type="unfinished">Wollen Sie wirklich abbrechen? Die Datenbank wird nicht komplett sein!</translation>
+        <translation>Wollen Sie wirklich abbrechen? Die Datenbank wird nicht komplett sein!</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="62"/>
         <location filename="builddatabasedlg.cpp" line="98"/>
         <source>The build process was canceled!</source>
-        <translation type="unfinished">Das Erstellen wurde abgebrochen!</translation>
+        <translation>Das Erstellen wurde abgebrochen!</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="69"/>
@@ -83,52 +83,52 @@ p, li { white-space: pre-wrap; }
         <location filename="builddatabasedlg.cpp" line="185"/>
         <location filename="builddatabasedlg.cpp" line="196"/>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="140"/>
         <source>Indexing files finished.</source>
-        <translation type="unfinished">Indizieren der Dateien beendet.</translation>
+        <translation>Das Indizieren der Dateien ist beendet.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="152"/>
         <source>Analyzing all found image files...</source>
-        <translation type="unfinished">Analysiere alle gefundenen Dateien...</translation>
+        <translation>Analysiere alle gefundenen Dateien...</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="159"/>
         <source>Analyzing found files finished.</source>
-        <translation type="unfinished">Die Analyse der Dateien ist beendet.</translation>
+        <translation>Die Analyse der Dateien ist beendet.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="161"/>
         <source>Analyzing was canceled!</source>
-        <translation type="unfinished">Die Analyse wurde abgebrochen!</translation>
+        <translation>Die Analyse wurde abgebrochen!</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="162"/>
         <source>The database will be incomplete.</source>
-        <translation type="unfinished">Die Datenbank wird nicht komplett sein.</translation>
+        <translation>Die Datenbank wird nicht komplett sein.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="163"/>
         <source>Use &quot;Edit Database&quot; to analyse the missing files.</source>
-        <translation type="unfinished">Wählen Sie &quot;Datenbank bearbeiten&quot;, um die fehlenden Dateien zu analysieren.</translation>
+        <translation>Wählen Sie &quot;Datenbank bearbeiten&quot;, um die fehlenden Dateien zu analysieren.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="168"/>
         <source>Saving database file %1</source>
-        <translation type="unfinished">Speichere Datenbank-Datei %1</translation>
+        <translation>Speichere Datenbanki %1</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="171"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="172"/>
         <source>Could not write database file! Do you want to specify another one?</source>
-        <translation type="unfinished">Fehler beim Schreiben der Datenbankdatei! Möchten Sie eine andere wählen?</translation>
+        <translation>Fehler beim Schreiben der Datenbank! Möchten Sie eine andere Datei wählen?</translation>
     </message>
     <message>
         <source>Could not write database file! Do you want to %1</source>
@@ -137,37 +137,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="builddatabasedlg.cpp" line="176"/>
         <source>Database file to write</source>
-        <translation type="unfinished">zu erstellende Datenbankdatei</translation>
+        <translation>Datenbankdatei</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="180"/>
         <source>Database file (*.mib)</source>
-        <translation type="unfinished">Datenbankdatei (*.mib)</translation>
+        <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="183"/>
         <source>Error saving the database file.</source>
-        <translation type="unfinished">Fehler beim Speichern der Datenbankdatei.</translation>
+        <translation>Fehler beim Speichern der Datenbank.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="184"/>
         <source>The database could not be written.</source>
-        <translation type="unfinished">Die Datenbank konnte nicht geschrieben werden.</translation>
+        <translation>Die Datenbank konnte nicht geschrieben werden.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="190"/>
         <source>Saved database.</source>
-        <translation type="unfinished">Die Datenbank wurde gespeichert.</translation>
+        <translation>Die Datenbank wurde gespeichert.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="192"/>
         <source>The database was built successfully.</source>
-        <translation type="unfinished">Die Datenbank wurde erfolgreich erstellt.</translation>
+        <translation>Die Datenbank wurde erfolgreich erstellt.</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="194"/>
         <source>The database will be incomplete!</source>
-        <translation type="unfinished">Die Datenbank wird nicht komplett sein!</translation>
+        <translation>Die Datenbank wird nicht komplett sein!</translation>
     </message>
 </context>
 <context>
@@ -175,7 +175,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="createmosaicdlg.ui" line="17"/>
         <source>Create new mosaic</source>
-        <translation type="unfinished">Neues Mosaik erstellen</translation>
+        <translation>Neues Mosaik erstellen</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="33"/>
@@ -185,14 +185,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="createmosaicdlg.ui" line="46"/>
         <source>Image input file</source>
-        <translation type="unfinished">Ursprungsbild</translation>
+        <translation>Ursprungsbild</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="53"/>
         <location filename="createmosaicdlg.ui" line="60"/>
         <location filename="createmosaicdlg.ui" line="145"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="72"/>
@@ -482,13 +482,9 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     </message>
     <message>
         <location filename="indexdirdlg.cpp" line="51"/>
+        <location filename="indexdirdlg.cpp" line="68"/>
         <source>Do you want to cancel? Not all files in the selected directory will be added!</source>
         <translation>Möchten Sie den Vorgang abbrechen? Dann werden nicht alle Dateien in dem gewählten Verzeichnis hinzugefügt!</translation>
-    </message>
-    <message>
-        <location filename="indexdirdlg.cpp" line="68"/>
-        <source>Do you want to cancel? Not all files in the selected %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -496,88 +492,88 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>MosaicIt!</source>
-        <translation type="unfinished"></translation>
+        <translation>MosaicIt!</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="39"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="49"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="59"/>
         <source>Create Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank erstellen</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="72"/>
         <source>New Mosaic</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Mosaik</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="82"/>
         <source>Welcome to MosaicIt! What do you want to do?</source>
-        <translation type="unfinished"></translation>
+        <translation>Willkommen zu MosaicIt! Was möchten Sie tun?</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="89"/>
         <source>Before you can build a photomosaic, you have to set up a pictures database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevor Sie ein Mosaik erzeugen können, müssen Sie eine Bilder-Datenbank erstellen.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="96"/>
         <source>Build a new photomosaic based on an existing pictures database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hier können Sie ein neues Mosaik auf Grundlage einer existierenden Bilderdatenbank erstellen.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
         <source>Show program info.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen über das Programm anzeigen.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="110"/>
         <source>Close program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programm beenden.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="117"/>
         <source>Edit Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank bearbeiten</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="127"/>
         <source>Add pictures to or remove from existing database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilder zu einer existierenden Datenbank hinzufügen oder aus ihr entfernen.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="100"/>
         <location filename="mainwindow.cpp" line="143"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="101"/>
         <source>Could not load the selected database!</source>
-        <translation type="unfinished"></translation>
+        <translation>Die gewählte Datenbank konnte nicht geladen werden!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="137"/>
         <source>Select database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank wählen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="140"/>
         <source>Database files (*.mib);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankdateien (*.mib);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="144"/>
         <source>You have to select a valid image database to edit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen eine gültige Datenbank wählen!</translation>
     </message>
 </context>
 <context>
@@ -585,107 +581,107 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="17"/>
         <source>Details for new mosaic</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaillierte Optionen für das neue Mosaik</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="55"/>
         <source>Tile Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kachelgröße:</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="72"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="89"/>
         <source>Tile Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Seitenverhältnis der Kacheln</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="97"/>
         <source>1:1</source>
-        <translation type="unfinished"></translation>
+        <translation>1:1</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="104"/>
         <source>4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>4:3</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="111"/>
         <source>16:9</source>
-        <translation type="unfinished"></translation>
+        <translation>16:9</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="118"/>
         <source>free</source>
-        <translation type="unfinished"></translation>
+        <translation>frei</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="130"/>
         <source>Total number of tiles:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl der Kacheln insgesamt:</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="147"/>
         <source>Alpha channel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alphakanal:</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="154"/>
         <source>percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Prozent</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="164"/>
         <source>fit tiles by</source>
-        <translation type="unfinished"></translation>
+        <translation>Kacheln anpassen durch</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="172"/>
         <source>cutting edges</source>
-        <translation type="unfinished"></translation>
+        <translation>beschneiden</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="179"/>
         <source>scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>skalieren</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="224"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="231"/>
         <source>Minimum distance between same tiles:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimaler Abstand zwischen den selben Kacheln:</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="248"/>
         <source>Repeat tiles maximal</source>
-        <translation type="unfinished"></translation>
+        <translation>Kacheln maximal</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="265"/>
         <source>times</source>
-        <translation type="unfinished"></translation>
+        <translation>mal wiederholen</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="278"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.ui" line="285"/>
         <source>Render</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendern</translation>
     </message>
     <message>
         <location filename="mosaicdetailsdlg.cpp" line="90"/>
         <source>The resulting image will have a size of %1 megapixels.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das fertige Bild wird eine Größe von %1 Megapixel haben.</translation>
     </message>
 </context>
 <context>
@@ -693,101 +689,101 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="newdatabasedlg.ui" line="17"/>
         <source>Build new picture database</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datenbank erstellen</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="28"/>
         <source>New database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datenbankdatei</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="45"/>
         <source>Directory containing the pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis mit den Bildern</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="62"/>
         <location filename="newdatabasedlg.ui" line="76"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="69"/>
         <source>Include Subdirectories</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterverzeichnisse einschliessen</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="87"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.ui" line="94"/>
         <source>Build database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank erstellen</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="52"/>
         <source>Database file to write</source>
-        <translation type="unfinished">Datenbankdatei</translation>
+        <translation>Datenbankdatei</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="56"/>
         <source>Database file (*.mib)</source>
-        <translation type="unfinished">Datenbankdatei (*.mib)</translation>
+        <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="65"/>
         <location filename="newdatabasedlg.cpp" line="71"/>
         <location filename="newdatabasedlg.cpp" line="88"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="66"/>
         <source>You have to specify a file for the new database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen eine Datei zum Speichern der neuen Datenbank angeben.</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="72"/>
         <source>You have to specify a valid directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen ein gültiges Verzeichnis angeben.</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="79"/>
         <source>Database file exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank existiert bereits</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="80"/>
         <source>The chosen database file already exists. Do you want to override it?</source>
         <oldsource>The chosen database file already exists. Do you want%1</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Die gewählte Datenbankdatei existiert bereits. Möchten Sie sie überschreiben?</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="89"/>
         <source>The database file you specified can not be written. Specify another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die von Ihnen gewählte Datenbankdatei konnte nicht erstellt werden. Wählen Sie bitte eine andere.</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="113"/>
         <source>Cancel?</source>
-        <translation type="unfinished">Abbrechen?</translation>
+        <translation>Abbrechen?</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="114"/>
         <source>Do you really wont to cancel?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie wirklich abbrechen?</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="133"/>
         <source>Select picture folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis mit den Bildern wählen</translation>
     </message>
     <message>
         <location filename="newdatabasedlg.cpp" line="202"/>
         <source>/newdatabase.mib</source>
-        <translation type="unfinished"></translation>
+        <translation>/newdatabase.mib</translation>
     </message>
 </context>
 <context>
@@ -795,49 +791,49 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="rendermosaicdlg.ui" line="17"/>
         <source>Rendering the mosaic...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosaik rendern...</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.ui" line="28"/>
         <source>Please stand by while the mosaic is rendered. This may take some time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte haben Sie Geduld, während das Mosaik erstellt wird.Dies könnte eine Weile dauern.</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.ui" line="49"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="102"/>
         <location filename="rendermosaicdlg.cpp" line="130"/>
         <source>Do you want to cancel?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie wirklich abbrechen?</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="103"/>
         <location filename="rendermosaicdlg.cpp" line="131"/>
         <source>Do you want to cancel the build?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie das Erstellen abbrechen?</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="158"/>
         <source>The process was canceled, no mosaic was saved!</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Erstellen wurde abgebrochen, es wurde kein Mosaik gespeichert!</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="160"/>
         <source>A critical error occured, view detailed output!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein kritischer Fehler ist aufgetreten, siehe die detaillierte Anzeige!</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="162"/>
         <source>The mosaic was built and saved to %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Mosaik wurde erstellt und als %1 gespeichert.</translation>
     </message>
     <message>
         <location filename="rendermosaicdlg.cpp" line="166"/>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
 </context>
 <context>
@@ -845,7 +841,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="rendermosaicthread.cpp" line="88"/>
         <source>Rendering mosaic</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosaik rendern</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="91"/>
@@ -856,99 +852,99 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <location filename="rendermosaicthread.cpp" line="324"/>
         <location filename="rendermosaicthread.cpp" line="339"/>
         <source>Rendering was canceled - no mosaic was saved!</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Erstellen wurde abgebrochen, es wurde kein Mosaik gespeichert!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="96"/>
         <source>loading original image %1</source>
-        <translation type="unfinished"></translation>
+        <translation>lade Ursprungsbild %1</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="99"/>
         <source>Error loading the original image!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Laden des Ursprungbilds!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="125"/>
         <source>The mosaic will be built of %1 x %2 tiles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Mosaik wird aus %1 x %2 Kacheln erstellt.</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="135"/>
         <source>Error scaling the original picture!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Skalieren des Ursprungbilds!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="148"/>
         <location filename="rendermosaicthread.cpp" line="155"/>
         <source>Error reserving memory for tiles map!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Reservieren des Speichers für die Kachelkarte!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="170"/>
         <source>Error reserving memory for the mosaic image!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Reservieren des Speichers für das Mosaik!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="249"/>
         <source>Error loading the tile image %1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Laden des Bildes %1!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="300"/>
         <source>Error scaling tile image %1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Skalieren des Bilds %1!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="310"/>
         <source>Error - no matching tile found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler - keine passende Kachel gefunden!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="311"/>
         <source>Edit the tile image database or select another one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten Sie die Bilderdatenbank oder wählen Sie eine andere mit mehr Einträgen.</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="312"/>
         <source>Perhaps you have chosen a too low value for the minimum</source>
-        <translation type="unfinished"></translation>
+        <translation>Vielleicht haben Sie einen zu hohen Wert für den minimalen</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="313"/>
         <source>distance between two equal tiles. Try using a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstand zwischen zwei gleichen Kacheln gewählt. Versuchen Sie, eine Datenbank</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="314"/>
         <source>with more entries, higher the value or uncheck the option!</source>
-        <translation type="unfinished"></translation>
+        <translation>mit mehr Einträgen zu wählen, senken Sie den minimalen Abstand oder wählen Sie die Option ab!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="344"/>
         <source>Error saving the built mosaic in the file %1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Speichern des Moaiks in der Datei %1!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="348"/>
         <source>Error saving mosaic</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Speichern des Mosaiks</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="349"/>
         <source>The mosaic could not be saved as &quot;%1&quot;! Do you want to select another file to write to?</source>
         <oldsource>The mosaic could not be saved as &quot;%1&quot;! %2</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Das Mosaik konnte nicht unter %1 gespeichert werden! Möchten Sie eine andere Datei wählen?</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="356"/>
         <source>Select image output file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mosaik speichern unter</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="361"/>
         <source>Images (*.jpg)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilder (*.jpg)</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="380"/>
