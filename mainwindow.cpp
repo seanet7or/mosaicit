@@ -117,11 +117,16 @@ void MainWindow::newMosaicBnClicked()
 
 void MainWindow::editDatabaseBnClicked()
 {
-    QString databaseFile;
+    QSettings *settings = AppSettings::settings();
+    settings->beginGroup("InputMainWindow");
+    QString databaseFile = settings->value("databasefiletoedit",
+                                           QDir::toNativeSeparators(
+                                                   QDir::cleanPath(QDir::homePath()))).toString();
+    settings->endGroup();
     databaseFile = QFileDialog::getOpenFileName(this,
                                                 tr("Select database file"),
                                                 QDir::toNativeSeparators(QDir::cleanPath(
-                                                        QDir::homePath())),
+                                                        databaseFile)),
                                                 tr("Database files (*.mib);;All files (*.*)"));
     if (databaseFile.isNull() || (databaseFile.length()==0)) {
         QMessageBox::warning(this,
@@ -131,6 +136,9 @@ void MainWindow::editDatabaseBnClicked()
                              QMessageBox::Ok);
         return;
     }
+    settings->beginGroup("InputMainWindow");
+    settings->setValue("databasefiletoedit", databaseFile);
+    settings->endGroup();
 
     EditDatabaseDlg editDBDlg(this, databaseFile);
     editDBDlg.show();
