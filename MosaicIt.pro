@@ -43,3 +43,4 @@ FORMS += updatedatabasedlg.ui \
     builddatabasedlg.ui \
     indexdirdlg.ui \
     aboutdlg.ui
+TRANSLATIONS += mosaicit_de.ts

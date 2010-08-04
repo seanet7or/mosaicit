@@ -150,8 +150,8 @@ void CreateMosaicDlg::selectDBBnPressed()
                                                          QDir::toNativeSeparators(
                                                                  QDir::cleanPath(
                                                                          ui->databaseEdit->text())),
-                                                         tr("Database files (*.mib);;%1").arg(
-                                                                 "All files (*.*)")))));
+                                                         tr("Database files (*.mib);;All files (*.*)")
+                                                         ))));
 }
 
 void CreateMosaicDlg::selectOutputBnPressed()
@@ -177,8 +177,7 @@ void CreateMosaicDlg::selectImageBnPressed()
                                                          QDir::toNativeSeparators(
                                                                  QDir::cleanPath(
                                                                          ui->imageEdit->text())),
-                                                         tr("Images (*.png *.bmp *.xpm %1").arg(
-                                                                 "*.jpg);;All files (*.*)")))));
+                                                         tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)")))));
 }
 
 void CreateMosaicDlg::writeSettings()

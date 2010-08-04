@@ -77,8 +77,7 @@ void NewDatabaseDlg::buildButtonPressed()
     if (outFileInfo.exists()) {
         if (QMessageBox::question(this,
                                   tr("Database file exists"),
-                                  tr("The chosen database file already exists. Do you want%1").arg(
-                                          tr(" to override it?")),
+                                  tr("The chosen database file already exists. Do you want to override it?"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
             return;
         }
@@ -87,8 +86,7 @@ void NewDatabaseDlg::buildButtonPressed()
     if (!outFile.open(QIODevice::WriteOnly)) {
         QMessageBox::warning(this,
                              tr("Error"),
-                             tr("The database file you specified can not be written. %1").arg(
-                                     "Specify another one."),
+                             tr("The database file you specified can not be written. Specify another one."),
                              QMessageBox::Ok);
         return;
     }

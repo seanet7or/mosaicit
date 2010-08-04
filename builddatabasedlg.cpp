@@ -49,8 +49,7 @@ void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
         this->m_newDatabase->isProcessingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel?"),
-                                  tr("Do you really want to cancel? The database will be %1").arg(
-                                          "incomplete!"),
+                                  tr("Do you really want to cancel? The database will be incomplete!"),
                                   QMessageBox::Yes | QMessageBox::No,
                                   QMessageBox::No) == QMessageBox::Yes) {
             this->m_canceled = true;
@@ -171,8 +170,7 @@ void BuildDatabaseDlg::processingFinished(bool wasCanceled)
         if ((saved = this->m_newDatabase->toFile(this->m_name)) == false) {
             if (QMessageBox::question(this,
                                       tr("Error"),
-                                      tr("Could not write database file! Do you want to %1").arg(
-                                              "specify another one?"),
+                                      tr("Could not write database file! Do you want to specify another one?"),
                                       QMessageBox::Yes | QMessageBox::No,
                                       QMessageBox::Yes) == QMessageBox::Yes) {
                 this->m_name = QFileDialog::getSaveFileName(this,

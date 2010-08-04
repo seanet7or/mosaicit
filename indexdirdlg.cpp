@@ -48,8 +48,7 @@ void IndexDirDlg::onCancelButtonPressed()
     if (this->m_database->isIndexingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel indexing?"),
-                                  tr("Do you want to cancel? Not all files in the selected %1").arg(
-                                          "directory will be added!"),
+                                  tr("Do you want to cancel? Not all files in the selected directory will be added!"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             this->m_database->cancelIndexing();
         }

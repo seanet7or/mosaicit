@@ -38,9 +38,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
     if (!this->m_database->allUpToDate()) {
         if (QMessageBox::question(this,
                                   tr("Database is incomplete"),
-                                  tr("Not all files in the database are alreay scanned %1").arg(
-                                          tr("and/or some information is outdated.\n Do %1").arg(
-                                                  tr("you want to rebuild the missing parts?"))),
+                                  tr("Not all files in the database are alreay scanned and/or some information is outdated.\n Do you want to rebuild the missing parts?"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             UpdateDatabaseDlg updateDlg(this, this->m_database);
             updateDlg.show();
@@ -215,8 +213,8 @@ void EditDatabaseDlg::onCloseButtonPressed()
 {
     if (QMessageBox::question(this,
                               tr("Save changes?"),
-                              tr("Do you want to save the changes you made to the %1 \"%2\"?").arg(
-                                      "database", QDir::toNativeSeparators(
+                              tr("Do you want to save the changes you made to the database \"%1\"?").arg(
+                                      QDir::toNativeSeparators(
                                               QDir::cleanPath(
                                                       this->m_databaseFile))),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
@@ -225,8 +223,7 @@ void EditDatabaseDlg::onCloseButtonPressed()
             if ((saved = this->m_database->toFile(this->m_databaseFile)) == false) {
                 if (QMessageBox::question(this,
                                           tr("Error"),
-                                          tr("Could not write database file! Do you %1").arg(
-                                                  "want to specify another one?"),
+                                          tr("Could not write database file! Do you want to specify another one?"),
                                           QMessageBox::Yes | QMessageBox::No,
                                           QMessageBox::Yes) == QMessageBox::Yes) {
                     this->m_databaseFile =
