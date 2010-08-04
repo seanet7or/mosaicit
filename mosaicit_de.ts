@@ -65,107 +65,109 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Abbrechen?</translation>
     </message>
     <message>
+        <location filename="builddatabasedlg.cpp" line="52"/>
         <location filename="builddatabasedlg.cpp" line="88"/>
-        <source>Do you really want to cancel? The database will be %1</source>
-        <translation type="unfinished">Wollen Sie wirklich abbrechen? Die Datenbank wird nicht komplett </translation>
+        <source>Do you really want to cancel? The database will be incomplete!</source>
+        <oldsource>Do you really want to cancel? The database will be %1</oldsource>
+        <translation type="unfinished">Wollen Sie wirklich abbrechen? Die Datenbank wird nicht komplett sein!</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="62"/>
-        <location filename="builddatabasedlg.cpp" line="99"/>
+        <location filename="builddatabasedlg.cpp" line="98"/>
         <source>The build process was canceled!</source>
         <translation type="unfinished">Das Erstellen wurde abgebrochen!</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="69"/>
-        <location filename="builddatabasedlg.cpp" line="106"/>
-        <location filename="builddatabasedlg.cpp" line="186"/>
-        <location filename="builddatabasedlg.cpp" line="197"/>
+        <location filename="builddatabasedlg.cpp" line="105"/>
+        <location filename="builddatabasedlg.cpp" line="185"/>
+        <location filename="builddatabasedlg.cpp" line="196"/>
         <source>Close</source>
         <translation type="unfinished">Schliessen</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="141"/>
+        <location filename="builddatabasedlg.cpp" line="140"/>
         <source>Indexing files finished.</source>
         <translation type="unfinished">Indizieren der Dateien beendet.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="153"/>
+        <location filename="builddatabasedlg.cpp" line="152"/>
         <source>Analyzing all found image files...</source>
         <translation type="unfinished">Analysiere alle gefundenen Dateien...</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="160"/>
+        <location filename="builddatabasedlg.cpp" line="159"/>
         <source>Analyzing found files finished.</source>
         <translation type="unfinished">Die Analyse der Dateien ist beendet.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="162"/>
+        <location filename="builddatabasedlg.cpp" line="161"/>
         <source>Analyzing was canceled!</source>
         <translation type="unfinished">Die Analyse wurde abgebrochen!</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="163"/>
+        <location filename="builddatabasedlg.cpp" line="162"/>
         <source>The database will be incomplete.</source>
         <translation type="unfinished">Die Datenbank wird nicht komplett sein.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="164"/>
+        <location filename="builddatabasedlg.cpp" line="163"/>
         <source>Use &quot;Edit Database&quot; to analyse the missing files.</source>
-        <translation type="unfinished">Benutzen Sie &quot;Datenbank bearbeiten&quot;, um die fehlenden Dateien zu analysieren.</translation>
+        <translation type="unfinished">Wählen Sie &quot;Datenbank bearbeiten&quot;, um die fehlenden Dateien zu analysieren.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="169"/>
+        <location filename="builddatabasedlg.cpp" line="168"/>
         <source>Saving database file %1</source>
-        <translation type="unfinished">Speichere Datenbank Datei %1</translation>
+        <translation type="unfinished">Speichere Datenbank-Datei %1</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="172"/>
+        <location filename="builddatabasedlg.cpp" line="171"/>
         <source>Error</source>
         <translation type="unfinished">Fehler</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="173"/>
+        <location filename="builddatabasedlg.cpp" line="172"/>
         <source>Could not write database file! Do you want to specify another one?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fehler beim Schreiben der Datenbankdatei! Möchten Sie eine andere wählen?</translation>
     </message>
     <message>
         <source>Could not write database file! Do you want to %1</source>
         <translation type="obsolete">Konnte die Datenbankdatei nicht schreiben! Möchten Sie %1</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="177"/>
+        <location filename="builddatabasedlg.cpp" line="176"/>
         <source>Database file to write</source>
-        <translation type="unfinished">Datenbankdatei</translation>
+        <translation type="unfinished">zu erstellende Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="181"/>
+        <location filename="builddatabasedlg.cpp" line="180"/>
         <source>Database file (*.mib)</source>
         <translation type="unfinished">Datenbankdatei (*.mib)</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="184"/>
+        <location filename="builddatabasedlg.cpp" line="183"/>
         <source>Error saving the database file.</source>
         <translation type="unfinished">Fehler beim Speichern der Datenbankdatei.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="185"/>
+        <location filename="builddatabasedlg.cpp" line="184"/>
         <source>The database could not be written.</source>
         <translation type="unfinished">Die Datenbank konnte nicht geschrieben werden.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="191"/>
+        <location filename="builddatabasedlg.cpp" line="190"/>
         <source>Saved database.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Die Datenbank wurde gespeichert.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="193"/>
+        <location filename="builddatabasedlg.cpp" line="192"/>
         <source>The database was built successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Die Datenbank wurde erfolgreich erstellt.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="195"/>
+        <location filename="builddatabasedlg.cpp" line="194"/>
         <source>The database will be incomplete!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Die Datenbank wird nicht komplett sein!</translation>
     </message>
 </context>
 <context>
@@ -173,93 +175,93 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="createmosaicdlg.ui" line="17"/>
         <source>Create new mosaic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neues Mosaik erstellen</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="33"/>
         <source>Database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="46"/>
         <source>Image input file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ursprungsbild</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="53"/>
         <location filename="createmosaicdlg.ui" line="60"/>
         <location filename="createmosaicdlg.ui" line="145"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">...</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="72"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="95"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="138"/>
         <source>Output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosaikdatei</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="100"/>
         <location filename="createmosaicdlg.cpp" line="108"/>
         <location filename="createmosaicdlg.cpp" line="115"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="101"/>
         <source>Select a database file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Datenbank!</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="109"/>
         <source>Select a valid image file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie ein gültiges Ursprungsbild!</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="116"/>
         <source>Select a mosaic output image file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Datei, um das Mosaik zu speichern!</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="149"/>
         <source>Select database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank wählen</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="153"/>
         <source>Database files (*.mib);;All files (*.*)</source>
         <oldsource>Database files (*.mib);;%1</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankdateien (*.mib);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="163"/>
         <source>Select image output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosaik speichern unter</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="167"/>
         <source>Images (*.jpg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilder (*.jpg)</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="176"/>
         <source>Select image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ursprungsbild wählen</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.cpp" line="180"/>
         <source>Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)</source>
         <oldsource>Images (*.png *.bmp *.xpm %1</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Bilder (*.png *.bmp *.xpm *.jpg);;Alle Dateien (*.*)</translation>
     </message>
 </context>
 <context>
@@ -267,181 +269,182 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="editdatabasedlg.ui" line="17"/>
         <source>Edit database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank bearbeiten</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="26"/>
         <source>database info</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankinfo</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="35"/>
         <source>WasAlreadyProcessed</source>
-        <translation type="unfinished"></translation>
+        <translation>WurdeBereitsAnalysiert</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="54"/>
         <source>Image preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildvorschau</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="61"/>
         <source>all files in database</source>
-        <translation type="unfinished"></translation>
+        <translation>alle Dateien in der Datenbank</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="80"/>
         <source>files that are untracked / not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Noch nicht analysierte oder nicht gefundene Dateien</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="86"/>
         <source>files not found / invalid image files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht gefundene und ungültige Dateien:</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="100"/>
         <source>untracked files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Noch nicht analysierte Dateien:</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="114"/>
         <source>Update database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank aktualisieren</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="124"/>
         <source>Remove this file from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Datei aus der Datenbank entfernen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="133"/>
         <source>ImagePath</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildpfad</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="149"/>
         <source>Add directory to database</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis zur Datenbank hinzufügen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="156"/>
         <source>Add file to database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei zur Datenbank hinzufügen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="200"/>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="32"/>
         <location filename="editdatabasedlg.cpp" line="225"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="33"/>
         <source>Could not open the selected database file &quot;%1&quot;!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Öffnen der gewählten Datenbank &quot;%1&quot;!</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="40"/>
         <source>Database is incomplete</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank ist nich komplett</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="41"/>
         <source>Not all files in the database are alreay scanned and/or some information is outdated.
  Do you want to rebuild the missing parts?</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurden noch nicht alle Dateien in der Datenbank analysiert und/oder einige Informationen sind veraltet.
+Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="73"/>
         <source>Edit database &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank &quot;%1&quot; bearbeiten</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="89"/>
         <source>Nothing to do</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt nichts zu tun</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="90"/>
         <source>All database entries are up to date!</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Datenbank Einträge sind up to date!</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="107"/>
         <source>%1 files in database &quot;%2&quot;; %3 do not exist or are untracked yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Dateien sind in der Datenbank &quot;%2&quot;; &quot;%3&quot; sind ungültig oder wurden noch nicht analysiert.</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="147"/>
         <source>The average color is (%1, %2, %3).</source>
-        <translation type="unfinished"></translation>
+        <translation>Die durchschnittliche Farbe ist (%1, %2, %3).</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="153"/>
         <source>This file was not analysed yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Datei wurde noch nicht analysiert.</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="158"/>
         <source>This seems not to be a valid image file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dies scheint keine gültige Bilddatei zu sein.</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="172"/>
         <source>Select picture folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis mit den Bildern wählen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="196"/>
         <source>Select image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild wählen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="199"/>
         <source>Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilder (*.png *.bmp *.xpm *.jpg);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="215"/>
         <source>Save changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen speichern?</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="216"/>
         <source>Do you want to save the changes you made to the database &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie die Änderungen, die Sie an der Datenbank &quot;%1&quot; vorgenommen haben, speichern?</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="226"/>
         <source>Could not write database file! Do you want to specify another one?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Schreiben der Datenbank! Möchten Sie eine andere Datei wählen?</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="231"/>
         <source>Database file to write</source>
-        <translation type="unfinished">Datenbankdatei</translation>
+        <translation>Datenbankdatei</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="235"/>
         <source>Database file (*.mib)</source>
-        <translation type="unfinished">Datenbankdatei (*.mib)</translation>
+        <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="249"/>
         <location filename="editdatabasedlg.cpp" line="262"/>
         <source>Revert all changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Änderungen verwerfen?</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="250"/>
         <location filename="editdatabasedlg.cpp" line="263"/>
         <source>Do you really want to close and loose all changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie das Fenster wirklich schliessen und alle Änderungen verlieren?</translation>
     </message>
 </context>
 <context>
@@ -449,33 +452,38 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="indexdirdlg.ui" line="14"/>
         <source>Indexing files in chosen directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiziere die Dateien im gewählten Verzeichnis...</translation>
     </message>
     <message>
         <location filename="indexdirdlg.ui" line="25"/>
         <source>Indexing files, please stand by - this might take some time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indizieren der Dateien läuft, dies könnte eine Weile dauern.</translation>
     </message>
     <message>
         <location filename="indexdirdlg.ui" line="42"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="indexdirdlg.cpp" line="19"/>
         <source>Include subdirectories?</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterverzeichnisse einschliessen?</translation>
     </message>
     <message>
         <location filename="indexdirdlg.cpp" line="20"/>
         <source>Do you also want to add the image files in the subdirectories?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie auch die Bilder in den Unterverzeichnissen hinzufügen?</translation>
     </message>
     <message>
         <location filename="indexdirdlg.cpp" line="50"/>
         <location filename="indexdirdlg.cpp" line="67"/>
         <source>Cancel indexing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Indizieren abbrechen?</translation>
+    </message>
+    <message>
+        <location filename="indexdirdlg.cpp" line="51"/>
+        <source>Do you want to cancel? Not all files in the selected directory will be added!</source>
+        <translation>Möchten Sie den Vorgang abbrechen? Dann werden nicht alle Dateien in dem gewählten Verzeichnis hinzugefügt!</translation>
     </message>
     <message>
         <location filename="indexdirdlg.cpp" line="68"/>
