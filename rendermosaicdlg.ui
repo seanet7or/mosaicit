@@ -37,7 +37,11 @@
       </widget>
      </item>
      <item row="2" column="0" colspan="2">
-      <widget class="QPlainTextEdit" name="textLog"/>
+      <widget class="QPlainTextEdit" name="textLog">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="cancelButton">

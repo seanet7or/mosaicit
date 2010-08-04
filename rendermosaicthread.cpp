@@ -215,7 +215,7 @@ void RenderMosaicThread::run()
                             if (distance >= 0.f) {
                                 if (distance < (float)this->m_minDistance) {
                                     tileIsOk = false;
-                                    emit logText(tr("distance too small to equal tile!"));
+                                    //emit logText(tr("distance too small to equal tile!"));
                                 }
                             }
                         }
