@@ -106,6 +106,17 @@ void EditDatabaseDlg::updateUIElements()
     for (int i = 0; i < this->m_database->size(); i++) {
         ui->fileList->addItem(this->m_database->pictureAt(i)->getFile());
     }
+    ui->invalidFiles->clear();
+    ui->untrackedFiles->clear();
+    for (int i = 0; i < this->m_database->size(); i++) {
+        if (!this->m_database->pictureAt(i)->validFile()) {
+            ui->invalidFiles->appendPlainText(this->m_database->pictureAt(i)->getFile());
+        } else {
+            if (!this->m_database->pictureAt(i)->processed()) {
+                ui->untrackedFiles->appendPlainText(this->m_database->pictureAt(i)->getFile());
+            }
+        }
+    }
     this->onFileSelected(ui->fileList->currentRow());
 }
 
@@ -284,7 +295,7 @@ void EditDatabaseDlg::readSettings()
 {
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateEditDatabaseDlg");
-    this->resize(settings->value("size", QSize(400, 398)).toSize());
+    this->resize(settings->value("size", QSize(603, 398)).toSize());
     this->move(settings->value("pos", QPoint(85, 70)).toPoint());
     settings->endGroup();
 }
