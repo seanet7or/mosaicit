@@ -214,6 +214,8 @@ void MosaicDetailsDlg::writeSettings()
     settings->setValue("cutedges", this->m_cutEdges);
     settings->setValue("totaltilenumber", this->m_tileCount);
     settings->setValue("alphachannel", this->m_alphaChannel);
+    settings->setValue("mindistancechecker", this->m_minDistanceChecker);
+    settings->setValue("mindistancespinner", this->m_minDistance);
     settings->endGroup();
 }
 
@@ -224,13 +226,15 @@ void MosaicDetailsDlg::updateValuesFromForms()
     this->m_tileCount = ui->totalTiles->value();
     this->m_tileHeight = ui->tileHeight->value();
     this->m_tileWidth = ui->tileWidth->value();
+    this->m_minDistanceChecker = ui->minDistanceChecker->isChecked();
+    this->m_minDistance = ui->minDistanceSpinner->value();
 }
 
 void MosaicDetailsDlg::readSettings()
 {
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateMosaicDetailsDlg");
-    this->resize(settings->value("size", QSize(577, 355)).toSize());
+    this->resize(settings->value("size", QSize(601, 355)).toSize());
     this->move(settings->value("pos", QPoint(180, 175)).toPoint());
     settings->endGroup();
     settings->beginGroup("InputMosaicDetailsDlg");
@@ -260,6 +264,18 @@ void MosaicDetailsDlg::readSettings()
     }
     ui->totalTiles->setValue(settings->value("totaltilenumber", 800).toInt());
     ui->alphaChannel->setValue(settings->value("alphachannel", 30).toInt());
+    ui->minDistanceChecker->setChecked(settings->value("mindistancechecker", true).toBool());
+    ui->minDistanceSpinner->setValue(settings->value("mindistancespinner", 3).toInt());
     settings->endGroup();
     this->updateResultLabel();
+}
+
+bool MosaicDetailsDlg::minDistanceChecker()
+{
+    return this->m_minDistanceChecker;
+}
+
+int MosaicDetailsDlg::minDistance()
+{
+    return this->m_minDistance;
 }

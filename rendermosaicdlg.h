@@ -22,7 +22,9 @@ public:
                     int tileCount,
                     bool cutEdges,
                     int alphaChannel,
-                    const QString &outputFile);
+                    const QString &outputFile,
+                    bool minDistChecker,
+                    int minDist);
     ~RenderMosaicDlg();
 
 public slots:

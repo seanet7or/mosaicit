@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>355</height>
+    <width>601</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,21 +141,21 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="2">
+       <item row="6" column="0" colspan="2">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Alpha channel:</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
+       <item row="6" column="3">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>percent</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
+       <item row="6" column="2">
         <widget class="QSpinBox" name="alphaChannel"/>
        </item>
        <item row="3" column="0" colspan="4">
@@ -198,7 +198,7 @@
          </property>
         </spacer>
        </item>
-       <item row="8" column="0" colspan="4">
+       <item row="9" column="0" colspan="4">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -211,17 +211,34 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="0" colspan="4">
+       <item row="7" column="0" colspan="4">
         <widget class="Line" name="line">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="4">
+       <item row="8" column="0" colspan="4">
         <widget class="QLabel" name="resultLabel">
          <property name="text">
           <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="QCheckBox" name="minDistanceChecker">
+         <property name="text">
+          <string>Minimum distance between same tiles:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QSpinBox" name="minDistanceSpinner">
+         <property name="maximum">
+          <number>999999999</number>
+         </property>
+         <property name="value">
+          <number>5</number>
          </property>
         </widget>
        </item>

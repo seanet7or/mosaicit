@@ -68,7 +68,7 @@ void NewDatabaseDlg::buildButtonPressed()
     QFileInfo outFileInfo(ui->nameEdit->text());
     if (outFileInfo.exists()) {
         if (QMessageBox::question(this,
-                                  tr("Dtabase file exists"),
+                                  tr("Database file exists"),
                                   tr("The chosen database file already exists. Do you want%1").arg(
                                           tr(" to override it?")),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {

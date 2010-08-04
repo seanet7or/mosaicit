@@ -108,7 +108,9 @@ void MainWindow::newMosaicBnClicked()
                                       detailsDlg.tileCount(),
                                       detailsDlg.cutEdges(),
                                       detailsDlg.alphaChannel(),
-                                      createDlg.outputImage());
+                                      createDlg.outputImage(),
+                                      detailsDlg.minDistanceChecker(),
+                                      detailsDlg.minDistance());
             renderDlg.show();
             renderDlg.exec();
         }

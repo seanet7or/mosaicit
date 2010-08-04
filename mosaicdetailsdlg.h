@@ -12,13 +12,15 @@ class MosaicDetailsDlg : public QDialog {
     Q_OBJECT
 public:
     MosaicDetailsDlg(QWidget *parent, const QString &imageFile);
+    ~MosaicDetailsDlg();
     bool exitedCorrectly();
     int tileWidth();
     int tileHeight();
     int tileCount();
     bool cutEdges();
     int alphaChannel();
-    ~MosaicDetailsDlg();
+    bool minDistanceChecker();
+    int minDistance();
 
 protected:
     void changeEvent(QEvent *e);
@@ -46,6 +48,8 @@ private:
     bool m_cutEdges;
     int m_alphaChannel;
     bool m_canceled;
+    bool m_minDistanceChecker;
+    int m_minDistance;
 };
 
 #endif // MOSAICDETAILSDLG_H

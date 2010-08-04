@@ -9,7 +9,7 @@
 
 class RenderMosaicThread : public QThread
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     explicit RenderMosaicThread(QObject *parent = 0);
     void renderMosaic(PictureDatabase *database,
@@ -20,7 +20,9 @@ public:
                       bool cutEdges,
                       int alphaChannel,
                       const QString &outputFile,
-                      QWidget *parentWindow);
+                      QWidget *parentWindow,
+                      bool minDistanceChecker,
+                      int minDinstance);
     void cancel();
     bool criticalError();
     bool wasCanceled();
@@ -36,6 +38,13 @@ protected:
     void run();
 
 private:
+    float smallestDistance(int **tileMap,
+                           int mapWidth,
+                           int mapHeight,
+                           int currentTile,
+                           int xPos,
+                           int yPos);
+
     bool m_cancelNow;
     bool m_criticalError;
     PictureDatabase *m_database;
@@ -47,6 +56,8 @@ private:
     int m_alphaChannel;
     QString m_outputFile;
     QWidget *m_parentWindow;
+    bool m_minDistanceChecker;
+    int m_minDistance;
 };
 
 #endif // RENDERMOSAICTHREAD_H

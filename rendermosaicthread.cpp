@@ -22,7 +22,9 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       bool cutEdges,
                                       int alphaChannel,
                                       const QString &outputFile,
-                                      QWidget *parentWindow)
+                                      QWidget *parentWindow,
+                                      bool minDistanceChecker,
+                                      int minDistance)
 {
     m_cancelNow = false;
     this->m_criticalError = false;
@@ -35,12 +37,43 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
     this->m_alphaChannel = alphaChannel;
     this->m_outputFile = outputFile;
     this->m_parentWindow = parentWindow;
+    this->m_minDistanceChecker = minDistanceChecker;
+    this->m_minDistance = minDistance;
     start();
 }
 
 void RenderMosaicThread::cancel()
 {
     this->m_cancelNow = true;
+}
+
+float RenderMosaicThread::smallestDistance(int**tileMap,
+                                           int mapWidth,
+                                           int mapHeight,
+                                           int currentTile,
+                                           int xPos,
+                                           int yPos)
+{
+    bool found = false;
+    float distance = -1.f;
+    for (int i = 0; i < mapWidth; i++) {
+        for (int j = 0; j < mapHeight; j++) {
+            if (tileMap[i][j] == currentTile) {
+                if ((xPos != i) || (yPos != j)) {
+                    //now calculate distance to second occurance of tile
+                    float currentDistance = sqrt((xPos - i) * (xPos - i) + (yPos - j) * (yPos - j));
+                    if (!found) {
+                        found = true;
+                        distance = currentDistance;
+                    }
+                    if (currentDistance < distance) {
+                        distance = currentDistance;
+                    }
+                }
+            }
+        }
+    }
+    return distance;
 }
 
 void RenderMosaicThread::run()
@@ -105,6 +138,27 @@ void RenderMosaicThread::run()
         return;
     }
 
+    //reserve memory for tiles map
+    int **tilesMap = new int*[tilesX];
+    if (!tilesMap) {
+        emit logText(tr("Error reserving memory for tiles map!"));
+        this->m_criticalError = true;
+        return;
+    }
+    for (int i = 0; i < tilesX; i++) {
+        tilesMap[i] = new int[tilesY];
+        if (!tilesMap[i]) {
+            emit logText(tr("Error reserving memory for tiles map!"));
+            this->m_criticalError = true;
+            return;
+        }
+    }
+    for (int i = 0; i < tilesX; i++) {
+        for (int j = 0; j < tilesY; j++) {
+            tilesMap[i][j] = -1;
+        }
+    }
+
     //reserve image for the mosaic
     QImage mosaic(tilesX * this->m_tileWidth, tilesY * this->m_tileHeight,
                   QImage::Format_ARGB32);
@@ -149,13 +203,32 @@ void RenderMosaicThread::run()
                     diff += qAbs(qBlue(thisPixel)
                                  - this->m_database->pictureAt(k)->getBlue());
                     if (diff < minDiff) {
-                        minDiff = diff;
-                        nearestIndex = k;
+                        bool tileIsOk = true;
+                        //potentially found a matching tile, but check for min distance condition
+                        if (this->m_minDistanceChecker) {
+                            float distance = this->smallestDistance(tilesMap,
+                                                                    tilesX,
+                                                                    tilesY,
+                                                                    k,
+                                                                    i,
+                                                                    j);
+                            if (distance >= 0.f) {
+                                if (distance < (float)this->m_minDistance) {
+                                    tileIsOk = false;
+                                    emit logText(tr("distance too small to equal tile!"));
+                                }
+                            }
+                        }
+                        if (tileIsOk) {
+                            minDiff = diff;
+                            nearestIndex = k;
+                        }
                     }
                 }
             }
             //found matching tile
             if (nearestIndex != -1) {
+                tilesMap[i][j] = nearestIndex;
                 //emit logText(tr("found matching tile!"));
                 //emit logText(tr("filename is %1").arg(
                 //        this->m_database->pictureAt(nearestIndex)->getFile()));
@@ -225,6 +298,9 @@ void RenderMosaicThread::run()
             } else {
                 emit logText(tr("Error - no matching tile found!"));
                 emit logText(tr("Edit the tile image database or select another one."));
+                emit logText(tr("Perhaps you have chosen a too low value for the minimum"));
+                emit logText(tr("distance between two equal tiles. Try using a database"));
+                emit logText(tr("with more entries, higher the value or uncheck the option!"));
                 this->m_criticalError = true;
                 return;
             }
@@ -283,8 +359,16 @@ void RenderMosaicThread::run()
             }
         }
     }
+
+    //free tile map
+    for (int i = 0; i < tilesX; i++) {
+        delete tilesMap[i];
+    }
+    delete tilesMap;
+
     emit renderComplete(100.f);
     emit logText(tr("Mosaic created."));
+
 }
 
 bool RenderMosaicThread::criticalError()
