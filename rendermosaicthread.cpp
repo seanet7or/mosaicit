@@ -24,7 +24,9 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       const QString &outputFile,
                                       QWidget *parentWindow,
                                       bool minDistanceChecker,
-                                      int minDistance)
+                                      int minDistance,
+                                      bool maxTileRepeatChecker,
+                                      int maxTileRepeatCount)
 {
     m_cancelNow = false;
     this->m_criticalError = false;
@@ -39,6 +41,8 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
     this->m_parentWindow = parentWindow;
     this->m_minDistanceChecker = minDistanceChecker;
     this->m_minDistance = minDistance;
+    this->m_maxTileRepeatCount = maxTileRepeatCount;
+    this->m_maxTileRepeatChecker = maxTileRepeatChecker;
     start();
 }
 
@@ -219,6 +223,13 @@ void RenderMosaicThread::run()
                                 }
                             }
                         }
+                        //check for max tile repeat count condition
+                        if (this->m_maxTileRepeatChecker) {
+                            int tileInMap = this->tileCountInMap(tilesMap, tilesX, tilesY, k);
+                            if (tileInMap >= this->m_maxTileRepeatCount) {
+                                tileIsOk = false;
+                            }
+                        }
                         if (tileIsOk) {
                             minDiff = diff;
                             nearestIndex = k;
@@ -384,4 +395,17 @@ bool RenderMosaicThread::wasCanceled()
 QString RenderMosaicThread::outputFile()
 {
     return this->m_outputFile;
+}
+
+int RenderMosaicThread::tileCountInMap(int**tileMap, int mapWidth, int mapHeight, int tileToSearch)
+{
+    int result = 0;
+    for (int i = 0; i < mapWidth; i++) {
+        for (int j = 0; j < mapHeight; j++) {
+            if (tileMap[i][j] == tileToSearch) {
+                result++;
+            }
+        }
+    }
+    return result;
 }

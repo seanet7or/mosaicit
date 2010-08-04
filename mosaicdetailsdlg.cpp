@@ -216,6 +216,8 @@ void MosaicDetailsDlg::writeSettings()
     settings->setValue("alphachannel", this->m_alphaChannel);
     settings->setValue("mindistancechecker", this->m_minDistanceChecker);
     settings->setValue("mindistancespinner", this->m_minDistance);
+    settings->setValue("repeattileschecker", this->m_repeatTilesChecker);
+    settings->setValue("repeattilesspinner", this->m_repeatTilesMax);
     settings->endGroup();
 }
 
@@ -228,13 +230,15 @@ void MosaicDetailsDlg::updateValuesFromForms()
     this->m_tileWidth = ui->tileWidth->value();
     this->m_minDistanceChecker = ui->minDistanceChecker->isChecked();
     this->m_minDistance = ui->minDistanceSpinner->value();
+    this->m_repeatTilesChecker = ui->repeatTilesChecker->isChecked();
+    this->m_repeatTilesMax = ui->repeatTilesSpinner->value();
 }
 
 void MosaicDetailsDlg::readSettings()
 {
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateMosaicDetailsDlg");
-    this->resize(settings->value("size", QSize(601, 355)).toSize());
+    this->resize(settings->value("size", QSize(620, 355)).toSize());
     this->move(settings->value("pos", QPoint(180, 175)).toPoint());
     settings->endGroup();
     settings->beginGroup("InputMosaicDetailsDlg");
@@ -266,6 +270,8 @@ void MosaicDetailsDlg::readSettings()
     ui->alphaChannel->setValue(settings->value("alphachannel", 30).toInt());
     ui->minDistanceChecker->setChecked(settings->value("mindistancechecker", true).toBool());
     ui->minDistanceSpinner->setValue(settings->value("mindistancespinner", 3).toInt());
+    ui->repeatTilesChecker->setChecked(settings->value("repeattileschecker", false).toBool());
+    ui->repeatTilesSpinner->setValue(settings->value("repeattilesspinner", 300).toInt());
     settings->endGroup();
     this->updateResultLabel();
 }
@@ -278,4 +284,14 @@ bool MosaicDetailsDlg::minDistanceChecker()
 int MosaicDetailsDlg::minDistance()
 {
     return this->m_minDistance;
+}
+
+bool MosaicDetailsDlg::repeatTilesMaxChecker()
+{
+    return this->m_repeatTilesChecker;
+}
+
+int MosaicDetailsDlg::repeatTilesMaxCount()
+{
+    return this->m_repeatTilesMax;
 }

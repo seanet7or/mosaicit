@@ -22,7 +22,9 @@ public:
                       const QString &outputFile,
                       QWidget *parentWindow,
                       bool minDistanceChecker,
-                      int minDinstance);
+                      int minDinstance,
+                      bool maxTileRepeatChecker,
+                      int maxTileRepeatCount);
     void cancel();
     bool criticalError();
     bool wasCanceled();
@@ -44,6 +46,7 @@ private:
                            int currentTile,
                            int xPos,
                            int yPos);
+    int tileCountInMap(int **tileMap, int mapWidth, int mapHeight, int tileToSearch);
 
     bool m_cancelNow;
     bool m_criticalError;
@@ -58,6 +61,8 @@ private:
     QWidget *m_parentWindow;
     bool m_minDistanceChecker;
     int m_minDistance;
+    bool m_maxTileRepeatChecker;
+    int m_maxTileRepeatCount;
 };
 
 #endif // RENDERMOSAICTHREAD_H

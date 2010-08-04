@@ -24,7 +24,9 @@ public:
                     int alphaChannel,
                     const QString &outputFile,
                     bool minDistChecker,
-                    int minDist);
+                    int minDist,
+                    bool maxTileRepeatChecker,
+                    int maxTileRepeatCount);
     ~RenderMosaicDlg();
 
 public slots:

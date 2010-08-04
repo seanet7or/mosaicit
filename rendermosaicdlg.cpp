@@ -18,7 +18,9 @@ RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
                                  int alphaChannel,
                                  const QString &outputFile,
                                  bool minDistChecker,
-                                 int minDist) :
+                                 int minDist,
+                                 bool maxTileRepeatChecker,
+                                 int maxTileRepeatCount) :
 QDialog(parent),
 ui(new Ui::RenderMosaicDlg)
 {
@@ -51,7 +53,9 @@ ui(new Ui::RenderMosaicDlg)
                                        outputFile,
                                        this,
                                        minDistChecker,
-                                       minDist);
+                                       minDist,
+                                       maxTileRepeatChecker,
+                                       maxTileRepeatCount);
     this->readSettings();
 }
 
