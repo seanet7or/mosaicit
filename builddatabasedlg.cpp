@@ -85,8 +85,7 @@ void BuildDatabaseDlg::closeButtonPressed()
         this->m_newDatabase->isProcessingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel?"),
-                                  tr("Do you really want to cancel? The database will be %1").arg(
-                                          "incomplete!"),
+                                  tr("Do you really want to cancel? The database will be incomplete!"),
                                   QMessageBox::Yes | QMessageBox::No,
                                   QMessageBox::No) == QMessageBox::Yes) {
             this->m_canceled = true;
