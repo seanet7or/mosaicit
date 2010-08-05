@@ -4,7 +4,10 @@ OTHER_FILES += doc/header.txt \
     lrelease_project.cmd \
     appiconwin.ico \
     appicon.rc \
-    ico_src/256_32.png
+    ico_src/256_32.png \
+    gfx_work/mosaicit_logo.png \
+    gfx_work/mosaicit_logo2.png \
+    gfx_work/logo.png
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \

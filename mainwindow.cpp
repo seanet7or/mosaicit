@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage("mosaicit_logo.png")));
+
     setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
     setTabOrder(ui->editDatabaseButton, ui->aboutButton);
@@ -181,7 +183,7 @@ void MainWindow::readSettings()
 {
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateMainWindow");
-    this->resize(settings->value("size", QSize(600, 400)).toSize());
+    this->resize(settings->value("size", QSize(670, 545)).toSize());
     this->move(settings->value("pos", QPoint(90, 90)).toPoint());
     settings->endGroup();
 }
