@@ -1,7 +1,10 @@
 OTHER_FILES += doc/header.txt \
     lupdate_project.cmd \
     mosaicit_de.ts \
-    lrelease_project.cmd
+    lrelease_project.cmd \
+    appiconwin.ico \
+    appicon.rc \
+    ico_src/256_32.png
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \
@@ -47,3 +50,4 @@ FORMS += updatedatabasedlg.ui \
     indexdirdlg.ui \
     aboutdlg.ui
 TRANSLATIONS += mosaicit_de.ts
+RC_FILE += appicon.rc
