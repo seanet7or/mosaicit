@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Build new picture database</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>ico_src/256_32.png</normaloff>ico_src/256_32.png</iconset>
+  </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
   </property>

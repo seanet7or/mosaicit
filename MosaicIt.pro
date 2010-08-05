@@ -51,3 +51,4 @@ FORMS += updatedatabasedlg.ui \
     aboutdlg.ui
 TRANSLATIONS += mosaicit_de.ts
 RC_FILE += appicon.rc
+RESOURCES += 
