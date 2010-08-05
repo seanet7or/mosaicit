@@ -314,7 +314,7 @@ void RenderMosaicThread::run()
                 if (this->m_minDistanceChecker) {
                     emit logText(tr("You have selected a minimum distance between two equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a lower value or uncheck the option."));
                 }
-                emit logText(tr("Choosing a image database with more entries might remove the problem"));
+                emit logText(tr("Choosing a image database with more entries might remove the problem."));
                 this->m_criticalError = true;
                 return;
             }

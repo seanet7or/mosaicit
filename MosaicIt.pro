@@ -1,6 +1,7 @@
 OTHER_FILES += doc/header.txt \
     lupdate_project.cmd \
-    mosaicit_de.ts
+    mosaicit_de.ts \
+    lrelease_project.cmd
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \

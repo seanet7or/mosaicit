@@ -118,7 +118,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="builddatabasedlg.cpp" line="168"/>
         <source>Saving database file %1</source>
-        <translation>Speichere Datenbanki %1</translation>
+        <translation>Speichere Datenbank %1</translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="171"/>
@@ -350,7 +350,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="editdatabasedlg.cpp" line="40"/>
         <source>Database is incomplete</source>
-        <translation>Die Datenbank ist nich komplett</translation>
+        <translation>Die Datenbank ist nicht komplett</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="41"/>
@@ -372,7 +372,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="editdatabasedlg.cpp" line="90"/>
         <source>All database entries are up to date!</source>
-        <translation>Alle Datenbank Einträge sind up to date!</translation>
+        <translation>Alle Datenbank Einträge sind auf dem neuesten Stand!</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="107"/>
@@ -681,7 +681,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="mosaicdetailsdlg.cpp" line="90"/>
         <source>The resulting image will have a size of %1 megapixels.</source>
-        <translation>Das fertige Bild wird eine Größe von %1 Megapixel haben.</translation>
+        <translation>Das fertige Bild wird eine Größe von %1 Megapixeln haben.</translation>
     </message>
 </context>
 <context>
@@ -849,8 +849,8 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <location filename="rendermosaicthread.cpp" line="141"/>
         <location filename="rendermosaicthread.cpp" line="179"/>
         <location filename="rendermosaicthread.cpp" line="189"/>
-        <location filename="rendermosaicthread.cpp" line="324"/>
-        <location filename="rendermosaicthread.cpp" line="339"/>
+        <location filename="rendermosaicthread.cpp" line="327"/>
+        <location filename="rendermosaicthread.cpp" line="342"/>
         <source>Rendering was canceled - no mosaic was saved!</source>
         <translation>Das Erstellen wurde abgebrochen, es wurde kein Mosaik gespeichert!</translation>
     </message>
@@ -893,7 +893,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="rendermosaicthread.cpp" line="300"/>
         <source>Error scaling tile image %1!</source>
-        <translation>Fehler beim Skalieren des Bilds %1!</translation>
+        <translation>Fehler beim Skalieren des Bildes %1!</translation>
     </message>
     <message>
         <location filename="rendermosaicthread.cpp" line="310"/>
@@ -901,55 +901,67 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Fehler - keine passende Kachel gefunden!</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="311"/>
-        <source>Edit the tile image database or select another one.</source>
-        <translation>Bearbeiten Sie die Bilderdatenbank oder wählen Sie eine andere mit mehr Einträgen.</translation>
-    </message>
-    <message>
         <location filename="rendermosaicthread.cpp" line="312"/>
+        <source>You have selected a maximum repeat rate for equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a higher value or uncheck the option.</source>
+        <translation>Sie haben eine maximale Anzahl an Wiederholungen für eine Kachel im Mosaik gewählt. Wahrscheinlich befinden sich nicht genug Bilder in der Datenbank, um dieses Kriterium zu erfüllen. Wählen Sie eine höhere Anzahl oder schalten Sie die Option aus.</translation>
+    </message>
+    <message>
+        <location filename="rendermosaicthread.cpp" line="315"/>
+        <source>You have selected a minimum distance between two equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a lower value or uncheck the option.</source>
+        <translation>Sie haben einen minimalen Abstand zwischen der Verwendung derselben Kachel im Mosaik gewählt. Wahrscheinlich befinden sich nicht genug Bilder in der Datenbank, um dieses Kriterium zu erfüllen. Wählen Sie einen niedrigeren Wert oder schalten Sie die Option aus.</translation>
+    </message>
+    <message>
+        <location filename="rendermosaicthread.cpp" line="317"/>
+        <source>Choosing a image database with more entries might remove the problem.</source>
+        <oldsource>Choosing a image database with more entries might remove the problem</oldsource>
+        <translation>Eine Datenbank mit mehr Einträgen zu wählen, wird das Problem beheben.</translation>
+    </message>
+    <message>
+        <source>Edit the tile image database or select another one.</source>
+        <translation type="obsolete">Bearbeiten Sie die Bilderdatenbank oder wählen Sie eine andere mit mehr Einträgen.</translation>
+    </message>
+    <message>
         <source>Perhaps you have chosen a too low value for the minimum</source>
-        <translation>Vielleicht haben Sie einen zu hohen Wert für den minimalen</translation>
+        <translation type="obsolete">Vielleicht haben Sie einen zu hohen Wert für den minimalen</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="313"/>
         <source>distance between two equal tiles. Try using a database</source>
-        <translation>Abstand zwischen zwei gleichen Kacheln gewählt. Versuchen Sie, eine Datenbank</translation>
+        <translation type="obsolete">Abstand zwischen zwei gleichen Kacheln gewählt. Versuchen Sie, eine Datenbank</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="314"/>
         <source>with more entries, higher the value or uncheck the option!</source>
-        <translation>mit mehr Einträgen zu wählen, senken Sie den minimalen Abstand oder wählen Sie die Option ab!</translation>
+        <translation type="obsolete">mit mehr Einträgen zu wählen, senken Sie den minimalen Abstand oder wählen Sie die Option ab!</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="344"/>
+        <location filename="rendermosaicthread.cpp" line="347"/>
         <source>Error saving the built mosaic in the file %1!</source>
         <translation>Fehler beim Speichern des Moaiks in der Datei %1!</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="348"/>
+        <location filename="rendermosaicthread.cpp" line="351"/>
         <source>Error saving mosaic</source>
         <translation>Fehler beim Speichern des Mosaiks</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="349"/>
+        <location filename="rendermosaicthread.cpp" line="352"/>
         <source>The mosaic could not be saved as &quot;%1&quot;! Do you want to select another file to write to?</source>
         <oldsource>The mosaic could not be saved as &quot;%1&quot;! %2</oldsource>
         <translation>Das Mosaik konnte nicht unter %1 gespeichert werden! Möchten Sie eine andere Datei wählen?</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="356"/>
+        <location filename="rendermosaicthread.cpp" line="359"/>
         <source>Select image output file</source>
-        <translation type="unfinished">Mosaik speichern unter</translation>
+        <translation>Mosaik speichern unter</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="361"/>
+        <location filename="rendermosaicthread.cpp" line="364"/>
         <source>Images (*.jpg)</source>
-        <translation type="unfinished">Bilder (*.jpg)</translation>
+        <translation>Bilder (*.jpg)</translation>
     </message>
     <message>
-        <location filename="rendermosaicthread.cpp" line="380"/>
+        <location filename="rendermosaicthread.cpp" line="383"/>
         <source>Mosaic created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Mosaik wurde erstellt.</translation>
     </message>
 </context>
 <context>
@@ -957,44 +969,44 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="updatedatabasedlg.ui" line="17"/>
         <source>Analysing files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysiere Dateien...</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.ui" line="28"/>
         <source>Analysing the files - please stand by, this might take some time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Analyse läuft, dies könnte eine Weile dauern.</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.ui" line="42"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="72"/>
         <source>The process was canceled, the database will be incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Analyse wurde abgebrochen, die Datenbank wird nicht komplett sein.</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="74"/>
         <source>Files were analysed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Dateien wurden analysiert!</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="76"/>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="86"/>
         <location filename="updatedatabasedlg.cpp" line="109"/>
         <source>Do you want to cancel?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie wirklich abbrechen?</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="87"/>
         <location filename="updatedatabasedlg.cpp" line="110"/>
         <source>Do you want to cancel? The database will be incomplete!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wollen Sie wirklich abbrechen? Die Datenbank wird nicht komplett sein!</translation>
     </message>
 </context>
 </TS>
