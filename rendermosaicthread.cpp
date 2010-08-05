@@ -308,10 +308,13 @@ void RenderMosaicThread::run()
                                         tileImage);
             } else {
                 emit logText(tr("Error - no matching tile found!"));
-                emit logText(tr("Edit the tile image database or select another one."));
-                emit logText(tr("Perhaps you have chosen a too low value for the minimum"));
-                emit logText(tr("distance between two equal tiles. Try using a database"));
-                emit logText(tr("with more entries, higher the value or uncheck the option!"));
+                if (this->m_maxTileRepeatChecker) {
+                    emit logText(tr("You have selected a maximum repeat rate for equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a higher value or uncheck the option."));
+                }
+                if (this->m_minDistanceChecker) {
+                    emit logText(tr("You have selected a minimum distance between two equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a lower value or uncheck the option."));
+                }
+                emit logText(tr("Choosing a image database with more entries might remove the problem"));
                 this->m_criticalError = true;
                 return;
             }
