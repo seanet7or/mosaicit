@@ -56,7 +56,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="builddatabasedlg.cpp" line="25"/>
         <source>Indexing files in directory </source>
-        <translation>Indiziere die Dateien im Verzeichnis</translation>
+        <translation type="unfinished">Indiziere die Dateien im Verzeichnis </translation>
     </message>
     <message>
         <location filename="builddatabasedlg.cpp" line="51"/>
@@ -80,53 +80,63 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="builddatabasedlg.cpp" line="69"/>
         <location filename="builddatabasedlg.cpp" line="105"/>
-        <location filename="builddatabasedlg.cpp" line="185"/>
-        <location filename="builddatabasedlg.cpp" line="196"/>
+        <location filename="builddatabasedlg.cpp" line="191"/>
+        <location filename="builddatabasedlg.cpp" line="202"/>
         <source>Close</source>
         <translation>Schliessen</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="140"/>
+        <location filename="builddatabasedlg.cpp" line="116"/>
+        <source>Do you want to cancel?</source>
+        <translation>Möchten Sie wirklich abbrechen?</translation>
+    </message>
+    <message>
+        <location filename="builddatabasedlg.cpp" line="117"/>
+        <source>Do you really want to cancel? No database will be saved!</source>
+        <translation>Wollen Sie wirklich abbrechen? Die Datenbank wird nicht gespeichert werden!</translation>
+    </message>
+    <message>
+        <location filename="builddatabasedlg.cpp" line="146"/>
         <source>Indexing files finished.</source>
         <translation>Das Indizieren der Dateien ist beendet.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="152"/>
+        <location filename="builddatabasedlg.cpp" line="158"/>
         <source>Analyzing all found image files...</source>
         <translation>Analysiere alle gefundenen Dateien...</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="159"/>
+        <location filename="builddatabasedlg.cpp" line="165"/>
         <source>Analyzing found files finished.</source>
         <translation>Die Analyse der Dateien ist beendet.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="161"/>
+        <location filename="builddatabasedlg.cpp" line="167"/>
         <source>Analyzing was canceled!</source>
         <translation>Die Analyse wurde abgebrochen!</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="162"/>
+        <location filename="builddatabasedlg.cpp" line="168"/>
         <source>The database will be incomplete.</source>
         <translation>Die Datenbank wird nicht komplett sein.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="163"/>
+        <location filename="builddatabasedlg.cpp" line="169"/>
         <source>Use &quot;Edit Database&quot; to analyse the missing files.</source>
         <translation>Wählen Sie &quot;Datenbank bearbeiten&quot;, um die fehlenden Dateien zu analysieren.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="168"/>
+        <location filename="builddatabasedlg.cpp" line="174"/>
         <source>Saving database file %1</source>
         <translation>Speichere Datenbank %1</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="171"/>
+        <location filename="builddatabasedlg.cpp" line="177"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="172"/>
+        <location filename="builddatabasedlg.cpp" line="178"/>
         <source>Could not write database file! Do you want to specify another one?</source>
         <translation>Fehler beim Schreiben der Datenbank! Möchten Sie eine andere Datei wählen?</translation>
     </message>
@@ -135,37 +145,37 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Konnte die Datenbankdatei nicht schreiben! Möchten Sie %1</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="176"/>
+        <location filename="builddatabasedlg.cpp" line="182"/>
         <source>Database file to write</source>
         <translation>Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="180"/>
+        <location filename="builddatabasedlg.cpp" line="186"/>
         <source>Database file (*.mib)</source>
         <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="183"/>
+        <location filename="builddatabasedlg.cpp" line="189"/>
         <source>Error saving the database file.</source>
         <translation>Fehler beim Speichern der Datenbank.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="184"/>
+        <location filename="builddatabasedlg.cpp" line="190"/>
         <source>The database could not be written.</source>
         <translation>Die Datenbank konnte nicht geschrieben werden.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="190"/>
+        <location filename="builddatabasedlg.cpp" line="196"/>
         <source>Saved database.</source>
         <translation>Die Datenbank wurde gespeichert.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="192"/>
+        <location filename="builddatabasedlg.cpp" line="198"/>
         <source>The database was built successfully.</source>
         <translation>Die Datenbank wurde erfolgreich erstellt.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.cpp" line="194"/>
+        <location filename="builddatabasedlg.cpp" line="200"/>
         <source>The database will be incomplete!</source>
         <translation>Die Datenbank wird nicht komplett sein!</translation>
     </message>
