@@ -112,6 +112,12 @@ void BuildDatabaseDlg::closeButtonPressed()
 
 void BuildDatabaseDlg::reject()
 {
+    if (QMessageBox::question(this,
+                              tr("Do you want to cancel?"),
+                              tr("Do you really want to cancel? No database will be saved!"),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
     disconnect(this->m_newDatabase,
                SIGNAL(indexFinished()),
                this,
