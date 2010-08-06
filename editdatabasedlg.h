@@ -29,6 +29,7 @@ private slots:
     void onAddDirButtonPressed();
     void onAddFileButtonPressed();
     void onCloseButtonPressed();
+    void onRemoveInvalidButtonPressed();
 
 private:
     void updateUIElements();

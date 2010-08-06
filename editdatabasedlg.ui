@@ -68,7 +68,7 @@
         <item>
          <widget class="QListWidget" name="fileList">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -99,6 +99,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="removeInvalidButton">
+          <property name="text">
+           <string>Remove files that were not found</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
            <string>untracked files:</string>
@@ -115,7 +122,7 @@
         <item>
          <widget class="QPushButton" name="updateDatabaseButton">
           <property name="text">
-           <string>Update database</string>
+           <string>Update untracked files</string>
           </property>
          </widget>
         </item>

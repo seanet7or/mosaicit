@@ -69,6 +69,10 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             SIGNAL(pressed()),
             this,
             SLOT(onCloseButtonPressed()));
+    connect(ui->removeInvalidButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(onRemoveInvalidButtonPressed()));
 
     this->setWindowTitle(tr("Edit database \"%1\"").arg(
             QDir::toNativeSeparators(QDir::cleanPath(this->m_databaseFile))));
@@ -207,6 +211,22 @@ void EditDatabaseDlg::onAddFileButtonPressed()
         updateDlg.exec();
     }
     this->updateUIElements();
+}
+
+void EditDatabaseDlg::onRemoveInvalidButtonPressed()
+{
+    if (QMessageBox::warning(this,
+                             tr("Remove files that were not found?"),
+                             tr("Do you want to remove these files? Perhaps they are on a removable storage device."),
+                             QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+        for (int i = 0; i < this->m_database->size(); i++) {
+            if (!this->m_database->pictureAt(i)->validFile()) {
+                this->m_database->removeEntry(i);
+                i--;
+            }
+        }
+        this->updateUIElements();
+    }
 }
 
 void EditDatabaseDlg::onCloseButtonPressed()

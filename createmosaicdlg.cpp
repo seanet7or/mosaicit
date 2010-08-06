@@ -110,7 +110,8 @@ void CreateMosaicDlg::nextBnPressed()
                              QMessageBox::Ok);
         return;
     }
-    if (QString(ui->outputEdit->text()).length() == 0) {
+    QFileInfo outInfo(ui->outputEdit->text());
+    if ((QString(ui->outputEdit->text()).length() == 0) || (outInfo.isDir())) {
         QMessageBox::warning(this,
                              tr("Error"),
                              tr("Select a mosaic output image file!"),

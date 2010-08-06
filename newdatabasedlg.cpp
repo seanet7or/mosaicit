@@ -60,7 +60,8 @@ void NewDatabaseDlg::selectFileButtonPressed()
 void NewDatabaseDlg::buildButtonPressed()
 {
     QDir rootDir(ui->directoryEdit->text());
-    if ("" == ui->nameEdit->text()) {
+    QFileInfo outFileInfo(ui->nameEdit->text());
+    if ("" == ui->nameEdit->text() || outFileInfo.isDir()) {
         QMessageBox::warning(this,
                              tr("Error"),
                              tr("You have to specify a file for the new database."),
@@ -73,7 +74,6 @@ void NewDatabaseDlg::buildButtonPressed()
                              QMessageBox::Ok);
         return;
     }
-    QFileInfo outFileInfo(ui->nameEdit->text());
     if (outFileInfo.exists()) {
         if (QMessageBox::question(this,
                                   tr("Database file exists"),

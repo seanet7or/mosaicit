@@ -9,17 +9,17 @@
         <translation>Über MosaicIt</translation>
     </message>
     <message>
-        <location filename="aboutdlg.ui" line="28"/>
+        <location filename="aboutdlg.ui" line="32"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="aboutdlg.ui" line="74"/>
+        <location filename="aboutdlg.ui" line="78"/>
         <source>MosaicIt</source>
         <translation>MosaicIt</translation>
     </message>
     <message>
-        <location filename="aboutdlg.ui" line="87"/>
+        <location filename="aboutdlg.ui" line="91"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -44,12 +44,12 @@ p, li { white-space: pre-wrap; }
         <translation>Datenbank wird erstellt...</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.ui" line="28"/>
+        <location filename="builddatabasedlg.ui" line="32"/>
         <source>Building the database. This may take a long time.</source>
         <translation>Die Datenbank wird erstellt. Dies könnte eine Weile dauern.</translation>
     </message>
     <message>
-        <location filename="builddatabasedlg.ui" line="56"/>
+        <location filename="builddatabasedlg.ui" line="60"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -178,34 +178,34 @@ p, li { white-space: pre-wrap; }
         <translation>Neues Mosaik erstellen</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="33"/>
+        <location filename="createmosaicdlg.ui" line="37"/>
         <source>Database file</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="46"/>
+        <location filename="createmosaicdlg.ui" line="50"/>
         <source>Image input file</source>
         <translation>Ursprungsbild</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="53"/>
-        <location filename="createmosaicdlg.ui" line="60"/>
-        <location filename="createmosaicdlg.ui" line="145"/>
+        <location filename="createmosaicdlg.ui" line="57"/>
+        <location filename="createmosaicdlg.ui" line="64"/>
+        <location filename="createmosaicdlg.ui" line="149"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="72"/>
+        <location filename="createmosaicdlg.ui" line="76"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="95"/>
+        <location filename="createmosaicdlg.ui" line="99"/>
         <source>Next</source>
         <translation>Weiter</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.ui" line="138"/>
+        <location filename="createmosaicdlg.ui" line="142"/>
         <source>Output file</source>
         <translation>Mosaikdatei</translation>
     </message>
@@ -272,67 +272,67 @@ p, li { white-space: pre-wrap; }
         <translation>Datenbank bearbeiten</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="26"/>
+        <location filename="editdatabasedlg.ui" line="30"/>
         <source>database info</source>
         <translation>Datenbankinfo</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="35"/>
+        <location filename="editdatabasedlg.ui" line="39"/>
         <source>WasAlreadyProcessed</source>
         <translation>WurdeBereitsAnalysiert</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="54"/>
+        <location filename="editdatabasedlg.ui" line="58"/>
         <source>Image preview</source>
         <translation>Bildvorschau</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="61"/>
+        <location filename="editdatabasedlg.ui" line="65"/>
         <source>all files in database</source>
         <translation>alle Dateien in der Datenbank</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="80"/>
+        <location filename="editdatabasedlg.ui" line="84"/>
         <source>files that are untracked / not found</source>
         <translation>Noch nicht analysierte oder nicht gefundene Dateien</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="86"/>
+        <location filename="editdatabasedlg.ui" line="90"/>
         <source>files not found / invalid image files:</source>
         <translation>Nicht gefundene und ungültige Dateien:</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="100"/>
+        <location filename="editdatabasedlg.ui" line="104"/>
         <source>untracked files:</source>
         <translation>Noch nicht analysierte Dateien:</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="114"/>
+        <location filename="editdatabasedlg.ui" line="118"/>
         <source>Update database</source>
         <translation>Datenbank aktualisieren</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="124"/>
+        <location filename="editdatabasedlg.ui" line="128"/>
         <source>Remove this file from database</source>
         <translation>Diese Datei aus der Datenbank entfernen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="133"/>
+        <location filename="editdatabasedlg.ui" line="137"/>
         <source>ImagePath</source>
         <translation>Bildpfad</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="149"/>
+        <location filename="editdatabasedlg.ui" line="153"/>
         <source>Add directory to database</source>
         <translation>Verzeichnis zur Datenbank hinzufügen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="156"/>
+        <location filename="editdatabasedlg.ui" line="160"/>
         <source>Add file to database</source>
         <translation>Datei zur Datenbank hinzufügen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="200"/>
+        <location filename="editdatabasedlg.ui" line="204"/>
         <source>Close</source>
         <translation>Schliessen</translation>
     </message>
@@ -377,7 +377,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="editdatabasedlg.cpp" line="107"/>
         <source>%1 files in database &quot;%2&quot;; %3 do not exist or are untracked yet.</source>
-        <translation>%1 Dateien sind in der Datenbank &quot;%2&quot;; &quot;%3&quot; sind ungültig oder wurden noch nicht analysiert.</translation>
+        <translation>%1 Dateien sind in der Datenbank &quot;%2&quot;; %3 sind ungültig oder wurden noch nicht analysiert.</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="147"/>
@@ -455,12 +455,12 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Indiziere die Dateien im gewählten Verzeichnis...</translation>
     </message>
     <message>
-        <location filename="indexdirdlg.ui" line="25"/>
+        <location filename="indexdirdlg.ui" line="29"/>
         <source>Indexing files, please stand by - this might take some time.</source>
         <translation>Indizieren der Dateien läuft, dies könnte eine Weile dauern.</translation>
     </message>
     <message>
-        <location filename="indexdirdlg.ui" line="42"/>
+        <location filename="indexdirdlg.ui" line="46"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -490,88 +490,88 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="mainwindow.ui" line="20"/>
         <source>MosaicIt!</source>
         <translation>MosaicIt!</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="39"/>
+        <location filename="mainwindow.ui" line="81"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="49"/>
+        <location filename="mainwindow.ui" line="91"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="mainwindow.ui" line="101"/>
         <source>Create Database</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="72"/>
+        <location filename="mainwindow.ui" line="114"/>
         <source>New Mosaic</source>
         <translation>Neues Mosaik</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>Welcome to MosaicIt! What do you want to do?</source>
         <translation>Willkommen zu MosaicIt! Was möchten Sie tun?</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="89"/>
+        <location filename="mainwindow.ui" line="141"/>
         <source>Before you can build a photomosaic, you have to set up a pictures database.</source>
         <translation>Bevor Sie ein Mosaik erzeugen können, müssen Sie eine Bilder-Datenbank erstellen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="96"/>
+        <location filename="mainwindow.ui" line="148"/>
         <source>Build a new photomosaic based on an existing pictures database.</source>
         <translation>Hier können Sie ein neues Mosaik auf Grundlage einer existierenden Bilderdatenbank erstellen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="155"/>
         <source>Show program info.</source>
         <translation>Informationen über das Programm anzeigen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="162"/>
         <source>Close program.</source>
         <translation>Programm beenden.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="117"/>
+        <location filename="mainwindow.ui" line="169"/>
         <source>Edit Database</source>
         <translation>Datenbank bearbeiten</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="127"/>
+        <location filename="mainwindow.ui" line="179"/>
         <source>Add pictures to or remove from existing database.</source>
         <translation>Bilder zu einer existierenden Datenbank hinzufügen oder aus ihr entfernen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="100"/>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="102"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="101"/>
+        <location filename="mainwindow.cpp" line="103"/>
         <source>Could not load the selected database!</source>
         <translation>Die gewählte Datenbank konnte nicht geladen werden!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>Select database file</source>
         <translation>Datenbank wählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="140"/>
+        <location filename="mainwindow.cpp" line="142"/>
         <source>Database files (*.mib);;All files (*.*)</source>
         <translation>Datenbankdateien (*.mib);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="146"/>
         <source>You have to select a valid image database to edit!</source>
         <translation>Sie müssen eine gültige Datenbank wählen!</translation>
     </message>
@@ -584,97 +584,97 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Detaillierte Optionen für das neue Mosaik</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="55"/>
+        <location filename="mosaicdetailsdlg.ui" line="59"/>
         <source>Tile Size:</source>
         <translation>Kachelgröße:</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="72"/>
+        <location filename="mosaicdetailsdlg.ui" line="76"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="89"/>
+        <location filename="mosaicdetailsdlg.ui" line="93"/>
         <source>Tile Aspect Ratio</source>
         <translation>Seitenverhältnis der Kacheln</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="97"/>
+        <location filename="mosaicdetailsdlg.ui" line="101"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="104"/>
+        <location filename="mosaicdetailsdlg.ui" line="108"/>
         <source>4:3</source>
         <translation>4:3</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="111"/>
+        <location filename="mosaicdetailsdlg.ui" line="115"/>
         <source>16:9</source>
         <translation>16:9</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="118"/>
+        <location filename="mosaicdetailsdlg.ui" line="122"/>
         <source>free</source>
         <translation>frei</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="130"/>
+        <location filename="mosaicdetailsdlg.ui" line="134"/>
         <source>Total number of tiles:</source>
         <translation>Anzahl der Kacheln insgesamt:</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="147"/>
+        <location filename="mosaicdetailsdlg.ui" line="151"/>
         <source>Alpha channel:</source>
         <translation>Alphakanal:</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="154"/>
+        <location filename="mosaicdetailsdlg.ui" line="158"/>
         <source>percent</source>
         <translation>Prozent</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="164"/>
+        <location filename="mosaicdetailsdlg.ui" line="168"/>
         <source>fit tiles by</source>
         <translation>Kacheln anpassen durch</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="172"/>
+        <location filename="mosaicdetailsdlg.ui" line="176"/>
         <source>cutting edges</source>
         <translation>beschneiden</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="179"/>
+        <location filename="mosaicdetailsdlg.ui" line="183"/>
         <source>scaling</source>
         <translation>skalieren</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="224"/>
+        <location filename="mosaicdetailsdlg.ui" line="228"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="231"/>
+        <location filename="mosaicdetailsdlg.ui" line="235"/>
         <source>Minimum distance between same tiles:</source>
         <translation>Minimaler Abstand zwischen den selben Kacheln:</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="248"/>
+        <location filename="mosaicdetailsdlg.ui" line="252"/>
         <source>Repeat tiles maximal</source>
         <translation>Kacheln maximal</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="265"/>
+        <location filename="mosaicdetailsdlg.ui" line="269"/>
         <source>times</source>
         <translation>mal wiederholen</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="278"/>
+        <location filename="mosaicdetailsdlg.ui" line="282"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="mosaicdetailsdlg.ui" line="285"/>
+        <location filename="mosaicdetailsdlg.ui" line="289"/>
         <source>Render</source>
         <translation>Rendern</translation>
     </message>
@@ -692,33 +692,33 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Neue Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="28"/>
+        <location filename="newdatabasedlg.ui" line="32"/>
         <source>New database file</source>
         <translation>Neue Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="45"/>
+        <location filename="newdatabasedlg.ui" line="49"/>
         <source>Directory containing the pictures</source>
         <translation>Verzeichnis mit den Bildern</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="62"/>
-        <location filename="newdatabasedlg.ui" line="76"/>
+        <location filename="newdatabasedlg.ui" line="66"/>
+        <location filename="newdatabasedlg.ui" line="80"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="69"/>
+        <location filename="newdatabasedlg.ui" line="73"/>
         <source>Include Subdirectories</source>
         <translation>Unterverzeichnisse einschliessen</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="87"/>
+        <location filename="newdatabasedlg.ui" line="91"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.ui" line="94"/>
+        <location filename="newdatabasedlg.ui" line="98"/>
         <source>Build database</source>
         <translation>Datenbank erstellen</translation>
     </message>
@@ -794,12 +794,12 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Mosaik rendern...</translation>
     </message>
     <message>
-        <location filename="rendermosaicdlg.ui" line="28"/>
+        <location filename="rendermosaicdlg.ui" line="32"/>
         <source>Please stand by while the mosaic is rendered. This may take some time.</source>
         <translation>Bitte haben Sie Geduld, während das Mosaik erstellt wird.Dies könnte eine Weile dauern.</translation>
     </message>
     <message>
-        <location filename="rendermosaicdlg.ui" line="49"/>
+        <location filename="rendermosaicdlg.ui" line="53"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -972,12 +972,12 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Analysiere Dateien...</translation>
     </message>
     <message>
-        <location filename="updatedatabasedlg.ui" line="28"/>
+        <location filename="updatedatabasedlg.ui" line="32"/>
         <source>Analysing the files - please stand by, this might take some time.</source>
         <translation>Die Analyse läuft, dies könnte eine Weile dauern.</translation>
     </message>
     <message>
-        <location filename="updatedatabasedlg.ui" line="42"/>
+        <location filename="updatedatabasedlg.ui" line="46"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
