@@ -212,7 +212,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="createmosaicdlg.cpp" line="100"/>
         <location filename="createmosaicdlg.cpp" line="108"/>
-        <location filename="createmosaicdlg.cpp" line="115"/>
+        <location filename="createmosaicdlg.cpp" line="116"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -227,38 +227,38 @@ p, li { white-space: pre-wrap; }
         <translation>Wählen Sie ein gültiges Ursprungsbild!</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="116"/>
+        <location filename="createmosaicdlg.cpp" line="117"/>
         <source>Select a mosaic output image file!</source>
         <translation>Wählen Sie eine Datei, um das Mosaik zu speichern!</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="149"/>
+        <location filename="createmosaicdlg.cpp" line="150"/>
         <source>Select database file</source>
         <translation>Datenbank wählen</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="153"/>
+        <location filename="createmosaicdlg.cpp" line="154"/>
         <source>Database files (*.mib);;All files (*.*)</source>
         <oldsource>Database files (*.mib);;%1</oldsource>
         <translation>Datenbankdateien (*.mib);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="163"/>
+        <location filename="createmosaicdlg.cpp" line="164"/>
         <source>Select image output file</source>
         <translation>Mosaik speichern unter</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="167"/>
+        <location filename="createmosaicdlg.cpp" line="168"/>
         <source>Images (*.jpg)</source>
         <translation>Bilder (*.jpg)</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="176"/>
+        <location filename="createmosaicdlg.cpp" line="177"/>
         <source>Select image file</source>
         <translation>Ursprungsbild wählen</translation>
     </message>
     <message>
-        <location filename="createmosaicdlg.cpp" line="180"/>
+        <location filename="createmosaicdlg.cpp" line="181"/>
         <source>Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)</source>
         <oldsource>Images (*.png *.bmp *.xpm %1</oldsource>
         <translation>Bilder (*.png *.bmp *.xpm *.jpg);;Alle Dateien (*.*)</translation>
@@ -303,42 +303,51 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="editdatabasedlg.ui" line="104"/>
+        <source>Remove files that were not found</source>
+        <translation>Nicht gefundene Dateien entfernen</translation>
+    </message>
+    <message>
+        <location filename="editdatabasedlg.ui" line="111"/>
         <source>untracked files:</source>
         <translation>Noch nicht analysierte Dateien:</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="118"/>
-        <source>Update database</source>
-        <translation>Datenbank aktualisieren</translation>
+        <location filename="editdatabasedlg.ui" line="125"/>
+        <source>Update untracked files</source>
+        <translation>Diese Dateien aktualisieren</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="128"/>
+        <source>Update database</source>
+        <translation type="obsolete">Datenbank aktualisieren</translation>
+    </message>
+    <message>
+        <location filename="editdatabasedlg.ui" line="135"/>
         <source>Remove this file from database</source>
         <translation>Diese Datei aus der Datenbank entfernen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="137"/>
+        <location filename="editdatabasedlg.ui" line="144"/>
         <source>ImagePath</source>
         <translation>Bildpfad</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="153"/>
+        <location filename="editdatabasedlg.ui" line="160"/>
         <source>Add directory to database</source>
         <translation>Verzeichnis zur Datenbank hinzufügen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="160"/>
+        <location filename="editdatabasedlg.ui" line="167"/>
         <source>Add file to database</source>
         <translation>Datei zur Datenbank hinzufügen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.ui" line="204"/>
+        <location filename="editdatabasedlg.ui" line="211"/>
         <source>Close</source>
         <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="32"/>
-        <location filename="editdatabasedlg.cpp" line="225"/>
+        <location filename="editdatabasedlg.cpp" line="245"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -360,89 +369,99 @@ p, li { white-space: pre-wrap; }
 Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="73"/>
+        <location filename="editdatabasedlg.cpp" line="77"/>
         <source>Edit database &quot;%1&quot;</source>
         <translation>Datenbank &quot;%1&quot; bearbeiten</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="89"/>
+        <location filename="editdatabasedlg.cpp" line="93"/>
         <source>Nothing to do</source>
         <translation>Es gibt nichts zu tun</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="90"/>
+        <location filename="editdatabasedlg.cpp" line="94"/>
         <source>All database entries are up to date!</source>
         <translation>Alle Datenbank Einträge sind auf dem neuesten Stand!</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="107"/>
+        <location filename="editdatabasedlg.cpp" line="111"/>
         <source>%1 files in database &quot;%2&quot;; %3 do not exist or are untracked yet.</source>
         <translation>%1 Dateien sind in der Datenbank &quot;%2&quot;; %3 sind ungültig oder wurden noch nicht analysiert.</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="147"/>
+        <location filename="editdatabasedlg.cpp" line="151"/>
         <source>The average color is (%1, %2, %3).</source>
         <translation>Die durchschnittliche Farbe ist (%1, %2, %3).</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="153"/>
+        <location filename="editdatabasedlg.cpp" line="157"/>
         <source>This file was not analysed yet.</source>
         <translation>Diese Datei wurde noch nicht analysiert.</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="158"/>
+        <location filename="editdatabasedlg.cpp" line="162"/>
         <source>This seems not to be a valid image file.</source>
         <translation>Dies scheint keine gültige Bilddatei zu sein.</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="172"/>
+        <location filename="editdatabasedlg.cpp" line="176"/>
         <source>Select picture folder</source>
         <translation>Verzeichnis mit den Bildern wählen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="196"/>
+        <location filename="editdatabasedlg.cpp" line="200"/>
         <source>Select image file</source>
         <translation>Bild wählen</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="199"/>
+        <location filename="editdatabasedlg.cpp" line="203"/>
         <source>Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)</source>
         <translation>Bilder (*.png *.bmp *.xpm *.jpg);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="215"/>
+        <location filename="editdatabasedlg.cpp" line="219"/>
+        <source>Remove files that were not found?</source>
+        <translation>Nicht gefundene Dateien entfernen?</translation>
+    </message>
+    <message>
+        <location filename="editdatabasedlg.cpp" line="220"/>
+        <source>Do you want to remove these files? Perhaps they are on a removable storage device.</source>
+        <translation>Wollen Sie diese Dateien entfernen? Möglicherweise befinden sie sich auf einem Wechselmedium.</translation>
+    </message>
+    <message>
+        <location filename="editdatabasedlg.cpp" line="235"/>
         <source>Save changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="216"/>
+        <location filename="editdatabasedlg.cpp" line="236"/>
         <source>Do you want to save the changes you made to the database &quot;%1&quot;?</source>
         <translation>Möchten Sie die Änderungen, die Sie an der Datenbank &quot;%1&quot; vorgenommen haben, speichern?</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="226"/>
+        <location filename="editdatabasedlg.cpp" line="246"/>
         <source>Could not write database file! Do you want to specify another one?</source>
         <translation>Fehler beim Schreiben der Datenbank! Möchten Sie eine andere Datei wählen?</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="231"/>
+        <location filename="editdatabasedlg.cpp" line="251"/>
         <source>Database file to write</source>
         <translation>Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="235"/>
+        <location filename="editdatabasedlg.cpp" line="255"/>
         <source>Database file (*.mib)</source>
         <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="249"/>
-        <location filename="editdatabasedlg.cpp" line="262"/>
+        <location filename="editdatabasedlg.cpp" line="269"/>
+        <location filename="editdatabasedlg.cpp" line="282"/>
         <source>Revert all changes?</source>
         <translation>Alle Änderungen verwerfen?</translation>
     </message>
     <message>
-        <location filename="editdatabasedlg.cpp" line="250"/>
-        <location filename="editdatabasedlg.cpp" line="263"/>
+        <location filename="editdatabasedlg.cpp" line="270"/>
+        <location filename="editdatabasedlg.cpp" line="283"/>
         <source>Do you really want to close and loose all changes?</source>
         <translation>Möchten Sie das Fenster wirklich schliessen und alle Änderungen verlieren?</translation>
     </message>
@@ -733,19 +752,19 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Datenbank (*.mib)</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.cpp" line="65"/>
-        <location filename="newdatabasedlg.cpp" line="71"/>
+        <location filename="newdatabasedlg.cpp" line="66"/>
+        <location filename="newdatabasedlg.cpp" line="72"/>
         <location filename="newdatabasedlg.cpp" line="88"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.cpp" line="66"/>
+        <location filename="newdatabasedlg.cpp" line="67"/>
         <source>You have to specify a file for the new database.</source>
         <translation>Sie müssen eine Datei zum Speichern der neuen Datenbank angeben.</translation>
     </message>
     <message>
-        <location filename="newdatabasedlg.cpp" line="72"/>
+        <location filename="newdatabasedlg.cpp" line="73"/>
         <source>You have to specify a valid directory.</source>
         <translation>Sie müssen ein gültiges Verzeichnis angeben.</translation>
     </message>

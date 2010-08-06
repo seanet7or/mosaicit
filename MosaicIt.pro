@@ -7,7 +7,8 @@ OTHER_FILES += doc/header.txt \
     ico_src/256_32.png \
     gfx_work/mosaicit_logo.png \
     gfx_work/mosaicit_logo2.png \
-    gfx_work/logo.png
+    gfx_work/logo.png \
+    gfx_work/mosaicit_logo3.png
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \

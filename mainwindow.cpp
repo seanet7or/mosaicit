@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->logo_label->setPixmap(QPixmap::fromImage(QImage("mosaicit_logo.png")));
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage("mosaicit_logo.jpg")));
 
     setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
