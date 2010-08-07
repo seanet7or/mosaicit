@@ -8,7 +8,8 @@ OTHER_FILES += doc/header.txt \
     gfx_work/mosaicit_logo.png \
     gfx_work/mosaicit_logo2.png \
     gfx_work/logo.png \
-    gfx_work/mosaicit_logo3.png
+    gfx_work/mosaicit_logo3.png \
+    qt.conf
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \
