@@ -69,9 +69,9 @@ void UpdateDatabaseDlg::processComplete(bool wasCanceled)
     disconnect(this->m_database,
                SIGNAL(processFinished(bool)));
     if (wasCanceled) {
-        ui->label->setText(tr("The process was canceled, the database will be incomplete."));
+        ui->label->setText(tr("Analysing the files was canceled, the database will be incomplete."));
     } else {
-        ui->label->setText(tr("Files were analysed!"));
+        ui->label->setText(tr("All files were analysed!"));
     }
     ui->cancelButton->setText(tr("Close"));
     this->writeSettings();

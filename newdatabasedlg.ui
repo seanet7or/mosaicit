@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Build new picture database</string>
+   <string>Build a new picture database</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -63,7 +63,7 @@
      <item row="1" column="2">
       <widget class="QPushButton" name="selectDirButton">
        <property name="text">
-        <string>...</string>
+        <string>Browse</string>
        </property>
       </widget>
      </item>
@@ -77,7 +77,7 @@
      <item row="0" column="2">
       <widget class="QPushButton" name="selectFileButton">
        <property name="text">
-        <string>...</string>
+        <string>Browse</string>
        </property>
       </widget>
      </item>
@@ -95,7 +95,7 @@
      <item row="0" column="1">
       <widget class="QPushButton" name="buildButton">
        <property name="text">
-        <string>Build database</string>
+        <string>Build the database</string>
        </property>
        <property name="default">
         <bool>true</bool>

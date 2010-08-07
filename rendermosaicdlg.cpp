@@ -155,9 +155,9 @@ void RenderMosaicDlg::renderThreadFinished()
         disconnect(this->m_renderThread,
                    SIGNAL(finished()));
         if (this->m_renderThread->wasCanceled()) {
-            ui->label->setText(tr("The process was canceled, no mosaic was saved!"));
+            ui->label->setText(tr("Building the mosaic was canceled, no mosaic was saved!"));
         } else if (this->m_renderThread->criticalError()) {
-            ui->label->setText(tr("A critical error occured, view detailed output!"));
+            ui->label->setText(tr("A critical error occured, view the detailed output!"));
         } else {
             ui->label->setText(tr("The mosaic was built and saved to %1.").arg(
                     QDir::toNativeSeparators(QDir::cleanPath(this->m_renderThread->outputFile()))));

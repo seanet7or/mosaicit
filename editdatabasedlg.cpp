@@ -37,7 +37,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
     }
     if (!this->m_database->allUpToDate()) {
         if (QMessageBox::question(this,
-                                  tr("Database is incomplete"),
+                                  tr("The database is incomplete"),
                                   tr("Not all files in the database are alreay scanned and/or some information is outdated.\n Do you want to rebuild the missing parts?"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             UpdateDatabaseDlg updateDlg(this, this->m_database);
@@ -108,7 +108,7 @@ void EditDatabaseDlg::onDelEntryButtonPressed()
 void EditDatabaseDlg::updateUIElements()
 {
     ui->databaseInfoLabel->setText(
-            tr("%1 files in database \"%2\"; %3 do not exist or are untracked yet.").arg(
+            tr("%1 files in the database \"%2\"; %3 do not exist or are not analysed yet.").arg(
                     QString::number(this->m_database->size()),
                     QDir::toNativeSeparators(QDir::cleanPath(this->m_databaseFile)),
                     QString::number(this->m_database->filesNotUpToDate())));
@@ -243,7 +243,7 @@ void EditDatabaseDlg::onCloseButtonPressed()
             if ((saved = this->m_database->toFile(this->m_databaseFile)) == false) {
                 if (QMessageBox::question(this,
                                           tr("Error"),
-                                          tr("Could not write database file! Do you want to specify another one?"),
+                                          tr("Could not write the database file! Do you want to specify another one?"),
                                           QMessageBox::Yes | QMessageBox::No,
                                           QMessageBox::Yes) == QMessageBox::Yes) {
                     this->m_databaseFile =
@@ -266,7 +266,7 @@ void EditDatabaseDlg::onCloseButtonPressed()
 void EditDatabaseDlg::closeEvent(QCloseEvent *e)
 {
     if (QMessageBox::question(this,
-                              tr("Revert all changes?"),
+                              tr("Discard all changes?"),
                               tr("Do you really want to close and loose all changes?"),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
         this->writeSettings();

@@ -22,7 +22,7 @@ ui(new Ui::BuildDatabaseDlg)
     this->m_canceled = false;
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(0);
-    ui->textLog->appendPlainText(tr("Indexing files in directory ")
+    ui->textLog->appendPlainText(tr("Indexing the files in the directory ")
                                  + this->m_directory);
     connect(this->m_newDatabase,
             SIGNAL(indexFinished()),
@@ -59,7 +59,7 @@ void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
             if (this->m_newDatabase->isProcessingRunning()) {
                 this->m_newDatabase->cancelProcessing();
             }
-            ui->label->setText(tr("The build process was canceled!"));
+            ui->label->setText(tr("Building the database was canceled!"));
             if (ui->progressBar->minimum() == ui->progressBar->maximum()) {
                 ui->progressBar->setMaximum(100);
                 ui->progressBar->setMinimum(0);
@@ -114,7 +114,7 @@ void BuildDatabaseDlg::reject()
 {
     if (QMessageBox::question(this,
                               tr("Do you want to cancel?"),
-                              tr("Do you really want to cancel? No database will be saved!"),
+                              tr("Do you really want to cancel? The database will not be saved!"),
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
@@ -143,7 +143,7 @@ void BuildDatabaseDlg::reject()
 void BuildDatabaseDlg::indexingFinished()
 {
     if (this->m_canceled) return;
-    ui->textLog->appendPlainText(tr("Indexing files finished."));
+    ui->textLog->appendPlainText(tr("Indexing of the files is finished."));
     connect(this->m_newDatabase,
             SIGNAL(processFinished(bool)),
             this,
@@ -171,11 +171,11 @@ void BuildDatabaseDlg::processingFinished(bool wasCanceled)
     bool saved = false;
     while (!saved) {
         ui->textLog->appendPlainText(
-                tr("Saving database file %1").arg(this->m_name));
+                tr("Saving the database as %1").arg(this->m_name));
         if ((saved = this->m_newDatabase->toFile(this->m_name)) == false) {
             if (QMessageBox::question(this,
                                       tr("Error"),
-                                      tr("Could not write database file! Do you want to specify another one?"),
+                                      tr("Could not write the database file! Do you want to specify another one?"),
                                       QMessageBox::Yes | QMessageBox::No,
                                       QMessageBox::Yes) == QMessageBox::Yes) {
                 this->m_name = QFileDialog::getSaveFileName(this,
@@ -193,7 +193,7 @@ void BuildDatabaseDlg::processingFinished(bool wasCanceled)
             }
         }
     }
-    ui->textLog->appendPlainText(tr("Saved database."));
+    ui->textLog->appendPlainText(tr("The database was saved."));
     if (!wasCanceled) {
         ui->label->setText(tr("The database was built successfully."));
     } else {

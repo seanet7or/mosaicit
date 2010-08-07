@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Building database...</string>
+   <string>Building the database...</string>
   </property>
   <property name="windowIcon">
    <iconset>

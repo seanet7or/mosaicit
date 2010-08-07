@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
         <location filename="createmosaicdlg.ui" line="64"/>
         <location filename="createmosaicdlg.ui" line="149"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished">...</translation>
     </message>
     <message>
         <location filename="createmosaicdlg.ui" line="76"/>
@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="editdatabasedlg.ui" line="211"/>
         <source>Close</source>
-        <translation>Schliessen</translation>
+        <translation type="unfinished">Schließen</translation>
     </message>
     <message>
         <location filename="editdatabasedlg.cpp" line="32"/>
@@ -862,7 +862,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="rendermosaicdlg.cpp" line="166"/>
         <source>Close</source>
-        <translation>Schliessen</translation>
+        <translation type="unfinished">Schließen</translation>
     </message>
 </context>
 <context>
@@ -1023,7 +1023,7 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     <message>
         <location filename="updatedatabasedlg.cpp" line="76"/>
         <source>Close</source>
-        <translation>Schliessen</translation>
+        <translation type="unfinished">Schließen</translation>
     </message>
     <message>
         <location filename="updatedatabasedlg.cpp" line="86"/>

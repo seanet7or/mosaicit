@@ -14,13 +14,13 @@
 #include "editdatabasedlg.h"
 #include "aboutdlg.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    ui->logo_label->setPixmap(QPixmap::fromImage(QImage("mosaicit_logo.jpg")));
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(appPath + "/mosaicit_logo.jpg")));
 
     setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
@@ -100,7 +100,7 @@ void MainWindow::newMosaicBnClicked()
         if (!database.fromFile(createDlg.database())) {
             QMessageBox::warning(this,
                                  tr("Error"),
-                                 tr("Could not load the selected database!"),
+                                 tr("The selected database could not be loaded!"),
                                  QMessageBox::Ok);
             return;
         }

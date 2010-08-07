@@ -76,7 +76,7 @@ void NewDatabaseDlg::buildButtonPressed()
     }
     if (outFileInfo.exists()) {
         if (QMessageBox::question(this,
-                                  tr("Database file exists"),
+                                  tr("The database file exists already"),
                                   tr("The chosen database file already exists. Do you want to override it?"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
             return;
@@ -130,7 +130,7 @@ void NewDatabaseDlg::selectDirButtonPressed()
     ui->directoryEdit->setText(QDir::toNativeSeparators(QDir::cleanPath(
             QFileDialog::getExistingDirectory(
                     this,
-                    tr("Select picture folder"),
+                    tr("Select a picture folder"),
                     QDir::toNativeSeparators(QDir::cleanPath(ui->directoryEdit->text())),
                     QFileDialog::ShowDirsOnly))));
 }

@@ -85,7 +85,7 @@ void RenderMosaicThread::run()
     //this function will build the new mosaic picture according to the infos
     //passed to the corresponding class
     emit renderComplete(0.f);
-    emit logText(tr("Rendering mosaic"));
+    emit logText(tr("Rendering the mosaic..."));
 
     if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
@@ -93,7 +93,7 @@ void RenderMosaicThread::run()
     }
 
     //first, load the original image into memory
-    emit logText(tr("loading original image %1").arg(this->m_imageFile));
+    emit logText(tr("loading original image %1.").arg(this->m_imageFile));
     QImage originalImage(this->m_imageFile);
     if (originalImage.isNull()) {
         emit logText(tr("Error loading the original image!"));
@@ -145,7 +145,7 @@ void RenderMosaicThread::run()
     //reserve memory for tiles map
     int **tilesMap = new int*[tilesX];
     if (!tilesMap) {
-        emit logText(tr("Error reserving memory for tiles map!"));
+        emit logText(tr("Error reserving memory for the tiles map!"));
         this->m_criticalError = true;
         return;
     }
@@ -297,7 +297,7 @@ void RenderMosaicThread::run()
                                              Qt::IgnoreAspectRatio,
                                              Qt::SmoothTransformation);
                 if (tileImage.isNull()) {
-                    emit logText(tr("Error scaling tile image %1!").arg(
+                    emit logText(tr("Error scaling the tile image %1!").arg(
                             this->m_database->pictureAt(nearestIndex)->getFile()));
                     this->m_criticalError = true;
                     return;
@@ -307,14 +307,14 @@ void RenderMosaicThread::run()
                                         j * this->m_tileHeight,
                                         tileImage);
             } else {
-                emit logText(tr("Error - no matching tile found!"));
+                emit logText(tr("Error - no matching tile was found!"));
                 if (this->m_maxTileRepeatChecker) {
                     emit logText(tr("You have selected a maximum repeat rate for equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a higher value or uncheck the option."));
                 }
                 if (this->m_minDistanceChecker) {
                     emit logText(tr("You have selected a minimum distance between two equal tiles. Propably there are not enough images in the database to fullfill this option. Choose a lower value or uncheck the option."));
                 }
-                emit logText(tr("Choosing a image database with more entries might remove the problem."));
+                emit logText(tr("Choosing a image database with more entries might also remove the problem."));
                 this->m_criticalError = true;
                 return;
             }
@@ -356,7 +356,7 @@ void RenderMosaicThread::run()
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_outputFile =
                         QFileDialog::getSaveFileName(this->m_parentWindow,
-                                                     tr("Select image output file"),
+                                                     tr("Select mosaic output file"),
                                                      QDir::toNativeSeparators(
                                                              QDir::cleanPath(
                                                                      QDir::homePath()
@@ -380,7 +380,7 @@ void RenderMosaicThread::run()
     delete tilesMap;
 
     emit renderComplete(100.f);
-    emit logText(tr("Mosaic created."));
+    emit logText(tr("The mosaic was created."));
 
 }
 

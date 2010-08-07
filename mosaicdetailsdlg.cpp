@@ -87,7 +87,7 @@ bool MosaicDetailsDlg::exitedCorrectly()
 void MosaicDetailsDlg::updateResultLabel()
 {
     ui->resultLabel->setText(
-            tr("The resulting image will have a size of %1 megapixels.").arg(
+            tr("The resulting mosaic image will have a size of %1 megapixels.").arg(
                     QString::number((float)ui->totalTiles->value()
                                     * (float)ui->tileWidth->value()
                                     * (float)ui->tileHeight->value()

@@ -13,10 +13,10 @@ int main(int argc, char *argv[])
     a.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
-    myappTranslator.load("mosaicit_" + QLocale::system().name());
+    myappTranslator.load(a.applicationDirPath() + "/mosaicit_" + QLocale::system().name());
     a.installTranslator(&myappTranslator);
 
-    MainWindow w;
+    MainWindow w(a.applicationDirPath());
     w.show();
     return a.exec();
 }

@@ -161,7 +161,7 @@ void CreateMosaicDlg::selectOutputBnPressed()
             QDir::toNativeSeparators(
                     QDir::cleanPath(
                             QFileDialog::getSaveFileName(this,
-                                                         tr("Select image output file"),
+                                                         tr("Select mosaic output file"),
                                                          QDir::toNativeSeparators(
                                                                  QDir::cleanPath(
                                                                          ui->outputEdit->text())),
@@ -174,7 +174,7 @@ void CreateMosaicDlg::selectImageBnPressed()
             QDir::toNativeSeparators(
                     QDir::cleanPath(
                             QFileDialog::getOpenFileName(this,
-                                                         tr("Select image file"),
+                                                         tr("Select original image"),
                                                          QDir::toNativeSeparators(
                                                                  QDir::cleanPath(
                                                                          ui->imageEdit->text())),

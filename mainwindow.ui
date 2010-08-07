@@ -176,7 +176,7 @@
       <item row="5" column="3">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Add pictures to or remove from existing database.</string>
+         <string>Add pictures to or remove from an existing database.</string>
         </property>
        </widget>
       </item>
