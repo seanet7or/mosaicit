@@ -66,7 +66,7 @@ void AboutDlg::readSettings()
 {
     QSettings *settings = AppSettings::settings();
     settings->beginGroup("GUIStateAboutDlg");
-    this->resize(settings->value("size", QSize(400, 151)).toSize());
-    this->move(settings->value("pos", QPoint(310, 270)).toPoint());
+    this->resize(settings->value("size", QSize(620, 400)).toSize());
+    this->move(settings->value("pos", QPoint(110, 170)).toPoint());
     settings->endGroup();
 }
