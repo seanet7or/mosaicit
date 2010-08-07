@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     indexfilesthread.h
+*
+* CREATED:  13-05-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  seperate thread to index all files in a directory
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #ifndef INDEXFILESTHREAD_H
 #define INDEXFILESTHREAD_H
 

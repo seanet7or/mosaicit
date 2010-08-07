@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     updatedatabasedlg.cpp
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  dialog that shows the process when updating a database
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "updatedatabasedlg.h"
 #include "ui_updatedatabasedlg.h"
 

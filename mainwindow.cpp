@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     mainwindow.cpp
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  the applications main window
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 

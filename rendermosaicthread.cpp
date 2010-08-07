@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     rendermosaicthread.cpp
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  allows to render the mosaic in a seperate tread
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "rendermosaicthread.h"
 
 #include <math.h>

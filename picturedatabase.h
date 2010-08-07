@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     picturedatabase.h
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  functions to handle a picture database
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #ifndef PICTUREDATABASE_H
 #define PICTUREDATABASE_H
 

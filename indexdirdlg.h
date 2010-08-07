@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     indexdirdlg.h
+*
+* CREATED:  07-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  this dialog shows the progress when indexing the files in a directory
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #ifndef INDEXDIRDLG_H
 #define INDEXDIRDLG_H
 

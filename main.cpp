@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     main.cpp
+*
+* CREATED:  10-05-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  the program entry point
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include <QtGui/QApplication>
 #include <QTranslator>
 #include <QLibraryInfo>

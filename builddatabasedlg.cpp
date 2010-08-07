@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     builddatabasedlg.cpp
+*
+* CREATED:  01-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  Dialog that shows the progress when building a databas
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "builddatabasedlg.h"
 #include "ui_builddatabasedlg.h"
 

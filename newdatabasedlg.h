@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     newdatabasedlg.h
+*
+* CREATED:  13-05-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  dialog to create a new database file
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #ifndef NEWDATABASEDLG_H
 #define NEWDATABASEDLG_H
 

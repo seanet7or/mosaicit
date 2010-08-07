@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     aboutdlg.cpp
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  Header file for the about dialog
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "aboutdlg.h"
 #include "ui_aboutdlg.h"
 

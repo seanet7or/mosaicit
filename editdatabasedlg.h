@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     editdatabasedlg.h
+*
+* CREATED:  02-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  dialog to edit database files
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #ifndef EDITDATABASEDLG_H
 #define EDITDATABASEDLG_H
 

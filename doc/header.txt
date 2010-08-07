@@ -8,6 +8,8 @@
 *
 * PURPOSE:
 *
-* Licensed under the GPL
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/

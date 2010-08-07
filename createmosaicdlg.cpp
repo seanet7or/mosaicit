@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     createmosaicdlg.cpp
+*
+* CREATED:  01-08-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  Dialog that lets the user create a new mosaic
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "createmosaicdlg.h"
 #include "ui_createmosaicdlg.h"
 

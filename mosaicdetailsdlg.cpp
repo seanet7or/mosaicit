@@ -1,3 +1,19 @@
+/***************************************************************************************************
+*
+* FILE:     mosaicdetailsdlg.cpp
+*
+* CREATED:  13-05-2010
+*
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+*
+* PURPOSE:  dialog to set detailed options for a mosaic
+*
+* This program is licensed under the terms of the GPL Version 2
+*
+* Copyright 2010 by Benjamin Caspari
+*
+***************************************************************************************************/
+
 #include "mosaicdetailsdlg.h"
 #include "ui_mosaicdetailsdlg.h"
 
