@@ -279,7 +279,7 @@ void EditDatabaseDlg::closeEvent(QCloseEvent *e)
 void EditDatabaseDlg::reject()
 {
     if (QMessageBox::question(this,
-                              tr("Revert all changes?"),
+                              tr("Discard all changes?"),
                               tr("Do you really want to close and loose all changes?"),
                               QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
         this->writeSettings();
