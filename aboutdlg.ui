@@ -107,7 +107,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
        <property name="plainText">
-        <string>MosaicIt! allows to create foto mosaics in an easy way
+        <string>MosaicIt! allows to create photographic mosaics in an easy way
 Copyright (C) 2010 Benjamin Caspari
 
 This program is free software; you can redistribute it and/or

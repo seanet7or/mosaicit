@@ -43,7 +43,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="aboutdlg.ui" line="110"/>
-        <source>MosaicIt! allows to create foto mosaics in an easy way
+        <source>MosaicIt! allows to create photographic mosaics in an easy way
 Copyright (C) 2010 Benjamin Caspari
 
 This program is free software; you can redistribute it and/or
@@ -965,12 +965,12 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="141"/>
-        <source>Before you can build a photomosaic, you have to set up a pictures database.</source>
+        <source>Before you can build a photographic mosaic, you have to set up a pictures database.</source>
         <translation>Bevor Sie ein Mosaik erzeugen können, müssen Sie eine Bilder-Datenbank erstellen.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="148"/>
-        <source>Build a new photomosaic based on an existing pictures database.</source>
+        <source>Build a new photographic mosaic based on an existing pictures database.</source>
         <translation>Hier können Sie ein neues Mosaik auf Grundlage einer existierenden Bilderdatenbank erstellen.</translation>
     </message>
     <message>

@@ -138,14 +138,14 @@
       <item row="2" column="3">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Before you can build a photomosaic, you have to set up a pictures database.</string>
+         <string>Before you can build a photographic mosaic, you have to set up a pictures database.</string>
         </property>
        </widget>
       </item>
       <item row="4" column="3">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Build a new photomosaic based on an existing pictures database.</string>
+         <string>Build a new photographic mosaic based on an existing pictures database.</string>
         </property>
        </widget>
       </item>
