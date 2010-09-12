@@ -40,6 +40,7 @@ private slots:
     void editDatabaseBnClicked();
     void aboutBnClicked();
     void exitBnClicked();
+    void helpBnClicked();
     void closeEvent(QCloseEvent *e);
 
 private:

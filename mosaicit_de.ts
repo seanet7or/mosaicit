@@ -995,29 +995,39 @@ Möchten Sie die fehlenden Teile erstellen lassen?</translation>
         <translation>Bilder zu einer existierenden Datenbank hinzufügen oder aus ihr entfernen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="118"/>
-        <location filename="mainwindow.cpp" line="161"/>
+        <location filename="mainwindow.ui" line="199"/>
+        <source>Help</source>
+        <translation>Hilfe</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="206"/>
+        <source>Show the programs documentation.</source>
+        <translation>Dokumentation zum Programm anzeigen.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="175"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="119"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>The selected database could not be loaded!</source>
         <oldsource>Could not load the selected database!</oldsource>
         <translation>Die gewählte Datenbank konnte nicht geladen werden!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.cpp" line="169"/>
         <source>Select database file</source>
         <translation>Datenbank wählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="158"/>
+        <location filename="mainwindow.cpp" line="172"/>
         <source>Database files (*.mib);;All files (*.*)</source>
         <translation>Datenbankdateien (*.mib);;Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="162"/>
+        <location filename="mainwindow.cpp" line="176"/>
         <source>You have to select a valid image database to edit!</source>
         <translation>Sie müssen eine gültige Datenbank wählen!</translation>
     </message>

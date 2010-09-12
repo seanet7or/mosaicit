@@ -20,6 +20,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
+#include <QProcess>
 
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
@@ -40,7 +41,8 @@ MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
 
     setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
-    setTabOrder(ui->editDatabaseButton, ui->aboutButton);
+    setTabOrder(ui->editDatabaseButton, ui->helpButton);
+    setTabOrder(ui->helpButton, ui->aboutButton);
     setTabOrder(ui->aboutButton, ui->exitButton);
 
     connect(this->ui->createDatabaseBn,
@@ -63,6 +65,10 @@ MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
             SIGNAL(pressed()),
             this,
             SLOT(exitBnClicked()));
+    connect(ui->helpButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(helpBnClicked()));
     this->readSettings();
 }
 
@@ -88,6 +94,15 @@ void MainWindow::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MainWindow::helpBnClicked()
+{
+    QString command;
+#ifdef Q_OS_WIN32
+    command = qApp->applicationDirPath() + "/starthelp.exe";
+#endif
+    QProcess::startDetached(command);
 }
 
 void MainWindow::createDatabaseBnClicked()
