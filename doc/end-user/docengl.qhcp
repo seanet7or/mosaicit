@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <QHelpCollectionProject version="1.0">
+	<assistant>
+		<title>MosaicIt! Help</title>
+		<startPage>qthelp://becaspari.mosaicit.engl.1.0/doc/html/engl/overview.html</startPage>
+		<homePage>qthelp://becaspari.mosaicit.engl.1.0/doc/html/engl/overview.html</homePage>
+		<applicationIcon>../../appiconwin.ico</applicationIcon>
+		<enableFilterFunctionality>false</enableFilterFunctionality>
+		<enableDocumentationManager>false</enableDocumentationManager>		
+		<enableAddressBar>false</enableAddressBar>		
+		<aboutMenuText>
+             <text>About MosaicIt!</text>
+        </aboutMenuText>		
+        <aboutDialog>
+            <file>about_engl.txt</file>
+            <icon>../../appiconwin.ico</icon>
+         </aboutDialog>		
+	</assistant>
+     <docFiles>
+         <register>
+             <file>docengl.qch</file>
+         </register>
+     </docFiles>
+</QHelpCollectionProject>

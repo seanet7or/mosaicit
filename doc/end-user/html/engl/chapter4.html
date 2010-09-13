@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Create a Photographic Mosaic</title>
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head><body>
+<h1>4. Create a Photographic Mosaic</h1>
+
+<p>If you have already built an image database, you can create a photographic
+mosaic with it now. If not, you first have to do so.</p>
+
+<br><p>To start, hit the "New Mosaic" button in the applications
+main window.</p>
+<div align="left"><img src="pics/mainwin.png" height="581" width="686"></div>
+
+<br>
+      <p>In
+the following dialog you have to set up the basic options for the new
+mosaic. In the "Database file" field, you need to specify which
+previously created picture database to use. For the "Original image"
+field you have to select an image to use as base for the new mosaic.
+Finally, in the "Mosaic file" field, you need to specify where to save
+the newly created mosaic. After you have done so, hit the "Next" button.</p>
+<div align="left"><img src="pics/createmosaic.png" height="258" width="660"></div>
+
+<br><p>Here you have to choose the detailed options for the new
+mosaic. <br>
+First
+comes the tile size. The mosaic will be built of many small tiles, each
+one will have the size in pixels you adjust here. If you want to print
+the mosaic, you should calculate a real size of at least 0.4 inch or 1
+cm for the longest edge of the tile. Choose the tile size according to
+your desired resolution. Values of 100-150 for the width are a good
+starting point. <br>
+The tile aspect ratio can be set below; choose the aspect
+ratio, that equals the one of most of your entries in the pictures
+database. If the images in the database have different aspect ratios,
+1:1 is a good choice. </p>
+<div align="left"><img src="pics/mosaicdetails.png" height="391" width="656"></div>
+<p>The next option describes how to adjust tiles that don't fit
+the aspect ratio chosen above; you can either cut the edges or scale
+them. Note that if you choose to cut the edges and there is a big
+difference between the selected tile aspect ratio above and the real
+aspect ratio of the tile, it might happen that important details of the
+image are cut off; otherwise, when choosing the scale option, the tiles
+might look distorted in the mosaic. Therefore you will achieve the best
+results if you use pictures where it isn't too bad if the edges are cut
+off (e.g. landscapes) or if you take care, that all entries in the
+selected database have a similar aspect ratio. I recommend to choose to
+cut the edges.
+<br>
+Then select the total number of tiles in the mosaic; the higher
+value you choose here, the better and more impressive the result but
+also the amount of needed computing time and memory will be. Also note
+that if you want to print the mosaic, to a poster e.g., you should
+calculate a real size of at least 0.4 inch or 1 cm for the longest edge
+of the tile. So if you build a mosaic of 4800 tiles and the original
+image has an aspect ratio of 4:3 and select a tile aspect ratio of 1:1,
+the mosaic will be built of 80x60 tiles. Then you would have to print a
+poster with the size of at least 32x24 inch or 80x60 cm. I recommend to
+set this to a value between 2000 and 10000, also depending on how
+applicable the images in the selected database are.
+<br>
+The "Minimum distance between same tiles:" option lets you adjust,
+how much distance must be at least between two occurances of a tile in
+the completed mosaic. Note that choosing a too high value with a too
+small database will lower the image quality or even make rendering the
+mosaic impossible, as no more matching tile could be found.I recommend
+to set this to a value between 4 and 10, depending on the original
+image and the chosen database.
+<br>
+Now you can adjust how many times a certain tile may occur in a
+mosaic maximal. Note that similar to the "minimal distance between same
+tiles"-option, too low values will lower the image quality or even make
+rendering the mosaic impossible, as no more mathing tile could be
+found. I recommend to uncheck this and use the option above instead.
+<br>
+You can also set an alpha channel to blend the original image over
+the resulting mosaic - this will influence the color of the tiles and
+give better results if the images in your database are not the best
+choice. Select "0" to disable blending the original image; "1" is the
+most transparent value, "99" is the less transparent one. I recommend a
+value of 30 or 33.
+<br>
+Finally, the size of the resulting mosaic is shown. This can give
+you a hint about the memory and computing time that is required during
+rendering the mosaic. A mosaic with 60 megapixels and alpha blending of
+the original image will need about 300 megabyte of ram to render. The
+rendering process will take 10-15 minutes on a fairly outdated AMD
+Athlon XP mobile 2600+.
+<br>
+If you have set all the values to your pleasure, hit the "Render"
+button.
+</p>
+
+<br><p>Now,
+lie back and wait for the things to come. Depending on the selected
+options and the speed of your computer, rendering the mosaic will take
+some time.</p>
+<div align="left"><img src="pics/rendermos.png" height="310" width="428"></div>
+
+<br><p>If you get a dialog similar to this, then your mosaic was
+rendered with success! <br>
+If rendering the mosaic fails, see <a href="chapter5.html#5.1">"5.1
+Rendering the Mosaic Fails"</a>.</p>
+<div align="left"><img src="pics/rendermoscompl.png" height="310" width="428"></div>
+
+<br><p>Remember the filename of the created mosaic, hit the "Close"
+button and do with it wathever you want to...</p>
+<div align="left"><img src="pics/browseresults.png" height="600" width="800"></div>
+
+</body></html>

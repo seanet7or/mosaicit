@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"><title>Troubleshooting</title>
+<link rel="stylesheet" type="text/css" href="style.css"></head><body>
+<h1>5. Troubleshooting</h1>
+<h2><a name="5.1">5.1 Rendering the Mosaic Fails</a></h2>
+<table border="1">
+	<tbody><tr>
+		<td>
+          <strong>Error message</strong>
+        </td>
+		<td>
+          <strong>Workaround</strong>
+        </td>
+	</tr>
+	<tr>
+		<td>Error - no matching tile was found! [...] Choosing a image database with more entries might also remove the problem.
+		</td>
+		<td>You
+have set a minimum distance between two occurances of the same tile in
+the mosaic or you have set a value for the maximum number of occurances
+for the tile in the mosaic. Try decreasing the minimum distance or
+increasing the maximum number of occurances or uncheck the options. You
+could also use a database with more entries.</td>
+	</tr>
+	<tr>
+		<td>Error loading the tile image "FILENAME"!</td>
+		<td>Propably
+the image was deleted or changed into an incompatible format after
+adding it to the selected database. If this is the case, loading the
+database in the "Edit database" dialog and updating it there will
+resolve the problem. <br>It might also be that the file is on a
+removable storage device that is not plugged in. If so, plug it in and
+restart the process. <br>If this doesn't help, perhaps your computer ran out of memory. Try creating a photographic mosaic with less megapixels then.</td>
+	</tr>
+	<tr>
+		<td>Error reserving memory for the mosaic image!</td>
+		<td>Your computer ran out of memory. Try creating a photographic mosaic with less megapixels.</td>
+	</tr>
+	<tr>
+		<td>Error reserving memory for the tiles map!</td>
+		<td>Your computer ran out of memory. Try creating a photographic mosaic with less megapixels.</td>
+	</tr>
+	<tr>
+		<td>Error scaling the original picture!</td>
+		<td>Propably your computer ran out of memory. Try creating a photo graphicmosaic with less megapixels.</td>
+	</tr>
+	<tr>
+		<td>Error scaling the tile image "FILENAME"!</td>
+		<td>Propably your computer ran out of memory. Try creating a photo graphicmosaic with less megapixels.</td>
+	</tr>
+	<tr>
+		<td>Error loading the original image!</td>
+		<td>
+Check if the original image you selected exists and if it is a valid
+image file in a supported format (jpg, bmp, tiff). </td>
+	</tr>
+</tbody></table>
+<h2><a name="5.2">5.2 Other Problems</a></h2>
+<p>If MosaicIt! crashes repeatable or you have other problems, write me an email with a detailed description of the problem to <a href="mailto:becaspari@googlemail.com">becaspari@googlemail.com</a>.</p>
+</body></html>

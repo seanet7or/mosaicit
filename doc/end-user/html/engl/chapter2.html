@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Tutorial</title>
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head><body>
+<h1>2. Tutorial</h1>
+
+<p>This short tutorial will show you the necessary steps to create a
+photographic mosaic. For detailled information see the corresponding
+help sites.</p>
+
+<h2><a name="2.1">2.1 Brief Info About Creating an Image Database</a></h2>
+
+<p>Before you can create a photographic mosaic, you have to set up an
+image
+database that contains all the pictures the mosaic will be made of.</p>
+
+<p>Start the program, e.g. by clicking the start menu entry that was created during installation:<p>
+<div align="left"><img src="pics/startmenu.png"></div>
+
+<br><p>Then click the "Create Database" button in the main window:</p>
+<div align="left"><img src="pics/mainwin.png" height="581" width="686"></div>
+
+      <br><p>In the following dialog, you
+have to select a filename for the new database file. Also select a
+directory that contains the pictures the mosaic will be made of. Note
+that the more pictures are in the directory, the better the result will
+be. Adding more folders or files is possible in the <a href="chapter3.html#3.2">"Edit database"</a>
+dialog later. If you also want to add the images in the subdirectories
+to the database, select the "Include subdirectories" option. Confirm
+this settings with the "Build the database" button to analyse the files
+in the chosen folder and save the database file afterwards.</p>
+      <div align="left"><img src="pics/builddb.png" height="176" width="612"></div>
+
+      <br><p>Now
+stand by while the database is built. Depending on the amount of
+pictures in the selected folder, this may take some time. Canceling the
+process will result in an incomplete database.</p>
+<div align="left"><img src="pics/builddbprog.png" height="270" width="386"></div>
+
+      <br><p>If you see a dialog similar to
+this one, then the database now is ready to use and was saved
+successfully. Hit the "Close" button and use it to create a
+photographic mosaic!</p>
+<div align="left"><img src="pics/builddbcompl.png" height="270" width="386"></div>
+
+<p>For some more information about what to take care of, see chapter <a href="chapter3.html#3.1">"3.1 Creating an Image Database"</a>.</p>
+
+<h2><a name="2.2">2.2 Brief Info About Creating a Photographic Mosaic</a></h2>
+
+<p>Now we can use the image database to create a photographic mosaic
+that uses the pictures from the database.</p>
+
+<br><p>To do so, hit the "New Mosaic" button in the applications
+main window.</p>
+<div align="left"><img src="pics/mainwin.png" height="581" width="686"></div>
+
+      <br><p>In
+the following dialog you have to set up the basic options for the new
+mosaic. In the "Database file" field, you need to specify which picture
+database to use. Select the one you created before. For the "Original
+image" field you have to select an image to use as base for the new
+mosaic. Finally, in the "Mosaic file" field, you need to specify where
+to save the newly created mosaic. After you have done so, hit the
+"Next" button.</p>
+<div align="left"><img src="pics/createmosaic.png" height="258" width="660"></div>
+
+      <br><p>Here you have to choose the
+detailed options for the new mosaic. I recommend to set the values
+similar to the ones shown on the screenshot here.
+      <br>
+First comes the tile size. The mosaic will be built of many small
+tiles, each one will have the size in pixels you adjust here. <br>
+The tile aspect ratio can be set below; choose the aspect ratio, that
+equals the one of most of your entries in the pictures database. If the
+images in the database have different sizes, 1:1 is a good choice. <br>
+The next option describes how to adjust tiles that don't fit
+the aspect ratio chosen above; you can either cut the edges or scale
+them. <br>
+Then select the total number of tiles in the mosaic; the higher
+value you choose here, the better and more impressive the result but
+also the amount of needed computing time and memory will be. </p>
+      <div align="left"><img src="pics/mosaicdetails.png" height="391" width="656"></div>
+<p> The "Minimum distance between same tiles:" option lets you adjust,
+how much distance must be at least between two occurances of a tile in
+the completed mosaic. <br>
+Now you can adjust how many times a certain tile may occur in a mosaic.
+<br>
+You can also set an alpha channel to blend the original image over
+the resulting mosaic - this will influence the color of the tiles.
+Select "0" to disable blending the original image; "1" is the most
+transparent value, "99" is the less transparent one. I recommend a
+value of 30 or 33.
+<br>
+Finally, the size of the resulting mosaic is shown. This can give
+you a hint about the memory and computing time that is required during
+rendering the mosaic. A mosaic with 60 megapixels and alpha blending of
+the original image will need about 300 megabyte of ram to render. The
+rendering process will take 10-15 minutes on a fairly outdated AMD
+Athlon XP mobile 2600+.
+<br>
+If you have set all the values to your pleasure, hit the "Render"
+button.
+</p>
+<br><p>Now,
+lie back and wait for the things to come. Depending on the selected
+options and the speed of your computer, rendering the mosaic will take
+some time.</p>
+<div align="left"><img src="pics/rendermos.png" height="310" width="428"></div>
+
+<br>      <p>If you get a dialog similar to this, then your mosaic was
+rendered with success!<br>
+If rendering the mosaic fails, see <a href="chapter5.html#5.1">"5.1
+Rendering the Mosaic Fails"</a>.</p>
+<div align="left"><img src="pics/rendermoscompl.png" height="310" width="428"></div>
+
+      <br><p>Remember the filename of the created mosaic, hit the "Close"
+button and do with it wathever you want to... <br>
+You can find more information about what to take care of when creating
+a mosaic under <a href="chapter4.html">"4. Create a Foto Mosaic"</a>.</p>
+<div align="left"><img src="pics/browseresults.png" height="600" width="800"></div>
+
+</body></html>

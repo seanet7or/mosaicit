@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+     <namespace>becaspari.mosaicit.de.1.0</namespace>
+     <virtualFolder>doc</virtualFolder>
+     <customFilter name="MosaicIt! 1.0">
+         <filterAttribute>MosaicIt!</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+     </customFilter>
+     <filterSection>
+         <filterAttribute>MosaicIt!</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+         <toc>
+          	<section title="Inhalt" ref="html/ger/overview.html"/>
+			<section title="Installation und Systemanforderungen" ref="html/ger/chapter1.html">
+				<section title="Systemanforderungen" ref="html/ger/chapter1.html#1.1"/>
+				<section title="MosaicIt! installieren" ref="html/ger/chapter1.html#1.2"/>
+				<section title="MosaicIt! deinstallieren" ref="html/ger/chapter1.html#1.3"/>
+			</section>
+			<section title="Einführung" ref="html/ger/chapter2.html">
+				<section title="Kurze Einführung zum Erstellen einer Bilderdatenbank" ref="html/ger/chapter2.html#2.1"/>
+				<section title="Kurze Einführung zum Erstellen eines Fotomosaiks" ref="html/ger/chapter2.html#2.2"/>
+			</section>
+			<section title="Bilderdatenbanken" ref="html/ger/chapter3.html">
+				<section title="Erstellen einer Bilderdatenbank" ref="html/ger/chapter3.html#3.1"/>
+				<section title="Bearbeiten einer Bilderdatenbank" ref="html/ger/chapter3.html#3.2"/>
+			</section>
+			<section title="Erstellen eines Fotomosaiks" ref="html/ger/chapter4.html"/>
+			<section title="Fehlersuche" ref="html/ger/chapter5.html">
+				<section title="Das Rendern des Mosaiks schlägt fehl" ref="html/ger/chapter5.html#5.1"/>
+				<section title="Sonstige Probleme" ref="html/ger/chapter5.html#5.2"/>
+			</section>
+			<section title="Informationen zur Lizensierung" ref="html/ger/chapter6.html"/>
+         </toc>
+         <keywords>
+         </keywords>
+         <files>
+			<file>html/ger/style.css</file>
+	        <file>html/ger/*.html</file>
+			<file>html/ger/pics/*.png</file>
+			<file>html/ger/pics/*.jpg</file>
+         </files>
+     </filterSection>
+</QtHelpProject>

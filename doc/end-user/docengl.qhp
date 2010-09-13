@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+     <namespace>becaspari.mosaicit.engl.1.0</namespace>
+     <virtualFolder>doc</virtualFolder>
+     <customFilter name="MosaicIt! 1.0">
+         <filterAttribute>MosaicIt!</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+     </customFilter>
+     <filterSection>
+         <filterAttribute>MosaicIt!</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+         <toc>
+          	<section title="Overview" ref="html/engl/overview.html"/>
+			<section title="Installation And System Requirements" ref="html/engl/chapter1.html">
+				<section title="System Requirements" ref="html/engl/chapter1.html#1.1"/>
+				<section title="Install MosaicIt!" ref="html/engl/chapter1.html#1.2"/>
+				<section title="Uninstall MosaicIt!" ref="html/engl/chapter1.html#1.3"/>
+			</section>
+			<section title="Tutorial" ref="html/engl/chapter2.html">
+				<section title="Brief Info About Creating an Image Database" ref="html/engl/chapter2.html#2.1"/>
+				<section title="Brief Info About Creating a Photographic Mosaic" ref="html/engl/chapter2.html#2.2"/>
+			</section>
+			<section title="Image Databases" ref="html/engl/chapter3.html">
+				<section title="Creating an Image Database" ref="html/engl/chapter3.html#3.1"/>
+				<section title="Edit an Image Database" ref="html/engl/chapter3.html#3.2"/>
+			</section>
+			<section title="Create a Photographic Mosaic" ref="html/engl/chapter4.html"/>
+			<section title="Troubleshooting" ref="html/engl/chapter5.html">
+				<section title="Rendering the Mosaic Fails" ref="html/engl/chapter5.html#5.1"/>
+				<section title="Other Problems" ref="html/engl/chapter5.html#5.2"/>
+			</section>
+			<section title="License Information" ref="html/engl/chapter6.html"/>
+         </toc>
+         <keywords>
+         </keywords>
+         <files>
+			<file>html/engl/style.css</file>
+	        <file>html/engl/*.html</file>
+			<file>html/engl/pics/*.png</file>
+			<file>html/engl/pics/*.jpg</file>
+         </files>
+     </filterSection>
+</QtHelpProject>

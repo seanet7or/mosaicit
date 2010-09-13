@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"><title>Image Databases</title>
+<link rel="stylesheet" type="text/css" href="style.css"></head><body>
+<h1>3. Image Databases</h1>
+<h2><a name="3.1">3.1 Creating an Image Database</a></h2>
+<p>Before you can create a photographic mosaic, you have to set up an
+image database that contains all the pictures the mosaic will be made
+of.</p>
+
+<br>
+<p>To do so, click the "Create Database" button in the main window:</p>
+<div align="left"><img src="pics/mainwin.png" height="581" width="686"></div>
+
+<br>
+<div align="left"><img src="pics/builddb.png" height="176" width="612"></div>
+<p>In the above dialog, you have to select a filename for the new database file. 
+<br>Also select a directory that contains the pictures the mosaic will
+be made of. Note that the more pictures are in the directory, the
+better the result will be. Adding more folders or files is possible in
+the "Edit database" dialog. For good results, there should be several
+thousand pictures with lots of different motifs and base colors in the
+database. It is also advantageous that all pictures have the same or a
+similar aspect ratio. For the best results, the dye distribution should
+be regularly and the contrast and dynamic should be low. But don't
+worry, you will achieve good results also with images that don't match
+this criterias - in a pinch, you can balance that by increasing the
+number of tiles in your mosaic.
+<br>If you also want to add the images in the subdirectories to the
+database, select the "Include subdirectories" option. Confirm this
+settings with the "Build the database" button to analyse the files in
+the chosen folder and save the database file afterwards.</p>
+<br><p>Now
+stand by while the database is built. Depending on the amount of
+pictures in the selected folder, this may take some time. First the
+files in the chosen directory (and the subdirectories if chosen) are
+indexed and added to the database - afterwards, the images are analyzed
+to find out the average color. <br>If you cancel the process while the indexing of the files is
+running, no database will be saved. If you cancel while analyzing the
+files, the database will be saved, but only the already analyzed files
+can be used when building a mosaic with this database. However, you can
+analyze the missing files later in the "Edit Database"-dialog.</p>
+<div align="left"><img src="pics/builddbprog.png" height="270" width="386"></div>
+
+<br><p>If you see a dialog similar
+to this one, then the database now is ready to use and was saved
+successfully. You can create mosaics with it or edit it (add and remove
+entries) - see below.</p>
+<div align="left"><img src="pics/builddbcompl.png" height="270" width="386"></div>
+
+<h2><a name="3.2">3.2 Edit an Image Database</a></h2>
+<p>If you want to add or remove pictures to or from an existing
+database or if there are problems (e.g. with files you deleted from the
+storage device after adding them to the database), hit the "Edit
+Database" button in the applications main window.
+<br>Now select the database file you want to edit.</p>
+<br><p>If the database contains files
+that were not yet analyzed, that were edited in the meantime or that
+could not be found, you will see this dialog. If you answer with yes,
+all files will be analyzed and the ones that could not be found will be
+marked (check if they are on a removable storage device that is not
+plugged in!). You can also do this later from the "Edit
+Database"-dialog. Note that if you deleted files that have an entry in
+the database, you have to update it before you can build a mosaic with
+it.</p>
+		<div align="left"><img src="pics/dbincompl.png" height="137" width="506"></div>
+<br>
+<div align="left"><img src="pics/editdb.png" height="449" width="679"></div>
+<p>This is the dialog that allows you to edit the database. 
+<br>On the top, information about how many files are in the database
+and how many of them are not analysed yet or could not be found is
+shown.
+<br>On the left side you see a list with all entries in the database.
+If you select one that could be found, a preview and information about
+the average color (if it was already analyzed) is shown in the middle.
+With the "Remove this file from the database" button you can delete
+this entry from the database (of course, it will not be deleted on the
+storage device).
+<br>On the top right corner, there is a list showing files that could
+not be found or are no valid image files. With the "Remove files that
+were not found" button you can delete these entries from the database.
+Check if they are on a removable storage device that is not plugged in
+first!
+<br>Below, there is a list with entries that do exist but were not
+analyzed yet. This means that they also won't be used when building a
+mosaic with this database. Hit the "Update database" button to analyze
+these files now.
+<br>With the "Add a directory to the database" and "Add a file to the database" buttons you can add more entries to the database.
+<br>The changes you made to the database will not be saved until you
+hit the "Close" button and answer the question if you want to save the
+changes with "Yes".
+<br>If you have problems creating a mosaic with a certain database, it
+is a good idea to load it here and hit the "Update database" button.
+This will not only analyze the missing files, but also look for other
+errors in the database and correct them (e.g. if you deleted a file
+from your hard disk after adding it to the database).
+</p>
+</body></html>

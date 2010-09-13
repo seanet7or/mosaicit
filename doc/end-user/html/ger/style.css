@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+body {
+  font-family:		sans-serif;
+  color:		black;
+  background-color:	white;
+}
+
+img { 
+  border-style:		none;
+}
+
+a:link {
+  color:		#0000ff;
+}
+
+a:visited {
+  color:		#551a8b;
+}
+
+a:active {
+  color:		#ff0000;
+}
