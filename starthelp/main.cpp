@@ -55,14 +55,16 @@ int main(int argc, char *argv[])
     QString command;
     QString args;
 #ifdef Q_OS_WIN32
-    command = a.applicationDirPath() + "/assistant.exe";
-    args = " -collectionFile " + helpFile;
+    command = QString("\"") + a.applicationDirPath() + "/assistant.exe" + QString("\"");
+    args =  " -collectionFile " + QString("\"") + helpFile + "\"";
 #endif
 #ifdef Q_OS_LINUX
-    command = a.applicationDirPath() + "/assistant";
-    args = " -collectionFile" + helpFile;
+    command = "\"" + a.applicationDirPath() + "/assistant" + QString("\"");
+    args = " -collectionFile" + QString("\"") + helpFile + "\"";
 #endif
-    QProcess::execute(command + args);
+
+    command += args;
+    QProcess::startDetached(command);
 
     //return a.exec();
 }
