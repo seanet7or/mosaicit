@@ -59,10 +59,7 @@ OTHER_FILES += doc/header.txt \
     doc/end-user/html/ger/pics/builddbprog.png \
     doc/end-user/html/ger/pics/builddbcompl.png \
     doc/end-user/html/ger/pics/builddb.png \
-    doc/end-user/html/ger/pics/browseresults.png \
-    starthelp/starthelp.pro \
-    starthelp/appiconwin.ico \
-    starthelp/appicon.rc
+    doc/end-user/html/ger/pics/browseresults.png
 HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \
@@ -96,8 +93,7 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     indexdirdlg.cpp \
     aboutdlg.cpp \
-    appsettings.cpp \
-    starthelp/main.cpp
+    appsettings.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \

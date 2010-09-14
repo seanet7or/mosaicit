@@ -100,7 +100,7 @@ void MainWindow::helpBnClicked()
 {
     QString command;
 #ifdef Q_OS_WIN32
-    command = qApp->applicationDirPath() + "/starthelp.exe";
+    command = QString("\"") + qApp->applicationDirPath() + "/starthelp.exe" + QString("\"");
 #endif
     QProcess::startDetached(command);
 }
