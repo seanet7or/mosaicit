@@ -325,18 +325,18 @@ void EditDatabaseDlg::changeEvent(QEvent *e)
 
 void EditDatabaseDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateEditDatabaseDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateEditDatabaseDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void EditDatabaseDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateEditDatabaseDlg");
-    this->resize(settings->value("size", QSize(603, 398)).toSize());
-    this->move(settings->value("pos", QPoint(85, 70)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateEditDatabaseDlg");
+    this->resize(settings.value("size", QSize(603, 398)).toSize());
+    this->move(settings.value("pos", QPoint(85, 70)).toPoint());
+    settings.endGroup();
 }

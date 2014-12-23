@@ -191,35 +191,35 @@ bool NewDatabaseDlg::includeSubdirectories()
 
 void NewDatabaseDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateNewDatabaseDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
-    settings->beginGroup("InputNewDatabaseDlg");
-    settings->setValue("newdatabasefile", ui->nameEdit->text());
-    settings->setValue("picturesdirectory", ui->directoryEdit->text());
-    settings->setValue("includesubdirectories", ui->includeSubdirectories->isChecked());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateNewDatabaseDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
+    settings.beginGroup("InputNewDatabaseDlg");
+    settings.setValue("newdatabasefile", ui->nameEdit->text());
+    settings.setValue("picturesdirectory", ui->directoryEdit->text());
+    settings.setValue("includesubdirectories", ui->includeSubdirectories->isChecked());
+    settings.endGroup();
 }
 
 void NewDatabaseDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateNewDatabaseDlg");
-    this->resize(settings->value("size", QSize(596, 140)).toSize());
-    this->move(settings->value("pos", QPoint(180, 280)).toPoint());
-    settings->endGroup();
-    settings->beginGroup("InputNewDatabaseDlg");
-    ui->nameEdit->setText(settings->value("newdatabasefile",
+    QSettings settings;
+    settings.beginGroup("GUIStateNewDatabaseDlg");
+    this->resize(settings.value("size", QSize(596, 140)).toSize());
+    this->move(settings.value("pos", QPoint(180, 280)).toPoint());
+    settings.endGroup();
+    settings.beginGroup("InputNewDatabaseDlg");
+    ui->nameEdit->setText(settings.value("newdatabasefile",
                                           QDir::toNativeSeparators(
                                                   QDir::cleanPath(
                                                           QDir::homePath()
                                                           + tr("/newdatabase.mib")))).toString());
-    ui->directoryEdit->setText(settings->value("picturesdirectory",
+    ui->directoryEdit->setText(settings.value("picturesdirectory",
                                                QDir::toNativeSeparators(
                                                        QDir::cleanPath(
                                                                QDir::homePath()))).toString());
-    ui->includeSubdirectories->setChecked(settings->value("includesubdirectories", true).toBool());
-    settings->endGroup();
+    ui->includeSubdirectories->setChecked(settings.value("includesubdirectories", true).toBool());
+    settings.endGroup();
 }

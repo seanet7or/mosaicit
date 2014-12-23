@@ -55,18 +55,18 @@ void AboutDlg::onOkButtonPressed()
 
 void AboutDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateAboutDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateAboutDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void AboutDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateAboutDlg");
-    this->resize(settings->value("size", QSize(620, 400)).toSize());
-    this->move(settings->value("pos", QPoint(110, 170)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateAboutDlg");
+    this->resize(settings.value("size", QSize(620, 400)).toSize());
+    this->move(settings.value("pos", QPoint(110, 170)).toPoint());
+    settings.endGroup();
 }

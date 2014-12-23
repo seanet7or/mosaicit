@@ -45,22 +45,22 @@ void ProcessImagesThread::processImages(QVector<PictureInfo *> *pictures)
 void ProcessImagesThread::run()
 {
     Q_ASSERT(this->pictures != 0);
-    log("ProcessImagesThread::run called");
+    qDebug() << ("ProcessImagesThread::run called");
     for (int i = 0; i < this->pictures->size(); i++) {
         processImage(pictures->value(i));
         if (m_cancelNow) {
-            log("ProcessImagesThread::run was canceled");
+            qDebug() << ("ProcessImagesThread::run was canceled");
             return;
         }
         emit complete(100.f * (float)i / (float)(pictures->size() - 1));
     }
-    log("ProcessImagesThread::run done completly");
+    qDebug() << ("ProcessImagesThread::run done completly");
 }
 
 bool ProcessImagesThread::processImage(PictureInfo *picture)
 {
     Q_ASSERT(picture != 0);
-    log("ProcessImagesThread::processImage called for file " +
+    qDebug() << ("ProcessImagesThread::processImage called for file " +
         picture->getFile());
     QFileInfo fileInfo(picture->getFile());
     if (!fileInfo.exists()) {
@@ -97,6 +97,6 @@ bool ProcessImagesThread::processImage(PictureInfo *picture)
     picture->setColor(red, green, blue);
     delete image;
     picture->setProcessed(true);
-    log("ProcessImagesThread::processImage done with success");
+    qDebug() << ("ProcessImagesThread::processImage done with success");
     return true;
 }

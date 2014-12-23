@@ -1,3 +1,9 @@
+
+TARGET = MosaicIt
+TEMPLATE = app
+
+QT += core gui widgets
+
 OTHER_FILES += doc/header.txt \
     lupdate_project.cmd \
     mosaicit_de.ts \
@@ -76,7 +82,8 @@ HEADERS += updatedatabasedlg.h \
     builddatabasedlg.h \
     indexdirdlg.h \
     aboutdlg.h \
-    appsettings.h
+    appsettings.h \
+    window.h
 SOURCES += main.cpp \
     indexfilesthread.cpp \
     editdatabasedlg.cpp \
@@ -93,7 +100,9 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     indexdirdlg.cpp \
     aboutdlg.cpp \
-    appsettings.cpp
+    appsettings.cpp \
+    debug.cpp \
+    window.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \

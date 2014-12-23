@@ -23,20 +23,19 @@
 
 #include "debug.h"
 
-#define log(text)   Debug::log(text)
 
 #define FILE_ID     0x4D494442
 
 bool PictureDatabase::toFile(const QString &file)
 {
-    log("PictureDatabase::toFile called");
+    qDebug() << ("PictureDatabase::toFile called");
     quint32 identifier = FILE_ID;
     quint32 majorVersion = 1;
     quint32 minorVersion = 0;
     quint32 entryCount = this->m_pictureInfo->size();
     QFile outFile(file);
     if (!outFile.open(QIODevice::WriteOnly)) {
-        log("  unable to open file");
+        qDebug() << ("  unable to open file");
         return false;
     }
     QDataStream out(&outFile);
@@ -49,7 +48,7 @@ bool PictureDatabase::toFile(const QString &file)
         this->m_pictureInfo->at(i)->toStream(out);
     }
     outFile.close();
-    log("PictureDatabase::toFile done with success");
+    qDebug() << ("PictureDatabase::toFile done with success");
     return true;
 }
 
@@ -264,7 +263,7 @@ PictureDatabase::~PictureDatabase()
 
 void PictureDatabase::processProgressFromThread(float percent)
 {
-    log("PictureDatabase::processProgressFromThread called, "
+    qDebug() << ("PictureDatabase::processProgressFromThread called, "
         + QString::number(percent));
     emit this->processProgress(percent);
 }

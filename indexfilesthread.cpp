@@ -20,7 +20,7 @@
 #include <QStringList>
 
 #include "debug.h"
-#define log(text) Debug::log(text)
+
 
 IndexFilesThread::IndexFilesThread(QObject *parent) :
     QThread(parent)
@@ -43,40 +43,41 @@ void IndexFilesThread::indexDirectory(QVector<PictureInfo *> *pictures,
 
 void IndexFilesThread::addDirectory(QString directory, bool subdirs)
 {
-    log("IndexFilesThread::addDirectory called");
+    qDebug() << ("IndexFilesThread::addDirectory called");
     if (this->m_canceled) {
-        log("  canceled!");
+        qDebug() << ("  canceled!");
         return;
     }
-    log("  for directory " + directory);
+    qDebug() << ("  for directory " + directory);
     QDir rootDir(directory);
     QStringList filters;
     filters << "*.jpg" << "*.png" << "*.jpeg" << "*.bmp";
     QStringList files = rootDir.entryList(filters, QDir::Files);
     foreach (QString file, files) {
         if (this->m_canceled) {
-            log("  canceled!");
+            qDebug() << ("  canceled!");
             return;
         }
-        log("  adding file " + directory + "/" + file);
+        qDebug() << ("  adding file " + directory + "/" + file);
         addFile(directory + "/" + file);
     }
     if (subdirs) {
         QStringList dirs = rootDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
         foreach (QString dir, dirs) {
             if (this->m_canceled) {
-                log("  canceled!");
+                qDebug() << ("  canceled!");
                 return;
             }
-            log("  calling for dir " + dir);
+            qDebug() << ("  calling for dir " + dir);
             addDirectory(directory + "/" + dir, subdirs);
         }
     }
-    log("IndexFilesThread::addDirectory finished");
+    qDebug() << ("IndexFilesThread::addDirectory finished");
 }
 
 void IndexFilesThread::addFile(QString file)
 {
+	qDebug() << "Adding file" << file;
     PictureInfo *newEntry = new PictureInfo;
     newEntry->setFile(QDir::toNativeSeparators(QDir::cleanPath(file)));
     newEntry->setProcessed(false);

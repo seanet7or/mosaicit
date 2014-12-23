@@ -184,18 +184,18 @@ void RenderMosaicDlg::renderThreadFinished()
 
 void RenderMosaicDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateRenderMosaicDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateRenderMosaicDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void RenderMosaicDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateRenderMosaicDlg");
-    this->resize(settings->value("size", QSize(412, 274)).toSize());
-    this->move(settings->value("pos", QPoint(265, 215)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateRenderMosaicDlg");
+    this->resize(settings.value("size", QSize(412, 274)).toSize());
+    this->move(settings.value("pos", QPoint(265, 215)).toPoint());
+    settings.endGroup();
 }

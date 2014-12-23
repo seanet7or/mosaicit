@@ -21,7 +21,7 @@
 #include <QFileDialog>
 #include <QCloseEvent>
 #include <QProcess>
-
+#include <QDebug>
 #include "newdatabasedlg.h"
 #include "builddatabasedlg.h"
 #include "createmosaicdlg.h"
@@ -35,6 +35,7 @@ MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
+	qDebug() << "Creating main window";
     ui->setupUi(this);
 
     ui->logo_label->setPixmap(QPixmap::fromImage(QImage(appPath + "/mosaicit_logo.jpg")));
@@ -107,6 +108,7 @@ void MainWindow::helpBnClicked()
 
 void MainWindow::createDatabaseBnClicked()
 {
+	qDebug() << "Opening create new DB dlg";
     NewDatabaseDlg newDBDlg(this);
     newDBDlg.show();
     newDBDlg.exec();
@@ -119,6 +121,7 @@ void MainWindow::createDatabaseBnClicked()
         buildDlg.show();
         buildDlg.exec();
     }
+	qDebug() << "Returned to mainwindow";
 }
 
 void MainWindow::newMosaicBnClicked()
@@ -160,12 +163,12 @@ void MainWindow::newMosaicBnClicked()
 
 void MainWindow::editDatabaseBnClicked()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("InputMainWindow");
-    QString databaseFile = settings->value("databasefiletoedit",
+    QSettings settings;
+    settings.beginGroup("InputMainWindow");
+    QString databaseFile = settings.value("databasefiletoedit",
                                            QDir::toNativeSeparators(
                                                    QDir::cleanPath(QDir::homePath()))).toString();
-    settings->endGroup();
+    settings.endGroup();
     databaseFile = QFileDialog::getOpenFileName(this,
                                                 tr("Select database file"),
                                                 QDir::toNativeSeparators(QDir::cleanPath(
@@ -179,9 +182,9 @@ void MainWindow::editDatabaseBnClicked()
                              QMessageBox::Ok);
         return;
     }
-    settings->beginGroup("InputMainWindow");
-    settings->setValue("databasefiletoedit", databaseFile);
-    settings->endGroup();
+    settings.beginGroup("InputMainWindow");
+    settings.setValue("databasefiletoedit", databaseFile);
+    settings.endGroup();
 
     EditDatabaseDlg editDBDlg(this, databaseFile);
     editDBDlg.show();
@@ -203,18 +206,18 @@ void MainWindow::exitBnClicked()
 
 void MainWindow::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateMainWindow");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateMainWindow");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void MainWindow::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateMainWindow");
-    this->resize(settings->value("size", QSize(670, 545)).toSize());
-    this->move(settings->value("pos", QPoint(90, 90)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateMainWindow");
+    this->resize(settings.value("size", QSize(670, 545)).toSize());
+    this->move(settings.value("pos", QPoint(90, 90)).toPoint());
+    settings.endGroup();
 }

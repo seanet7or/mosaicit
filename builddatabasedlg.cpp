@@ -237,18 +237,18 @@ void BuildDatabaseDlg::processProgress(float percent)
 
 void BuildDatabaseDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateBuildDatabaseDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateBuildDatabaseDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void BuildDatabaseDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateBuildDatabaseDlg");
-    this->resize(settings->value("size", QSize(370, 234)).toSize());
-    this->move(settings->value("pos", QPoint(310, 270)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateBuildDatabaseDlg");
+    this->resize(settings.value("size", QSize(370, 234)).toSize());
+    this->move(settings.value("pos", QPoint(310, 270)).toPoint());
+    settings.endGroup();
 }

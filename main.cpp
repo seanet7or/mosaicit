@@ -13,24 +13,37 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
-
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QLocale>
 #include "mainwindow.h"
+#include "debug.h"
+#include "appsettings.h"
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QTranslator qtTranslator;
+
+	QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(),
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a.installTranslator(&qtTranslator);
-
-    QTranslator myappTranslator;
+	 QTranslator myappTranslator;
     myappTranslator.load(a.applicationDirPath() + "/mosaicit_" + QLocale::system().name());
     a.installTranslator(&myappTranslator);
+
+	if (!AppSettings::init())
+	{
+		return 2;
+	}
+	if (!Debug::init())
+	{
+		return 3;
+	}
+
+	qDebug() << "Starting up.";
 
     MainWindow w(a.applicationDirPath());
     w.show();

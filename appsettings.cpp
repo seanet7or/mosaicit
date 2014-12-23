@@ -11,28 +11,50 @@
 * Licensed under the GPL
 *
 ***************************************************************************************************/
-
 #include "appsettings.h"
+#include <QCoreApplication>
+#include <QDir>
+#include <QStandardPaths>
+#include <QDebug>
 
-AppSettings *AppSettings::getInstance()
+
+bool AppSettings::init()
 {
-    static AppSettings *instance = 0;
-    if (!instance) {
-        instance = new AppSettings;
-    }
+	QCoreApplication::setOrganizationName(DEF_ORGANIZATION);
+	QCoreApplication::setOrganizationDomain(DEF_ORGANIZATION_DOMAIN);
+	QCoreApplication::setApplicationName(DEF_APPLICATION_NAME);
+
+	getInstance().m_settingsDirectory = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+	QDir dir(getInstance().m_settingsDirectory);
+	if (!dir.mkpath(getInstance().m_settingsDirectory))
+	{
+		qCritical() << "Failed to create directory " 
+			<< QDir::toNativeSeparators(getInstance().m_settingsDirectory);
+		return false;
+	}
+	else
+	{
+		qDebug() << "Using config directory " 
+			<< QDir::toNativeSeparators(getInstance().m_settingsDirectory);
+	}
+
+	return true;
+}
+
+
+AppSettings &AppSettings::getInstance()
+{
+    static AppSettings instance;
     return instance;
 }
 
-QSettings *AppSettings::settings()
+
+AppSettings::AppSettings()
 {
-    return AppSettings::getInstance()->m_settings;
 }
 
-AppSettings::AppSettings(QObject *parent) :
-    QObject(parent)
+
+const QString &AppSettings::settingsDirectory()
 {
-    this->m_settings = new QSettings(QSettings::IniFormat,
-                                     QSettings::UserScope,
-                                     "becaspari",
-                                     "mosaicit");
+	return getInstance().m_settingsDirectory;
 }

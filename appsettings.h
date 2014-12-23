@@ -20,21 +20,30 @@
 #include <QObject>
 #include <QSettings>
 
-class AppSettings : public QObject
-{
-Q_OBJECT
-public:
-    static AppSettings *getInstance();
-    static QSettings *settings();
 
+#define DEF_ORGANIZATION			"mosaicit.de"
+#define DEF_ORGANIZATION_DOMAIN		"mosaicit.de"
+#define DEF_APPLICATION_NAME		"MosaicIt"
+#define DEF_APPLICATION_ICON		":/icon"
+#define DEF_LOGFILE					"log.txt"
+
+#define DEF_WINDOW_SIZE				800, 600
+
+
+class AppSettings
+{
+public:
+	static bool init();
+    static AppSettings &getInstance();
+	static const QString &settingsDirectory();
+	
 signals:
 
 public slots:
 
 private:
-    explicit AppSettings(QObject *parent = 0);
-    QSettings *m_settings;
-
+    explicit AppSettings();
+	QString m_settingsDirectory;
 };
 
 #endif // APPSETTINGS_H

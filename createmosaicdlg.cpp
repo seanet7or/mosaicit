@@ -199,37 +199,37 @@ void CreateMosaicDlg::selectImageBnPressed()
 
 void CreateMosaicDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateCreateMosaicDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
-    settings->beginGroup("InputCreateMosaicDlg");
-    settings->setValue("databasefile", ui->databaseEdit->text());
-    settings->setValue("imageinputfile", ui->imageEdit->text());
-    settings->setValue("outputfile", ui->outputEdit->text());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateCreateMosaicDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
+    settings.beginGroup("InputCreateMosaicDlg");
+    settings.setValue("databasefile", ui->databaseEdit->text());
+    settings.setValue("imageinputfile", ui->imageEdit->text());
+    settings.setValue("outputfile", ui->outputEdit->text());
+    settings.endGroup();
 }
 
 void CreateMosaicDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateCreateMosaicDlg");
-    this->resize(settings->value("size", QSize(644, 222)).toSize());
-    this->move(settings->value("pos", QPoint(25, 135)).toPoint());
-    settings->endGroup();
-    settings->beginGroup("InputCreateMosaicDlg");
+    QSettings settings;
+    settings.beginGroup("GUIStateCreateMosaicDlg");
+    this->resize(settings.value("size", QSize(644, 222)).toSize());
+    this->move(settings.value("pos", QPoint(25, 135)).toPoint());
+    settings.endGroup();
+    settings.beginGroup("InputCreateMosaicDlg");
     ui->databaseEdit->setText(
-            settings->value("databasefile",
+            settings.value("databasefile",
                             QDir::toNativeSeparators(QDir::cleanPath(
                                     QDir::homePath()))).toString());
     ui->imageEdit->setText(
-            settings->value("imageinputfile",
+            settings.value("imageinputfile",
                             QDir::toNativeSeparators(QDir::cleanPath(
                                     QDir::homePath()))).toString());;
     ui->outputEdit->setText(
-            settings->value("outputfile",
+            settings.value("outputfile",
                             QDir::toNativeSeparators(QDir::cleanPath(
                                     QDir::homePath() + "/mosaic.jpg"))).toString());
-    settings->endGroup();
+    settings.endGroup();
 }

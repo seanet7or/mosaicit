@@ -81,7 +81,7 @@ void UpdateDatabaseDlg::processDone(float percent)
 
 void UpdateDatabaseDlg::processComplete(bool wasCanceled)
 {
-    log("UpdateDatabaseDlg::processComplete was called!");
+    qDebug() << ("UpdateDatabaseDlg::processComplete was called!");
     disconnect(this->m_database,
                SIGNAL(processFinished(bool)));
     if (wasCanceled) {
@@ -103,7 +103,7 @@ void UpdateDatabaseDlg::cancelButtonPressed()
                                       tr("Do you want to cancel? The database will be incomplete!"),
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_database->cancelProcessing();
-                log("\nUpdating the database was canceled!");
+                qDebug() << ("\nUpdating the database was canceled!");
                 return;
             }
         } else {
@@ -126,7 +126,7 @@ void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
                                       tr("Do you want to cancel? The database will be incomplete!"),
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_database->cancelProcessing();
-                log("\nUpdating the database was canceled!");
+                qDebug() << ("\nUpdating the database was canceled!");
                 this->writeSettings();
                 e->accept();
             } else {
@@ -144,18 +144,18 @@ void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
 
 void UpdateDatabaseDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateUpdateDatabaseDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateUpdateDatabaseDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void UpdateDatabaseDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateUpdateDatabaseDlg");
-    this->resize(settings->value("size", QSize(400, 93)).toSize());
-    this->move(settings->value("pos", QPoint(180, 330)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateUpdateDatabaseDlg");
+    this->resize(settings.value("size", QSize(400, 93)).toSize());
+    this->move(settings.value("pos", QPoint(180, 330)).toPoint());
+    settings.endGroup();
 }

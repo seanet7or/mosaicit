@@ -225,14 +225,14 @@ void MosaicDetailsDlg::closeEvent(QCloseEvent *e)
 void MosaicDetailsDlg::writeSettings()
 {
     this->updateValuesFromForms();
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateMosaicDetailsDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
-    settings->beginGroup("InputMosaicDetailsDlg");
-    settings->setValue("tilewidth", this->m_tileWidth);
-    settings->setValue("tileheight", this->m_tileHeight);
+    QSettings settings;
+    settings.beginGroup("GUIStateMosaicDetailsDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
+    settings.beginGroup("InputMosaicDetailsDlg");
+    settings.setValue("tilewidth", this->m_tileWidth);
+    settings.setValue("tileheight", this->m_tileHeight);
     int tileAspectRatioSelection = 3;
     if (ui->aspect11->isChecked()) {
         tileAspectRatioSelection = 1;
@@ -243,15 +243,15 @@ void MosaicDetailsDlg::writeSettings()
     } else if (ui->aspectFree->isChecked()) {
         tileAspectRatioSelection = 4;
     }
-    settings->setValue("tileaspectratioselection", tileAspectRatioSelection);
-    settings->setValue("cutedges", this->m_cutEdges);
-    settings->setValue("totaltilenumber", this->m_tileCount);
-    settings->setValue("alphachannel", this->m_alphaChannel);
-    settings->setValue("mindistancechecker", this->m_minDistanceChecker);
-    settings->setValue("mindistancespinner", this->m_minDistance);
-    settings->setValue("repeattileschecker", this->m_repeatTilesChecker);
-    settings->setValue("repeattilesspinner", this->m_repeatTilesMax);
-    settings->endGroup();
+    settings.setValue("tileaspectratioselection", tileAspectRatioSelection);
+    settings.setValue("cutedges", this->m_cutEdges);
+    settings.setValue("totaltilenumber", this->m_tileCount);
+    settings.setValue("alphachannel", this->m_alphaChannel);
+    settings.setValue("mindistancechecker", this->m_minDistanceChecker);
+    settings.setValue("mindistancespinner", this->m_minDistance);
+    settings.setValue("repeattileschecker", this->m_repeatTilesChecker);
+    settings.setValue("repeattilesspinner", this->m_repeatTilesMax);
+    settings.endGroup();
 }
 
 void MosaicDetailsDlg::updateValuesFromForms()
@@ -269,15 +269,15 @@ void MosaicDetailsDlg::updateValuesFromForms()
 
 void MosaicDetailsDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateMosaicDetailsDlg");
-    this->resize(settings->value("size", QSize(620, 355)).toSize());
-    this->move(settings->value("pos", QPoint(180, 175)).toPoint());
-    settings->endGroup();
-    settings->beginGroup("InputMosaicDetailsDlg");
-    ui->tileWidth->setValue(settings->value("tilewidth", 150).toInt());
-    ui->tileHeight->setValue(settings->value("tileheight", 150).toInt());
-    int tileAspectRatioSelection = settings->value("tileaspectratioselection", 3).toInt();
+    QSettings settings;
+    settings.beginGroup("GUIStateMosaicDetailsDlg");
+    this->resize(settings.value("size", QSize(620, 355)).toSize());
+    this->move(settings.value("pos", QPoint(180, 175)).toPoint());
+    settings.endGroup();
+    settings.beginGroup("InputMosaicDetailsDlg");
+    ui->tileWidth->setValue(settings.value("tilewidth", 150).toInt());
+    ui->tileHeight->setValue(settings.value("tileheight", 150).toInt());
+    int tileAspectRatioSelection = settings.value("tileaspectratioselection", 3).toInt();
     switch (tileAspectRatioSelection) {
     case 1:
         ui->aspect11->setChecked(true);
@@ -294,18 +294,18 @@ void MosaicDetailsDlg::readSettings()
     default:
         ui->aspect43->setChecked(true);
     }
-    if (settings->value("cutedges", true).toBool()) {
+    if (settings.value("cutedges", true).toBool()) {
         ui->cutTileEdges->setChecked(true);
     } else {
         ui->scaleTile->setChecked(true);
     }
-    ui->totalTiles->setValue(settings->value("totaltilenumber", 800).toInt());
-    ui->alphaChannel->setValue(settings->value("alphachannel", 30).toInt());
-    ui->minDistanceChecker->setChecked(settings->value("mindistancechecker", true).toBool());
-    ui->minDistanceSpinner->setValue(settings->value("mindistancespinner", 3).toInt());
-    ui->repeatTilesChecker->setChecked(settings->value("repeattileschecker", false).toBool());
-    ui->repeatTilesSpinner->setValue(settings->value("repeattilesspinner", 300).toInt());
-    settings->endGroup();
+    ui->totalTiles->setValue(settings.value("totaltilenumber", 800).toInt());
+    ui->alphaChannel->setValue(settings.value("alphachannel", 30).toInt());
+    ui->minDistanceChecker->setChecked(settings.value("mindistancechecker", true).toBool());
+    ui->minDistanceSpinner->setValue(settings.value("mindistancespinner", 3).toInt());
+    ui->repeatTilesChecker->setChecked(settings.value("repeattileschecker", false).toBool());
+    ui->repeatTilesSpinner->setValue(settings.value("repeattilesspinner", 300).toInt());
+    settings.endGroup();
     this->updateResultLabel();
 }
 

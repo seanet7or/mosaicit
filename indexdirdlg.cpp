@@ -115,18 +115,18 @@ void IndexDirDlg::changeEvent(QEvent *e)
 
 void IndexDirDlg::writeSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateIndexDirDlg");
-    settings->setValue("size", this->size());
-    settings->setValue("pos", this->pos());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateIndexDirDlg");
+    settings.setValue("size", this->size());
+    settings.setValue("pos", this->pos());
+    settings.endGroup();
 }
 
 void IndexDirDlg::readSettings()
 {
-    QSettings *settings = AppSettings::settings();
-    settings->beginGroup("GUIStateIndexDirDlg");
-    this->resize(settings->value("size", QSize(400, 91)).toSize());
-    this->move(settings->value("pos", QPoint(225, 295)).toPoint());
-    settings->endGroup();
+    QSettings settings;
+    settings.beginGroup("GUIStateIndexDirDlg");
+    this->resize(settings.value("size", QSize(400, 91)).toSize());
+    this->move(settings.value("pos", QPoint(225, 295)).toPoint());
+    settings.endGroup();
 }
