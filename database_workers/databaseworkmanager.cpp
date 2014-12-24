@@ -81,9 +81,11 @@ void DatabaseWorkManager::run()
                 return;
             }
 
-            qDebug() << picturesNotProcessed.length() << "pictures to be analyzed.";
+            qDebug() << picturesNotProcessed.length();
             while (m_pictureAnalyzers.length() >= analyzerWorkerThreads)
             {
+                m_pictureAnalyzers.at(0)->wait(1000);
+
                 for (int i = 0; i < m_pictureAnalyzers.length(); i++)
                 {
                     PictureAnalyzerThread* t = m_pictureAnalyzers.at(i);
@@ -102,6 +104,7 @@ void DatabaseWorkManager::run()
             picturesNotProcessed.removeAt(0);
             m_pictureAnalyzers.append(analyzerThread);
         }
+        qDebug() << " No more pictures to be analyzed.";
     }
 
     if (isInterruptionRequested())

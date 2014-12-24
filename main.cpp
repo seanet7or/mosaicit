@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	qDebug() << "Starting up.";
     DatabaseWorkManager workManager;
     workManager.startWork();
-    MainWindow w(a.applicationDirPath());
+    MainWindow w;
     w.show();
     int res = a.exec();
     workManager.requestCancel();

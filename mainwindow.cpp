@@ -23,33 +23,26 @@
 #include <QProcess>
 #include <QDebug>
 #include "newdatabasedlg.h"
-#include "builddatabasedlg.h"
-#include "createmosaicdlg.h"
 #include "picturedatabase.h"
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
 #include "editdatabasedlg.h"
 #include "aboutdlg.h"
 
-MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
 	qDebug() << "Creating main window";
     ui->setupUi(this);
 
-    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(appPath + "/mosaicit_logo.jpg")));
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(":/app_logo")));
 
-    setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
     setTabOrder(ui->editDatabaseButton, ui->helpButton);
     setTabOrder(ui->helpButton, ui->aboutButton);
     setTabOrder(ui->aboutButton, ui->exitButton);
 
-    connect(this->ui->createDatabaseBn,
-            SIGNAL(pressed()),
-            this,
-            SLOT(createDatabaseBnClicked()));
     connect(ui->newMosaicButton,
             SIGNAL(pressed()),
             this,
@@ -106,51 +99,31 @@ void MainWindow::helpBnClicked()
     QProcess::startDetached(command);
 }
 
-void MainWindow::createDatabaseBnClicked()
-{
-	qDebug() << "Opening create new DB dlg";
-    NewDatabaseDlg newDBDlg(this);
-    newDBDlg.show();
-    newDBDlg.exec();
-    if (newDBDlg.exitedCorrectly()) {
-        BuildDatabaseDlg buildDlg(this,
-                                  newDBDlg.name(),
-                                  newDBDlg.directory(),
-                                  newDBDlg.includeSubdirectories()
-                                  );
-        buildDlg.show();
-        buildDlg.exec();
-    }
-	qDebug() << "Returned to mainwindow";
-}
-
 void MainWindow::newMosaicBnClicked()
 {
-    /*CreateMosaicDlg createDlg(this);
-    createDlg.show();
-    createDlg.exec();
-    if (createDlg.exitedCorrectly()) {
-        PictureDatabase database;
-        if (!database.fromFile(createDlg.database())) {
-            QMessageBox::warning(this,
-                                 tr("Error"),
-                                 tr("The selected database could not be loaded!"),
-                                 QMessageBox::Ok);
-            return;
-        }
-        MosaicDetailsDlg detailsDlg(this, createDlg.image());
+    /*QDir::toNativeSeparators(
+            QDir::cleanPath(
+                    QFileDialog::getOpenFileName(this,
+                                                 tr("Select original image"),
+                                                 QDir::toNativeSeparators(
+                                                         QDir::cleanPath(
+                                                                 ui->imageEdit->text())),
+                                                 tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)")))));*/
+
+
+        MosaicDetailsDlg detailsDlg(this, "TODO");
         detailsDlg.show();
         detailsDlg.exec();
         if (detailsDlg.exitedCorrectly()) {
             RenderMosaicDlg renderDlg(this,
-                                      &database,
-                                      createDlg.image(),
+                                      NULL, //&database,
+                                      "TODO",
                                       detailsDlg.tileWidth(),
                                       detailsDlg.tileHeight(),
                                       detailsDlg.tileCount(),
                                       detailsDlg.cutEdges(),
                                       detailsDlg.alphaChannel(),
-                                      createDlg.outputImage(),
+                                      "TODO TARGET",
                                       detailsDlg.minDistanceChecker(),
                                       detailsDlg.minDistance(),
                                       detailsDlg.repeatTilesMaxChecker(),
@@ -158,8 +131,8 @@ void MainWindow::newMosaicBnClicked()
             renderDlg.show();
             renderDlg.exec();
         }
-    }*/
-}
+    }
+
 
 void MainWindow::editDatabaseBnClicked()
 {

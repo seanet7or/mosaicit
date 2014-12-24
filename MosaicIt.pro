@@ -77,8 +77,6 @@ HEADERS += updatedatabasedlg.h \
     mainwindow.h \
     editdatabasedlg.h \
     debug.h \
-    createmosaicdlg.h \
-    builddatabasedlg.h \
     indexdirdlg.h \
     aboutdlg.h \
     appsettings.h \
@@ -89,8 +87,6 @@ HEADERS += updatedatabasedlg.h \
     database_workers/pictureanalyzerthread.h
 SOURCES += main.cpp \
     editdatabasedlg.cpp \
-    createmosaicdlg.cpp \
-    builddatabasedlg.cpp \
     updatedatabasedlg.cpp \
     rendermosaicthread.cpp \
     rendermosaicdlg.cpp \
@@ -115,10 +111,9 @@ FORMS += updatedatabasedlg.ui \
     mosaicdetailsdlg.ui \
     mainwindow.ui \
     editdatabasedlg.ui \
-    createmosaicdlg.ui \
-    builddatabasedlg.ui \
     indexdirdlg.ui \
     aboutdlg.ui
 TRANSLATIONS += mosaicit_de.ts
 RC_FILE += appicon.rc
-RESOURCES += 
+RESOURCES += \ 
+    bundled_resources/resources.qrc

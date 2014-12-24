@@ -17,11 +17,14 @@
 #define SETTINGS_H
 #include <QString>
 
-
 class Settings
 {
 public:
     static QString configDirectory();
+
+    static int minimumPictureWidth();
+    static int minimumPictureHeight();
+    static int minimumFileSize();
 
     Settings();
     ~Settings();

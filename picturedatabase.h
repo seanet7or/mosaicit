@@ -19,10 +19,18 @@
 #include <QSqlQuery>
 #include <QMutex>
 #include <QDateTime>
+#include <QMap>
 
 #define PICTURE_STATE_NOTPROCESSED              1
 #define PICTURE_STATE_CORRUPT                   2
 #define PICTURE_STATE_PROCESSED                 3
+#define PICTURE_STATE_TOOSMALL                  4
+#define PICTURE_STATE_FILETOOSMALL              5
+
+class PictureRow
+{
+
+};
 
 class PictureDatabase
 {

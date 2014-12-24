@@ -38,3 +38,18 @@ QString Settings::configDirectory()
     }
     return directory;
 }
+
+int Settings::minimumPictureHeight()
+{
+    return 129;
+}
+
+int Settings::minimumPictureWidth()
+{
+    return 129;
+}
+
+int Settings::minimumFileSize()
+{
+    return 16 * 1024;
+}
