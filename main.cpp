@@ -20,7 +20,7 @@
 #include "mainwindow.h"
 #include "debug.h"
 #include "appsettings.h"
-
+#include "database_workers/databaseworkmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -42,10 +42,17 @@ int main(int argc, char *argv[])
 	{
 		return 3;
 	}
+    if (!PictureDatabase::openDb())
+    {
+        return 4;
+    }
 
 	qDebug() << "Starting up.";
-
+    DatabaseWorkManager workManager;
+    workManager.startWork();
     MainWindow w(a.applicationDirPath());
     w.show();
-    return a.exec();
+    int res = a.exec();
+    workManager.requestCancel();
+    return res;
 }

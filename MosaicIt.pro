@@ -2,7 +2,7 @@
 TARGET = MosaicIt
 TEMPLATE = app
 
-QT += core gui widgets
+QT += core gui widgets sql
 
 OTHER_FILES += doc/header.txt \
     lupdate_project.cmd \
@@ -75,7 +75,6 @@ HEADERS += updatedatabasedlg.h \
     newdatabasedlg.h \
     mosaicdetailsdlg.h \
     mainwindow.h \
-    indexfilesthread.h \
     editdatabasedlg.h \
     debug.h \
     createmosaicdlg.h \
@@ -83,9 +82,12 @@ HEADERS += updatedatabasedlg.h \
     indexdirdlg.h \
     aboutdlg.h \
     appsettings.h \
-    window.h
+    window.h \
+    settings.h \
+    database_workers/databaseworkmanager.h \
+    database_workers/indexfilesthread.h \
+    database_workers/pictureanalyzerthread.h
 SOURCES += main.cpp \
-    indexfilesthread.cpp \
     editdatabasedlg.cpp \
     createmosaicdlg.cpp \
     builddatabasedlg.cpp \
@@ -102,7 +104,11 @@ SOURCES += main.cpp \
     aboutdlg.cpp \
     appsettings.cpp \
     debug.cpp \
-    window.cpp
+    window.cpp \
+    settings.cpp \
+    database_workers/databaseworkmanager.cpp \
+    database_workers/indexfilesthread.cpp \
+    database_workers/pictureanalyzerthread.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \

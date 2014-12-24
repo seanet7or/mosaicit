@@ -32,7 +32,7 @@ UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent,
 {
     ui->setupUi(this);
     this->m_database = database;
-    disconnect(this->m_database,
+    /*disconnect(this->m_database,
                SIGNAL(processProgress(float)),
                this,
                SLOT(processDone(float)));
@@ -53,7 +53,7 @@ UpdateDatabaseDlg::UpdateDatabaseDlg(QWidget *parent,
             this,
             SLOT(cancelButtonPressed()));
     this->readSettings();
-    this->m_database->processFiles();
+    this->m_database->processFiles();*/
 }
 
 UpdateDatabaseDlg::~UpdateDatabaseDlg()
@@ -81,7 +81,7 @@ void UpdateDatabaseDlg::processDone(float percent)
 
 void UpdateDatabaseDlg::processComplete(bool wasCanceled)
 {
-    qDebug() << ("UpdateDatabaseDlg::processComplete was called!");
+    /*qDebug() << ("UpdateDatabaseDlg::processComplete was called!");
     disconnect(this->m_database,
                SIGNAL(processFinished(bool)));
     if (wasCanceled) {
@@ -91,12 +91,12 @@ void UpdateDatabaseDlg::processComplete(bool wasCanceled)
     }
     ui->cancelButton->setText(tr("Close"));
     this->writeSettings();
-    done(0);
+    done(0);*/
 }
 
 void UpdateDatabaseDlg::cancelButtonPressed()
 {
-    if (this->m_database) {
+    /*if (this->m_database) {
         if (this->m_database->isProcessingRunning()) {
             if (QMessageBox::question(this,
                                       tr("Do you want to cancel?"),
@@ -109,7 +109,7 @@ void UpdateDatabaseDlg::cancelButtonPressed()
         } else {
             return;
         }
-    }
+    }*/
 }
 
 void UpdateDatabaseDlg::reject()
@@ -119,7 +119,7 @@ void UpdateDatabaseDlg::reject()
 
 void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
 {
-    if (this->m_database) {
+    /*if (this->m_database) {
         if (this->m_database->isProcessingRunning()) {
             if (QMessageBox::question(this,
                                       tr("Do you want to cancel?"),
@@ -139,7 +139,7 @@ void UpdateDatabaseDlg::closeEvent(QCloseEvent *e)
     } else {
         this->writeSettings();
         e->accept();
-    }
+    }*/
 }
 
 void UpdateDatabaseDlg::writeSettings()

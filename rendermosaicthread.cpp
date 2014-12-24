@@ -207,12 +207,12 @@ void RenderMosaicThread::run()
             }
 
             //look for best matching tile for current pixel
-            QRgb thisPixel = tilesImages.pixel(i, j);
-            int minDiff = 1000;
-            int nearestIndex = -1;
+            //QRgb thisPixel = tilesImages.pixel(i, j);
+            //int minDiff = 1000;
+            //int nearestIndex = -1;
             //loop through all tiles and look for the one with the best matching
             //color
-            for (int k = 0; k < this->m_database->size(); k++) {
+            /*for (int k = 0; k < this->m_database->size(); k++) {
                 if ((this->m_database->pictureAt(k)->processed())
                     && (this->m_database->pictureAt(k)->validFile())) {
                     int diff = 0;
@@ -252,7 +252,8 @@ void RenderMosaicThread::run()
                         }
                     }
                 }
-            }
+            }*/
+            /*
             //found matching tile
             if (nearestIndex != -1) {
                 tilesMap[i][j] = nearestIndex;
@@ -333,7 +334,7 @@ void RenderMosaicThread::run()
                 emit logText(tr("Choosing a image database with more entries might also remove the problem."));
                 this->m_criticalError = true;
                 return;
-            }
+            }*/
             tilesDone++;
             emit renderComplete(98.f*(float)tilesDone/(float)(tilesX*tilesY) + 1.f);
         }

@@ -126,7 +126,7 @@ void MainWindow::createDatabaseBnClicked()
 
 void MainWindow::newMosaicBnClicked()
 {
-    CreateMosaicDlg createDlg(this);
+    /*CreateMosaicDlg createDlg(this);
     createDlg.show();
     createDlg.exec();
     if (createDlg.exitedCorrectly()) {
@@ -158,7 +158,7 @@ void MainWindow::newMosaicBnClicked()
             renderDlg.show();
             renderDlg.exec();
         }
-    }
+    }*/
 }
 
 void MainWindow::editDatabaseBnClicked()

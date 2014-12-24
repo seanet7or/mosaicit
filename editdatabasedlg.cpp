@@ -43,7 +43,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
 
     //load database and prepare if necessary
     this->m_database = new PictureDatabase;
-    if (!this->m_database->fromFile(databaseFile)) {
+    /*if (!this->m_database->fromFile(databaseFile)) {
         QMessageBox::warning(this,
                              tr("Error"),
                              tr("Could not open the selected database file \"%1\"!").arg(
@@ -60,7 +60,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
             updateDlg.show();
             updateDlg.exec();
         }
-    }
+    }*/
     connect(ui->removeFileButton,
             SIGNAL(pressed()),
             this,
@@ -99,7 +99,7 @@ EditDatabaseDlg::EditDatabaseDlg(QWidget *parent, const QString &databaseFile) :
 
 void EditDatabaseDlg::onUpdateDBButtonPressed()
 {
-    if (!this->m_database->allUpToDate()) {
+    /*if (!this->m_database->allUpToDate()) {
         UpdateDatabaseDlg updateDlg(this, this->m_database);
         updateDlg.show();
         updateDlg.exec();
@@ -109,20 +109,20 @@ void EditDatabaseDlg::onUpdateDBButtonPressed()
                              tr("Nothing to do"),
                              tr("All database entries are up to date!"),
                              QMessageBox::Ok);
-    }
+    }*/
 }
 
 void EditDatabaseDlg::onDelEntryButtonPressed()
-{
+{/*
     if ((ui->fileList->currentRow() >= 0)
         && (ui->fileList->currentRow() < this->m_database->size())) {
         this->m_database->removeEntry(ui->fileList->currentRow());
         this->updateUIElements();
-    }
+    }*/
 }
 
 void EditDatabaseDlg::updateUIElements()
-{
+{/*
     ui->databaseInfoLabel->setText(
             tr("%1 files in the database \"%2\"; %3 do not exist or are not analysed yet.").arg(
                     QString::number(this->m_database->size()),
@@ -143,11 +143,11 @@ void EditDatabaseDlg::updateUIElements()
             }
         }
     }
-    this->onFileSelected(ui->fileList->currentRow());
+    this->onFileSelected(ui->fileList->currentRow());*/
 }
 
 void EditDatabaseDlg::onFileSelected(int row)
-{
+{/*
     if ((row >= 0) && (row < this->m_database->size())) {
         ui->imagePathLabel->setText(this->m_database->pictureAt(row)->getFile());;
         if (this->m_database->pictureAt(row)->validFile()) {
@@ -182,11 +182,11 @@ void EditDatabaseDlg::onFileSelected(int row)
         ui->imagePreview->clear();
         ui->imagePathLabel->clear();
         ui->processedLabel->clear();
-    }
+    }*/
 }
 
 void EditDatabaseDlg::onAddDirButtonPressed()
-{
+{/*
     QString dirToAdd = QFileDialog::getExistingDirectory(
             this,
             tr("Select picture folder"),
@@ -206,11 +206,11 @@ void EditDatabaseDlg::onAddDirButtonPressed()
         updateDlg.show();
         updateDlg.exec();
     }
-    this->updateUIElements();
+    this->updateUIElements();*/
 }
 
 void EditDatabaseDlg::onAddFileButtonPressed()
-{
+{/*
     QString filename
             = QFileDialog::getOpenFileName(this,
                                            tr("Select image file"),
@@ -226,11 +226,11 @@ void EditDatabaseDlg::onAddFileButtonPressed()
         updateDlg.show();
         updateDlg.exec();
     }
-    this->updateUIElements();
+    this->updateUIElements();*/
 }
 
 void EditDatabaseDlg::onRemoveInvalidButtonPressed()
-{
+{/*
     if (QMessageBox::warning(this,
                              tr("Remove files that were not found?"),
                              tr("Do you want to remove these files? Perhaps they are on a removable storage device."),
@@ -242,11 +242,11 @@ void EditDatabaseDlg::onRemoveInvalidButtonPressed()
             }
         }
         this->updateUIElements();
-    }
+    }*/
 }
 
 void EditDatabaseDlg::onCloseButtonPressed()
-{
+{/*
     if (QMessageBox::question(this,
                               tr("Save changes?"),
                               tr("Do you want to save the changes you made to the database \"%1\"?").arg(
@@ -276,7 +276,7 @@ void EditDatabaseDlg::onCloseButtonPressed()
         }
     }
     this->writeSettings();
-    done(0);
+    done(0);*/
 }
 
 void EditDatabaseDlg::closeEvent(QCloseEvent *e)

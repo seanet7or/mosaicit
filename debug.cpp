@@ -22,7 +22,7 @@
 #ifdef QT_DEBUG
 QPointer<Window> Debug::m_debugWindow = NULL;
 QPointer<QTreeWidget> Debug::m_debugLogWidget = NULL;
-#endif
+
 
 
 void Debug::messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -77,7 +77,7 @@ void Debug::messageHandler(QtMsgType type, const QMessageLogContext &context, co
         abort();
     }
 }
-
+#endif
 
 bool Debug::init()
 {
@@ -93,6 +93,6 @@ bool Debug::init()
 	m_debugWindow->show();
 #endif
 
-	qInstallMessageHandler(Debug::messageHandler);
+    //qInstallMessageHandler(Debug::messageHandler);
 	return true;
 }

@@ -29,7 +29,7 @@ BuildDatabaseDlg::BuildDatabaseDlg(QWidget *parent,
 QDialog(parent),
 ui(new Ui::BuildDatabaseDlg)
 {
-    ui->setupUi(this);
+    /*ui->setupUi(this);
     this->m_name = name;
     this->m_directory = directory;
     this->m_includeSubdirectories = includeSubdirectories;
@@ -50,7 +50,7 @@ ui(new Ui::BuildDatabaseDlg)
             SIGNAL(pressed()),
             this,
             SLOT(closeButtonPressed()));
-    readSettings();
+    readSettings();*/
 }
 
 BuildDatabaseDlg::~BuildDatabaseDlg()
@@ -61,7 +61,7 @@ BuildDatabaseDlg::~BuildDatabaseDlg()
 
 void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
 {
-    if (this->m_newDatabase->isIndexingRunning() ||
+    /*if (this->m_newDatabase->isIndexingRunning() ||
         this->m_newDatabase->isProcessingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel?"),
@@ -92,11 +92,11 @@ void BuildDatabaseDlg::closeEvent(QCloseEvent *e)
         this->writeSettings();
         e->accept();
     }
-
+*/
 }
 
 void BuildDatabaseDlg::closeButtonPressed()
-{
+{/*
     if (this->m_newDatabase->isIndexingRunning() ||
         this->m_newDatabase->isProcessingRunning()) {
         if (QMessageBox::question(this,
@@ -123,7 +123,7 @@ void BuildDatabaseDlg::closeButtonPressed()
     } else {
         this->writeSettings();
         done(0);
-    }
+    }*/
 }
 
 void BuildDatabaseDlg::reject()
@@ -134,7 +134,7 @@ void BuildDatabaseDlg::reject()
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
-    disconnect(this->m_newDatabase,
+    /*disconnect(this->m_newDatabase,
                SIGNAL(indexFinished()),
                this,
                SLOT(indexingFinished()));
@@ -153,11 +153,11 @@ void BuildDatabaseDlg::reject()
         this->m_newDatabase->cancelProcessing();
     }
     this->writeSettings();
-    done(0);
+    done(0);*/
 }
 
 void BuildDatabaseDlg::indexingFinished()
-{
+{/*
     if (this->m_canceled) return;
     ui->textLog->appendPlainText(tr("Indexing of the files is finished."));
     connect(this->m_newDatabase,
@@ -172,11 +172,11 @@ void BuildDatabaseDlg::indexingFinished()
             this,
             SLOT(processProgress(float)));
     ui->textLog->appendPlainText(tr("Analyzing all found image files..."));
-    this->m_newDatabase->processFiles();
+    this->m_newDatabase->processFiles();*/
 }
 
 void BuildDatabaseDlg::processingFinished(bool wasCanceled)
-{
+{/*
     if (!wasCanceled) {
         ui->textLog->appendPlainText(tr("Analyzing found files finished."));
     } else {
@@ -215,7 +215,7 @@ void BuildDatabaseDlg::processingFinished(bool wasCanceled)
     } else {
         ui->label->setText(tr("The database will be incomplete!"));
     }
-    ui->closeButton->setText(tr("Close"));
+    ui->closeButton->setText(tr("Close"));*/
 }
 
 void BuildDatabaseDlg::changeEvent(QEvent *e)
