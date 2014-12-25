@@ -22,7 +22,6 @@
 #include <QFileDialog>
 #include <QCloseEvent>
 
-#include "updatedatabasedlg.h"
 #include "indexdirdlg.h"
 #include "appsettings.h"
 

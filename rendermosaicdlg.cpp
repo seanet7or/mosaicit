@@ -25,7 +25,6 @@
 #include "appsettings.h"
 
 RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
-                                 PictureDatabase *database,
                                  const QString &imageFile,
                                  int tileWidth,
                                  int tileHeight,
@@ -59,8 +58,7 @@ ui(new Ui::RenderMosaicDlg)
             SIGNAL(finished()),
             this,
             SLOT(renderThreadFinished()));
-    this->m_renderThread->renderMosaic(database,
-                                       imageFile,
+    this->m_renderThread->renderMosaic(imageFile,
                                        tileWidth,
                                        tileHeight,
                                        tileCount,
@@ -81,7 +79,7 @@ RenderMosaicDlg::~RenderMosaicDlg()
     delete ui;
     if (this->m_renderThread) {
         while (this->m_renderThread->isRunning()) {
-            this->m_renderThread->cancel();
+            this->m_renderThread->requestInterruption();
         }
         delete this->m_renderThread;
         this->m_renderThread = 0;
@@ -120,7 +118,7 @@ void RenderMosaicDlg::cancelBnPressed()
                                       QMessageBox::No | QMessageBox::Yes
                                       ) == QMessageBox::Yes) {
                 while (this->m_renderThread->isRunning()) {
-                    this->m_renderThread->cancel();
+                    this->m_renderThread->requestInterruption();
                 }
             }
         } else {
@@ -148,7 +146,7 @@ void RenderMosaicDlg::closeEvent(QCloseEvent *e)
                                       QMessageBox::No | QMessageBox::Yes
                                       ) == QMessageBox::Yes) {
                 while (this->m_renderThread->isRunning()) {
-                    this->m_renderThread->cancel();
+                    this->m_renderThread->requestInterruption();
                 }
                 this->writeSettings();
                 e->accept();
@@ -170,7 +168,7 @@ void RenderMosaicDlg::renderThreadFinished()
     if (this->m_renderThread) {
         disconnect(this->m_renderThread,
                    SIGNAL(finished()));
-        if (this->m_renderThread->wasCanceled()) {
+        if (this->m_renderThread->isInterruptionRequested()) {
             ui->label->setText(tr("Building the mosaic was canceled, no mosaic was saved!"));
         } else if (this->m_renderThread->criticalError()) {
             ui->label->setText(tr("A critical error occured, view the detailed output!"));

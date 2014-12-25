@@ -13,15 +13,14 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
 #include <QProcess>
 #include <QDebug>
+#include <QStandardPaths>
 #include "newdatabasedlg.h"
 #include "picturedatabase.h"
 #include "mosaicdetailsdlg.h"
@@ -101,29 +100,58 @@ void MainWindow::helpBnClicked()
 
 void MainWindow::newMosaicBnClicked()
 {
-    /*QDir::toNativeSeparators(
-            QDir::cleanPath(
-                    QFileDialog::getOpenFileName(this,
-                                                 tr("Select original image"),
-                                                 QDir::toNativeSeparators(
-                                                         QDir::cleanPath(
-                                                                 ui->imageEdit->text())),
-                                                 tr("Images (*.png *.bmp *.xpm *.jpg);;All files (*.*)")))));*/
+    QString startDir;
+    QStringList pictureLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    if (pictureLocations.length() > 0)
+    {
+        startDir = pictureLocations.first();
+    }
+    else
+    {
+        QStringList documentLocations =
+                QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
+        if (documentLocations.length() > 0)
+        {
+            startDir = documentLocations.first();
+        }
+        else
+        {
+            startDir = QString();
+        }
+    }
 
-
-        MosaicDetailsDlg detailsDlg(this, "TODO");
+    QString imageFile = QFileDialog::getOpenFileName(this,
+                                                     tr("Select original image"),
+                                                     startDir,
+                                                     tr("Images (*.png *.bmp *.xpm *.jpg *.jpeg);;"\
+                                                        "All files (*.*)")
+                                                     );
+    if ((imageFile != NULL) && (imageFile.length() > 0))
+    {
+        imageFile = QDir::toNativeSeparators(QDir::cleanPath(imageFile));
+        MosaicDetailsDlg detailsDlg(this, imageFile);
         detailsDlg.show();
         detailsDlg.exec();
         if (detailsDlg.exitedCorrectly()) {
+            QString extension = imageFile.split('.').last();
+            QString targetFile = imageFile;
+            int pointPos = targetFile.lastIndexOf('.');
+            if (pointPos != -1) {
+                targetFile = targetFile.left(pointPos);
+            }
+            targetFile.append("Mosaic");
+            if (extension.length() > 0) {
+                targetFile.append("." + extension);
+            }
+
             RenderMosaicDlg renderDlg(this,
-                                      NULL, //&database,
-                                      "TODO",
+                                      imageFile,
                                       detailsDlg.tileWidth(),
                                       detailsDlg.tileHeight(),
                                       detailsDlg.tileCount(),
                                       detailsDlg.cutEdges(),
                                       detailsDlg.alphaChannel(),
-                                      "TODO TARGET",
+                                      targetFile,
                                       detailsDlg.minDistanceChecker(),
                                       detailsDlg.minDistance(),
                                       detailsDlg.repeatTilesMaxChecker(),
@@ -132,7 +160,7 @@ void MainWindow::newMosaicBnClicked()
             renderDlg.exec();
         }
     }
-
+}
 
 void MainWindow::editDatabaseBnClicked()
 {

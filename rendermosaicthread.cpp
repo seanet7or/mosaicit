@@ -26,12 +26,10 @@
 RenderMosaicThread::RenderMosaicThread(QObject *parent) :
         QThread(parent)
 {
-    m_cancelNow = false;
     m_criticalError = false;
 }
 
-void RenderMosaicThread::renderMosaic(PictureDatabase *database,
-                                      const QString &imageFile,
+void RenderMosaicThread::renderMosaic(const QString &imageFile,
                                       int tileWidth,
                                       int tileHeight,
                                       int tileCount,
@@ -44,9 +42,8 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
                                       bool maxTileRepeatChecker,
                                       int maxTileRepeatCount)
 {
-    m_cancelNow = false;
     this->m_criticalError = false;
-    this->m_database = database;
+    this->m_database = new PictureDatabase();
     this->m_imageFile = imageFile;
     this->m_tileWidth = tileWidth;
     this->m_tileHeight = tileHeight;
@@ -60,11 +57,6 @@ void RenderMosaicThread::renderMosaic(PictureDatabase *database,
     this->m_maxTileRepeatCount = maxTileRepeatCount;
     this->m_maxTileRepeatChecker = maxTileRepeatChecker;
     start();
-}
-
-void RenderMosaicThread::cancel()
-{
-    this->m_cancelNow = true;
 }
 
 float RenderMosaicThread::smallestDistance(int**tileMap,
@@ -103,7 +95,7 @@ void RenderMosaicThread::run()
     emit renderComplete(0.f);
     emit logText(tr("Rendering the mosaic..."));
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -117,7 +109,7 @@ void RenderMosaicThread::run()
         return;
     }
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -153,7 +145,7 @@ void RenderMosaicThread::run()
         return;
     }
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -191,7 +183,7 @@ void RenderMosaicThread::run()
 
     emit renderComplete(1.f);
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -201,7 +193,7 @@ void RenderMosaicThread::run()
     for (int i = 0; i < tilesX; i++) {
         for (int j = 0; j < tilesY; j++) {
 
-            if (this->m_cancelNow) {
+            if (isInterruptionRequested()) {
                 emit logText(tr("Rendering was canceled - no mosaic was saved!"));
                 return;
             }
@@ -340,7 +332,7 @@ void RenderMosaicThread::run()
         }
     }
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -355,7 +347,7 @@ void RenderMosaicThread::run()
                                 srcRect);
     }
 
-    if (this->m_cancelNow) {
+    if (isInterruptionRequested()) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -404,11 +396,6 @@ void RenderMosaicThread::run()
 bool RenderMosaicThread::criticalError()
 {
     return this->m_criticalError;
-}
-
-bool RenderMosaicThread::wasCanceled()
-{
-    return this->m_cancelNow;
 }
 
 QString RenderMosaicThread::outputFile()

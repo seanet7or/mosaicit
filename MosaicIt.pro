@@ -66,7 +66,7 @@ OTHER_FILES += doc/header.txt \
     doc/end-user/html/ger/pics/builddbcompl.png \
     doc/end-user/html/ger/pics/builddb.png \
     doc/end-user/html/ger/pics/browseresults.png
-HEADERS += updatedatabasedlg.h \
+HEADERS += \
     rendermosaicthread.h \
     rendermosaicdlg.h \
     processimagesthread.h \
@@ -87,7 +87,6 @@ HEADERS += updatedatabasedlg.h \
     database_workers/pictureanalyzerthread.h
 SOURCES += main.cpp \
     editdatabasedlg.cpp \
-    updatedatabasedlg.cpp \
     rendermosaicthread.cpp \
     rendermosaicdlg.cpp \
     processimagesthread.cpp \

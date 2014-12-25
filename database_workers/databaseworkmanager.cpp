@@ -72,6 +72,10 @@ void DatabaseWorkManager::run()
     while (!isInterruptionRequested())
     {
         QStringList picturesNotProcessed = m_database->picturesNotProcessed();
+        if (picturesNotProcessed.length() == 0)
+        {
+            sleep(10);
+        }
 
         while (picturesNotProcessed.length() > 0)
         {
@@ -103,8 +107,7 @@ void DatabaseWorkManager::run()
             analyzerThread->startAnalyzer(picture);
             picturesNotProcessed.removeAt(0);
             m_pictureAnalyzers.append(analyzerThread);
-        }
-        qDebug() << " No more pictures to be analyzed.";
+        }        
     }
 
     if (isInterruptionRequested())

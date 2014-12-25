@@ -31,7 +31,6 @@ class RenderMosaicDlg : public QDialog {
     Q_OBJECT
 public:
     RenderMosaicDlg(QWidget *parent,
-                    PictureDatabase *database,
                     const QString &imageFile,
                     int tileWidth,
                     int tileHeight,

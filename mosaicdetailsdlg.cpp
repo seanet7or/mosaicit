@@ -52,9 +52,12 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
         int lw = ui->previewImage->width();
         int lh = ui->previewImage->height();
         ui->previewImage->setPixmap(
-                QPixmap::fromImage(m_image.scaled(QSize(lw, lh),
+                QPixmap::fromImage(
+                        m_image.scaled(QSize(lw, lh),
                                                   Qt::KeepAspectRatio,
-                                                  Qt::SmoothTransformation)));
+                                                  Qt::SmoothTransformation)
+                        )
+                    );
     }
     connect(ui->cancelButton,
             SIGNAL(pressed()),

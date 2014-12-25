@@ -28,8 +28,7 @@ class RenderMosaicThread : public QThread
     Q_OBJECT
 public:
     explicit RenderMosaicThread(QObject *parent = 0);
-    void renderMosaic(PictureDatabase *database,
-                      const QString &imageFile,
+    void renderMosaic(const QString &imageFile,
                       int tileWidth,
                       int tileHeight,
                       int tileCount,
@@ -41,9 +40,7 @@ public:
                       int minDinstance,
                       bool maxTileRepeatChecker,
                       int maxTileRepeatCount);
-    void cancel();
     bool criticalError();
-    bool wasCanceled();
     QString outputFile();
 
 signals:
@@ -64,7 +61,6 @@ private:
                            int yPos);
     int tileCountInMap(int **tileMap, int mapWidth, int mapHeight, int tileToSearch);
 
-    bool m_cancelNow;
     bool m_criticalError;
     PictureDatabase *m_database;
     QString m_imageFile;
