@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  shows the progress when rendering a mosaic
 *
@@ -21,7 +21,7 @@
 #include <QDir>
 
 #include "rendermosaicthread.h"
-#include "picturedatabase.h"
+#include "database/picturedatabase.h"
 #include "appsettings.h"
 
 RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,

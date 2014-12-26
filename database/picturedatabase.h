@@ -20,17 +20,13 @@
 #include <QMutex>
 #include <QDateTime>
 #include <QMap>
+#include "pictureinfo.h"
 
 #define PICTURE_STATE_NOTPROCESSED              1
 #define PICTURE_STATE_CORRUPT                   2
 #define PICTURE_STATE_PROCESSED                 3
 #define PICTURE_STATE_TOOSMALL                  4
 #define PICTURE_STATE_FILETOOSMALL              5
-
-class PictureRow
-{
-
-};
 
 class PictureDatabase
 {
@@ -43,6 +39,7 @@ public:
     bool isPictureInDb(const QString &path);
     bool insertNewPicture(const QString &path);
     QStringList picturesNotProcessed();
+    QVector<PictureInfo *> picturesProcessed();
     bool setPictureProperties(
             const QString &path,
             QDateTime mtime,
@@ -65,6 +62,7 @@ private:
     QSqlQuery *m_insertNewPictureQuery;
     QSqlQuery *m_picturesNotProcessedQuery;
     QSqlQuery *m_setPicturePropertiesQuery;
+    QSqlQuery *m_processedPicturesQuery;
     static QMutex m_lock;
 };
 

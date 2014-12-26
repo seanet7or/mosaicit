@@ -1,7 +1,7 @@
 #ifndef PICTUREANALYZERTHREAD_H
 #define PICTUREANALYZERTHREAD_H
 #include <QThread>
-#include "../picturedatabase.h"
+#include "../database/picturedatabase.h"
 
 class PictureAnalyzerThread : public QThread
 {

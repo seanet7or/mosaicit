@@ -69,9 +69,6 @@ OTHER_FILES += doc/header.txt \
 HEADERS += \
     rendermosaicthread.h \
     rendermosaicdlg.h \
-    processimagesthread.h \
-    pictureinfo.h \
-    picturedatabase.h \
     newdatabasedlg.h \
     mosaicdetailsdlg.h \
     mainwindow.h \
@@ -84,14 +81,14 @@ HEADERS += \
     settings.h \
     database_workers/databaseworkmanager.h \
     database_workers/indexfilesthread.h \
-    database_workers/pictureanalyzerthread.h
+    database_workers/pictureanalyzerthread.h \
+    picturelibrary.h \
+    database/pictureinfo.h \
+    database/picturedatabase.h
 SOURCES += main.cpp \
     editdatabasedlg.cpp \
     rendermosaicthread.cpp \
     rendermosaicdlg.cpp \
-    processimagesthread.cpp \
-    pictureinfo.cpp \
-    picturedatabase.cpp \
     newdatabasedlg.cpp \
     mosaicdetailsdlg.cpp \
     mainwindow.cpp \
@@ -103,7 +100,10 @@ SOURCES += main.cpp \
     settings.cpp \
     database_workers/databaseworkmanager.cpp \
     database_workers/indexfilesthread.cpp \
-    database_workers/pictureanalyzerthread.cpp
+    database_workers/pictureanalyzerthread.cpp \
+    picturelibrary.cpp \
+    database/pictureinfo.cpp \
+    database/picturedatabase.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \

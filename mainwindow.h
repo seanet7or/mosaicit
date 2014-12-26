@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  the applications main window
 *
@@ -45,6 +45,7 @@ private slots:
 private:
     void readSettings();
     void writeSettings();
+    static QString targetFileFor(const QString &sourceFile);
 
     Ui::MainWindow *ui;
 

@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  the applications main window
 *
@@ -22,7 +22,7 @@
 #include <QDebug>
 #include <QStandardPaths>
 #include "newdatabasedlg.h"
-#include "picturedatabase.h"
+#include "database/picturedatabase.h"
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
 #include "editdatabasedlg.h"
@@ -98,6 +98,41 @@ void MainWindow::helpBnClicked()
     QProcess::startDetached(command);
 }
 
+QString MainWindow::targetFileFor(const QString &sourceFile)
+{
+    QString extension = sourceFile.split('.').last();
+    QString targetFile = sourceFile;
+    int pointPos = targetFile.lastIndexOf('.');
+    if (pointPos != -1) {
+        targetFile = targetFile.left(pointPos);
+    }
+    targetFile.append("Mosaic");
+
+    QFileInfo targetFileInfo(targetFile + "." + extension);
+    if (targetFileInfo.exists())
+    {
+        int index = 1;
+        bool fileExists = false;
+        do
+        {
+            QString strIndex = QString::number(index);
+            if (strIndex.length() < 2)
+            {
+                strIndex = "0" + strIndex;
+            }
+            QFileInfo targetFileWithIndexInfo(targetFile + "-" + strIndex + "." + extension);
+            fileExists = targetFileWithIndexInfo.exists();
+            if (!fileExists) {
+                targetFile += "-" + strIndex;
+            }
+        }
+        while (fileExists);
+    }
+
+    targetFile.append("." + extension);
+    return targetFile;
+}
+
 void MainWindow::newMosaicBnClicked()
 {
     QString startDir;
@@ -133,16 +168,7 @@ void MainWindow::newMosaicBnClicked()
         detailsDlg.show();
         detailsDlg.exec();
         if (detailsDlg.exitedCorrectly()) {
-            QString extension = imageFile.split('.').last();
-            QString targetFile = imageFile;
-            int pointPos = targetFile.lastIndexOf('.');
-            if (pointPos != -1) {
-                targetFile = targetFile.left(pointPos);
-            }
-            targetFile.append("Mosaic");
-            if (extension.length() > 0) {
-                targetFile.append("." + extension);
-            }
+            QString targetFile = targetFileFor(imageFile);
 
             RenderMosaicDlg renderDlg(this,
                                       imageFile,

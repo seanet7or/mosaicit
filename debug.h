@@ -4,7 +4,7 @@
 *
 * CREATED:  10-05-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  allows to print debug messages to the console
 *

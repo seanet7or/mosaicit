@@ -4,7 +4,7 @@
 *
 * CREATED:  13-05-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  seperate thread to index all files in a directory
 *
@@ -19,7 +19,7 @@
 #include <QVector>
 #include <QString>
 #include <QStringList>
-#include "../picturedatabase.h"
+#include "../database/picturedatabase.h"
 
 class IndexFilesThread : public QThread
 {

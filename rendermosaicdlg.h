@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  shows the progress when rendering a mosaic
 *
@@ -13,14 +13,10 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
-
 #ifndef RENDERMOSAICDLG_H
 #define RENDERMOSAICDLG_H
-
 #include <QDialog>
 #include <QString>
-
-#include "picturedatabase.h"
 #include "rendermosaicthread.h"
 
 namespace Ui {

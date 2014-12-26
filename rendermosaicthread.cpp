@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  allows to render the mosaic in a seperate tread
 *
@@ -43,7 +43,7 @@ void RenderMosaicThread::renderMosaic(const QString &imageFile,
                                       int maxTileRepeatCount)
 {
     this->m_criticalError = false;
-    this->m_database = new PictureDatabase();
+    this->m_pictureLibrary = new PictureLibrary();
     this->m_imageFile = imageFile;
     this->m_tileWidth = tileWidth;
     this->m_tileHeight = tileHeight;
@@ -199,21 +199,19 @@ void RenderMosaicThread::run()
             }
 
             //look for best matching tile for current pixel
-            //QRgb thisPixel = tilesImages.pixel(i, j);
-            //int minDiff = 1000;
-            //int nearestIndex = -1;
+            QRgb thisPixel = tilesImages.pixel(i, j);
+            int minDiff = 1000;
+            int nearestIndex = -1;
             //loop through all tiles and look for the one with the best matching
             //color
-            /*for (int k = 0; k < this->m_database->size(); k++) {
-                if ((this->m_database->pictureAt(k)->processed())
-                    && (this->m_database->pictureAt(k)->validFile())) {
+            for (int k = 0; k < this->m_pictureLibrary->size(); k++) {
                     int diff = 0;
                     diff += qAbs(qRed(thisPixel)
-                                 - this->m_database->pictureAt(k)->getRed());
+                                 - this->m_pictureLibrary->pictureAt(k)->getRed());
                     diff += qAbs(qGreen(thisPixel)
-                                 - this->m_database->pictureAt(k)->getGreen());
+                                 - this->m_pictureLibrary->pictureAt(k)->getGreen());
                     diff += qAbs(qBlue(thisPixel)
-                                 - this->m_database->pictureAt(k)->getBlue());
+                                 - this->m_pictureLibrary->pictureAt(k)->getBlue());
                     if (diff < minDiff) {
                         bool tileIsOk = true;
                         //potentially found a matching tile, but check for min distance condition
@@ -243,9 +241,9 @@ void RenderMosaicThread::run()
                             nearestIndex = k;
                         }
                     }
-                }
-            }*/
-            /*
+
+            }
+
             //found matching tile
             if (nearestIndex != -1) {
                 tilesMap[i][j] = nearestIndex;
@@ -253,10 +251,10 @@ void RenderMosaicThread::run()
                 //emit logText(tr("filename is %1").arg(
                 //        this->m_database->pictureAt(nearestIndex)->getFile()));
                 //load tile image
-                QImage tileImage(this->m_database->pictureAt(nearestIndex)->getFile());
+                QImage tileImage(this->m_pictureLibrary->pictureAt(nearestIndex)->getFile());
                 if (tileImage.isNull()) {
                     emit logText(tr("Error loading the tile image %1!").arg(
-                            this->m_database->pictureAt(nearestIndex)->getFile()));
+                            this->m_pictureLibrary->pictureAt(nearestIndex)->getFile()));
                     this->m_criticalError = true;
                     return;
                 }
@@ -307,7 +305,7 @@ void RenderMosaicThread::run()
                                              Qt::SmoothTransformation);
                 if (tileImage.isNull()) {
                     emit logText(tr("Error scaling the tile image %1!").arg(
-                            this->m_database->pictureAt(nearestIndex)->getFile()));
+                            this->m_pictureLibrary->pictureAt(nearestIndex)->getFile()));
                     this->m_criticalError = true;
                     return;
                 }
@@ -326,7 +324,7 @@ void RenderMosaicThread::run()
                 emit logText(tr("Choosing a image database with more entries might also remove the problem."));
                 this->m_criticalError = true;
                 return;
-            }*/
+            }
             tilesDone++;
             emit renderComplete(98.f*(float)tilesDone/(float)(tilesX*tilesY) + 1.f);
         }

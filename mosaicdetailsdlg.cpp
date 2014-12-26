@@ -4,7 +4,7 @@
 *
 * CREATED:  13-05-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  dialog to set detailed options for a mosaic
 *

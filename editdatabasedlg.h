@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  dialog to edit database files
 *
@@ -19,7 +19,7 @@
 
 #include <QDialog>
 
-#include "picturedatabase.h"
+#include "database/picturedatabase.h"
 
 namespace Ui {
     class EditDatabaseDlg;

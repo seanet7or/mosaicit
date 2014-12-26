@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  allows to render the mosaic in a seperate tread
 *
@@ -13,15 +13,12 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
-
 #ifndef RENDERMOSAICTHREAD_H
 #define RENDERMOSAICTHREAD_H
-
 #include <QThread>
 #include <QString>
 #include <QWidget>
-
-#include "picturedatabase.h"
+#include "picturelibrary.h"
 
 class RenderMosaicThread : public QThread
 {
@@ -62,7 +59,7 @@ private:
     int tileCountInMap(int **tileMap, int mapWidth, int mapHeight, int tileToSearch);
 
     bool m_criticalError;
-    PictureDatabase *m_database;
+    PictureLibrary *m_pictureLibrary;
     QString m_imageFile;
     int m_tileWidth;
     int m_tileHeight;

@@ -18,7 +18,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlError>
-#include "settings.h"
+#include "../settings.h"
 
 #define TABLE_PICTURES                          "pictures"
 #define COLUMN_PICTURES_PATH                    "path"
@@ -47,6 +47,10 @@ PictureDatabase::PictureDatabase()
                 "SELECT " COLUMN_PICTURES_PATH " FROM " TABLE_PICTURES
                 " WHERE " COLUMN_PICTURES_STATE " = " + QString::number(PICTURE_STATE_NOTPROCESSED));
 
+    m_processedPicturesQuery = new QSqlQuery(
+                "SELECT " COLUMN_PICTURES_PATH ", " COLUMN_PICTURES_RGB ", " COLUMN_PICTURES_WIDTH ", " COLUMN_PICTURES_HEIGHT " FROM " TABLE_PICTURES
+                " WHERE " COLUMN_PICTURES_STATE " = " + QString::number(PICTURE_STATE_PROCESSED));
+
     QString setPicturePropertiesCmd = "UPDATE " TABLE_PICTURES
             " SET " COLUMN_PICTURES_MTIME " = ?, "
             COLUMN_PICTURES_STATE " = ?, "
@@ -55,6 +59,30 @@ PictureDatabase::PictureDatabase()
             COLUMN_PICTURES_RGB " = ? "
             " WHERE " COLUMN_PICTURES_PATH " = ?";
     m_setPicturePropertiesQuery = new QSqlQuery(setPicturePropertiesCmd);
+}
+
+QVector<PictureInfo*> PictureDatabase::picturesProcessed()
+{
+    m_lock.lock();
+    QVector<PictureInfo*> result;
+    if (execSQLQuery(m_processedPicturesQuery))
+    {
+        result = QVector<PictureInfo*>();
+        while (m_processedPicturesQuery->next())
+        {
+            PictureInfo *currentRow = new PictureInfo(m_processedPicturesQuery->value(0).toString(),
+                                                      m_processedPicturesQuery->value(2).toInt(),
+                                                      m_processedPicturesQuery->value(3).toInt(),
+                                                      m_processedPicturesQuery->value(1).toUInt());
+            result.append(currentRow);
+        }
+    }
+    else
+    {
+        result = QVector<PictureInfo*>();
+    }
+    m_lock.unlock();
+    return result;
 }
 
 bool PictureDatabase::openDb(QString dbFile)

@@ -4,7 +4,7 @@
 *
 * CREATED:  07-08-2010
 *
-* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
+* AUTHOR:   Benjamin Caspari (mail@becait.de)
 *
 * PURPOSE:  this dialog shows the progress when indexing the files in a directory
 *
@@ -19,7 +19,7 @@
 
 #include <QDialog>
 
-#include "picturedatabase.h"
+#include "database/picturedatabase.h"
 
 namespace Ui {
     class IndexDirDlg;

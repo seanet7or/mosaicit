@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>620</width>
-    <height>353</height>
+    <width>890</width>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,41 +53,7 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Tile size:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="tileWidth">
-         <property name="minimum">
-          <number>2</number>
-         </property>
-         <property name="maximum">
-          <number>999999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>x</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QSpinBox" name="tileHeight">
-         <property name="minimum">
-          <number>2</number>
-         </property>
-         <property name="maximum">
-          <number>999999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="4">
+       <item row="3" column="0" colspan="4">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Tile aspect ratio</string>
@@ -97,6 +63,12 @@
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="0">
              <widget class="QRadioButton" name="aspect11">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>1:1</string>
               </property>
@@ -104,6 +76,12 @@
             </item>
             <item row="0" column="1">
              <widget class="QRadioButton" name="aspect43">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>4:3</string>
               </property>
@@ -111,6 +89,12 @@
             </item>
             <item row="0" column="2">
              <widget class="QRadioButton" name="aspect169">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>16:9</string>
               </property>
@@ -118,6 +102,12 @@
             </item>
             <item row="0" column="3">
              <widget class="QRadioButton" name="aspectFree">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>free</string>
               </property>
@@ -128,14 +118,14 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" colspan="3">
+       <item row="5" column="0" colspan="3">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Total number of tiles:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="3">
+       <item row="5" column="3">
         <widget class="QSpinBox" name="totalTiles">
          <property name="minimum">
           <number>4</number>
@@ -145,24 +135,58 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="2">
+       <item row="8" column="0" colspan="2">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Alpha channel:</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="3">
+       <item row="8" column="2">
+        <widget class="QSpinBox" name="alphaChannel"/>
+       </item>
+       <item row="8" column="3">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>percent</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="2">
-        <widget class="QSpinBox" name="alphaChannel"/>
+       <item row="10" column="0" colspan="4">
+        <widget class="QLabel" name="resultLabel">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
        </item>
-       <item row="3" column="0" colspan="4">
+       <item row="9" column="0" colspan="4">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
+        <widget class="QCheckBox" name="minDistanceChecker">
+         <property name="text">
+          <string>Minimum distance between same tiles:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0" colspan="4">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0" colspan="4">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>fit tiles by</string>
@@ -202,41 +226,7 @@
          </property>
         </spacer>
        </item>
-       <item row="10" column="0" colspan="4">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="8" column="0" colspan="4">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0" colspan="4">
-        <widget class="QLabel" name="resultLabel">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="3">
-        <widget class="QCheckBox" name="minDistanceChecker">
-         <property name="text">
-          <string>Minimum distance between same tiles:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="3">
+       <item row="6" column="3">
         <widget class="QSpinBox" name="minDistanceSpinner">
          <property name="maximum">
           <number>999999999</number>
@@ -246,14 +236,14 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
+       <item row="7" column="0" colspan="2">
         <widget class="QCheckBox" name="repeatTilesChecker">
          <property name="text">
           <string>Repeat tiles maximal</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="2">
+       <item row="7" column="2">
         <widget class="QSpinBox" name="repeatTilesSpinner">
          <property name="minimum">
           <number>1</number>
@@ -263,10 +253,51 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="3">
+       <item row="7" column="3">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>times</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QSpinBox" name="tileWidth">
+         <property name="minimum">
+          <number>16</number>
+         </property>
+         <property name="maximum">
+          <number>4096</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>pixels x</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QSpinBox" name="tileHeight">
+         <property name="minimum">
+          <number>16</number>
+         </property>
+         <property name="maximum">
+          <number>4096</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>pixels</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Size of mosaic pieces</string>
          </property>
         </widget>
        </item>
