@@ -25,6 +25,7 @@ public:
     static int minimumPictureWidth();
     static int minimumPictureHeight();
     static int minimumFileSize();
+    static qreal maxAspectRatio();
 
     Settings();
     ~Settings();

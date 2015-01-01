@@ -26,6 +26,7 @@ public:
 
     PictureInfo* pictureAt(int index) const;
     int size() const;
+    QMap<QString, QVector<PictureInfo*> > picturesByDirectory() const;
 
 private:
     QVector<PictureInfo*> m_processedPictures;

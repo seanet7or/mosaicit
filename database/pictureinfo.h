@@ -26,7 +26,10 @@ public:
     int getRed() const;
     int getGreen() const;
     int getBlue() const;
-    const QString &getFile() const;
+    const QString &getPath() const;
+    QString getDirectory() const;
+    bool enabled() const;
+    QString filename() const;
 
 private:
     QString m_path;

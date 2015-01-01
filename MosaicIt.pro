@@ -72,7 +72,6 @@ HEADERS += \
     newdatabasedlg.h \
     mosaicdetailsdlg.h \
     mainwindow.h \
-    editdatabasedlg.h \
     debug.h \
     indexdirdlg.h \
     aboutdlg.h \
@@ -84,9 +83,13 @@ HEADERS += \
     database_workers/pictureanalyzerthread.h \
     picturelibrary.h \
     database/pictureinfo.h \
-    database/picturedatabase.h
+    database/picturedatabase.h \
+    picturedatabasedlg.h \
+    widgets/button.h \
+    widgets/Animator.h \
+    widgets/widgets.h \
+    widgets/slider.h
 SOURCES += main.cpp \
-    editdatabasedlg.cpp \
     rendermosaicthread.cpp \
     rendermosaicdlg.cpp \
     newdatabasedlg.cpp \
@@ -103,15 +106,19 @@ SOURCES += main.cpp \
     database_workers/pictureanalyzerthread.cpp \
     picturelibrary.cpp \
     database/pictureinfo.cpp \
-    database/picturedatabase.cpp
+    database/picturedatabase.cpp \
+    picturedatabasedlg.cpp \
+    widgets/button.cpp \
+    widgets/Animator.cpp \
+    widgets/slider.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \
     mosaicdetailsdlg.ui \
     mainwindow.ui \
-    editdatabasedlg.ui \
     indexdirdlg.ui \
-    aboutdlg.ui
+    aboutdlg.ui \
+    picturedatabasedlg.ui
 TRANSLATIONS += mosaicit_de.ts
 RC_FILE += appicon.rc
 RESOURCES += \ 

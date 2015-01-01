@@ -22,10 +22,12 @@ AboutDlg::AboutDlg(QWidget *parent) :
     ui(new Ui::AboutDlg)
 {
     ui->setupUi(this);
-    connect(ui->pushButton,
-            SIGNAL(pressed()),
+    ui->okBn->setText(tr("OK"));
+    ui->okBn->setHorizontalAlignment(Qt::AlignHCenter);
+    connect(ui->okBn,
+            &Button::pressed,
             this,
-            SLOT(onOkButtonPressed()));
+            &AboutDlg::onOkButtonPressed);
     this->readSettings();
 }
 

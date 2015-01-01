@@ -20,7 +20,7 @@ void PictureAnalyzerThread::run()
     QFileInfo fileInfo(m_file);
 
     if (!fileInfo.exists()) {
-        // TODO Bild aus DB löschen
+        m_database->deletePicture(m_file);
     } else {
         QImage image(m_file);
 
@@ -40,7 +40,15 @@ void PictureAnalyzerThread::run()
                                              0,
                                              0);
             } else {
-                if ((image.height() < Settings::minimumPictureHeight()) || (image.width() < Settings::minimumPictureWidth())) {
+                if (((float)image.width() / (float)image.height() > Settings::maxAspectRatio())
+                        || ((float)image.height() / (float)image.width() > Settings::maxAspectRatio())) {
+                    m_database->setPictureProperties(m_file,
+                                                 fileInfo.lastModified(),
+                                                 PICTURE_STATE_WRONGASPECTRATIO,
+                                                 0,
+                                                 0,
+                                                 0);
+                } else if ((image.height() < Settings::minimumPictureHeight()) || (image.width() < Settings::minimumPictureWidth())) {
                     m_database->setPictureProperties(m_file,
                                                  fileInfo.lastModified(),
                                                  PICTURE_STATE_TOOSMALL,

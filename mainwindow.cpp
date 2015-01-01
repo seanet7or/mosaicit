@@ -25,8 +25,8 @@
 #include "database/picturedatabase.h"
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
-#include "editdatabasedlg.h"
 #include "aboutdlg.h"
+#include "picturedatabasedlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -35,33 +35,27 @@ MainWindow::MainWindow(QWidget *parent) :
 	qDebug() << "Creating main window";
     ui->setupUi(this);
 
-    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(":/app_logo")));
+    ui->newMosaicBn->setText(tr("Create New Mosaic"));
+    ui->pictureLibraryBn->setText(tr("Edit Picture Library"));
+    ui->aboutBn->setText(tr("About MosaicIt!"));
 
-    setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
-    setTabOrder(ui->editDatabaseButton, ui->helpButton);
-    setTabOrder(ui->helpButton, ui->aboutButton);
-    setTabOrder(ui->aboutButton, ui->exitButton);
+    QPalette* palette = new QPalette();
+    palette->setBrush(QPalette::Window,
+                      QBrush(QImage(":/app_logo")));
+    setPalette(*palette);
 
-    connect(ui->newMosaicButton,
-            SIGNAL(pressed()),
+    connect(ui->newMosaicBn,
+            &Button::pressed,
             this,
-            SLOT(newMosaicBnClicked()));
-    connect(ui->editDatabaseButton,
-            SIGNAL(pressed()),
+            &MainWindow::newMosaicBnClicked);
+    connect(ui->aboutBn,
+            &Button::pressed,
             this,
-            SLOT(editDatabaseBnClicked()));
-    connect(ui->aboutButton,
-            SIGNAL(pressed()),
+            &MainWindow::aboutBnClicked);
+    connect(ui->pictureLibraryBn,
+            &Button::pressed,
             this,
-            SLOT(aboutBnClicked()));
-    connect(ui->exitButton,
-            SIGNAL(pressed()),
-            this,
-            SLOT(exitBnClicked()));
-    connect(ui->helpButton,
-            SIGNAL(pressed()),
-            this,
-            SLOT(helpBnClicked()));
+            &MainWindow::pictureLibraryBnClicked);
     this->readSettings();
 }
 
@@ -87,6 +81,18 @@ void MainWindow::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MainWindow::showEvent(QShowEvent *)
+{
+
+}
+
+void MainWindow::pictureLibraryBnClicked()
+{
+    PictureDatabaseDlg dlg;
+    dlg.show();
+    dlg.exec();
 }
 
 void MainWindow::helpBnClicked()
@@ -124,6 +130,8 @@ QString MainWindow::targetFileFor(const QString &sourceFile)
             fileExists = targetFileWithIndexInfo.exists();
             if (!fileExists) {
                 targetFile += "-" + strIndex;
+            } else {
+                index++;
             }
         }
         while (fileExists);
@@ -188,36 +196,6 @@ void MainWindow::newMosaicBnClicked()
     }
 }
 
-void MainWindow::editDatabaseBnClicked()
-{
-    QSettings settings;
-    settings.beginGroup("InputMainWindow");
-    QString databaseFile = settings.value("databasefiletoedit",
-                                           QDir::toNativeSeparators(
-                                                   QDir::cleanPath(QDir::homePath()))).toString();
-    settings.endGroup();
-    databaseFile = QFileDialog::getOpenFileName(this,
-                                                tr("Select database file"),
-                                                QDir::toNativeSeparators(QDir::cleanPath(
-                                                        databaseFile)),
-                                                tr("Database files (*.mib);;All files (*.*)"));
-    if (databaseFile.isNull() || (databaseFile.length()==0)) {
-        QMessageBox::warning(this,
-                             tr("Error"),
-                             tr("You have to select a valid image database to edit!"),
-                             QMessageBox::Ok,
-                             QMessageBox::Ok);
-        return;
-    }
-    settings.beginGroup("InputMainWindow");
-    settings.setValue("databasefiletoedit", databaseFile);
-    settings.endGroup();
-
-    EditDatabaseDlg editDBDlg(this, databaseFile);
-    editDBDlg.show();
-    editDBDlg.exec();
-}
-
 void MainWindow::aboutBnClicked()
 {
     AboutDlg aboutDlg;
@@ -235,7 +213,7 @@ void MainWindow::writeSettings()
 {
     QSettings settings;
     settings.beginGroup("GUIStateMainWindow");
-    settings.setValue("size", this->size());
+    //settings.setValue("size", this->size());
     settings.setValue("pos", this->pos());
     settings.endGroup();
 }
@@ -244,7 +222,7 @@ void MainWindow::readSettings()
 {
     QSettings settings;
     settings.beginGroup("GUIStateMainWindow");
-    this->resize(settings.value("size", QSize(670, 545)).toSize());
+    //this->resize(settings.value("size", QSize(670, 545)).toSize());
     this->move(settings.value("pos", QPoint(90, 90)).toPoint());
     settings.endGroup();
 }

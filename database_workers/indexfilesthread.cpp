@@ -27,6 +27,14 @@ IndexFilesThread::IndexFilesThread(QStringList directories) :
 {
     this->m_directories = directories;
     this->m_database = new PictureDatabase();
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::TempLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::CacheLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::GenericCacheLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::ConfigLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation));
+    m_directoriesToExclude.append(QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation));
 }
 
 IndexFilesThread::~IndexFilesThread()
@@ -54,6 +62,15 @@ void IndexFilesThread::checkFile(const QString &file)
         return;
     }
     QString cleanPath = QDir::toNativeSeparators(QDir::cleanPath(file));
+
+    foreach (QString dirToExclude, m_directoriesToExclude) {
+       if (dirToExclude.length()) {
+           if (cleanPath.startsWith(dirToExclude)) {
+               return;
+           }
+       }
+    }
+
     if (!m_database->isPictureInDb(cleanPath))
     {
        // qDebug() << "Adding file" << cleanPath;
@@ -73,7 +90,7 @@ void IndexFilesThread::checkFile(const QString &file)
 void IndexFilesThread::run()
 {   
     QStringList nameFilters;
-    nameFilters << "*.jpg" << "*.jpeg" << "*.png" << "*.bmp";
+    nameFilters << "*.jpg" << "*.jpeg"; // << "*.png" << "*.bmp";
     qDebug() << "IndexFilesThread starting:" << m_directories;
     foreach (QString dir, m_directories)
     {

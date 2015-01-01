@@ -53,3 +53,8 @@ int Settings::minimumFileSize()
 {
     return 16 * 1024;
 }
+
+qreal Settings::maxAspectRatio()
+{
+    return 2.4f;
+}

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>447</height>
+    <width>929</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,6 +24,21 @@
    <locale language="English" country="UnitedStates"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -52,13 +67,181 @@
       </widget>
      </item>
      <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="3" column="0" colspan="4">
+      <layout class="QVBoxLayout" name="optionsLayout">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="leftMargin">
+        <number>16</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>16</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Total number of mosaic pieces</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="tileCountLabel">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="tileCountSliderLayout">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>few</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Slider" name="totalTilesSlider">
+           <property name="minimum">
+            <number>1024</number>
+           </property>
+           <property name="maximum">
+            <number>16384</number>
+           </property>
+           <property name="pageStep">
+            <number>64</number>
+           </property>
+           <property name="value">
+            <number>8192</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>lots of</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="tileSizeLabelLayout">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Size of mosaic pieces</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="tileSizeLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="tileSizeSliderLayout">
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>tiny</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Slider" name="tileSizeSlider">
+           <property name="minimum">
+            <number>16</number>
+           </property>
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>128</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::NoTicks</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>huge</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBox">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="title">
-          <string>Tile aspect ratio</string>
+          <string>Aspect ratio of pieces</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="0">
@@ -68,6 +251,12 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
               </property>
               <property name="text">
                <string>1:1</string>
@@ -82,6 +271,12 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="text">
                <string>4:3</string>
               </property>
@@ -95,209 +290,245 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="text">
                <string>16:9</string>
               </property>
              </widget>
             </item>
             <item row="0" column="3">
-             <widget class="QRadioButton" name="aspectFree">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-              <property name="text">
-               <string>free</string>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
               </property>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="5" column="0" colspan="3">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Total number of tiles:</string>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
          </property>
+         <property name="title">
+          <string>fit pieces by</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="scaleTile">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>scaling images</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="cutTileEdges">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>cropping images</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
-       <item row="5" column="3">
-        <widget class="QSpinBox" name="totalTiles">
-         <property name="minimum">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <number>999999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0" colspan="2">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Alpha channel:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="2">
-        <widget class="QSpinBox" name="alphaChannel"/>
-       </item>
-       <item row="8" column="3">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>percent</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0" colspan="4">
-        <widget class="QLabel" name="resultLabel">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0" colspan="4">
-        <widget class="Line" name="line">
+       <item>
+        <widget class="Line" name="line_3">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="3">
-        <widget class="QCheckBox" name="minDistanceChecker">
-         <property name="text">
-          <string>Minimum distance between same tiles:</string>
-         </property>
-        </widget>
+       <item>
+        <layout class="QHBoxLayout" name="minDistLayout">
+         <item>
+          <widget class="QCheckBox" name="minDistanceChecker">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Minimum distance between same images</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="minDistanceSpinner">
+           <property name="maximum">
+            <number>256</number>
+           </property>
+           <property name="value">
+            <number>5</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="11" column="0" colspan="4">
-        <spacer name="verticalSpacer_2">
+       <item>
+        <widget class="Line" name="line_4">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="4" column="0" colspan="4">
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>fit tiles by</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="cutTileEdges">
-              <property name="text">
-               <string>cutting edges</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QRadioButton" name="scaleTile">
-              <property name="text">
-               <string>scaling</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
         </widget>
        </item>
-       <item row="0" column="0" colspan="4">
-        <spacer name="verticalSpacer">
+       <item>
+        <layout class="QHBoxLayout" name="repeatTilesLayout">
+         <item>
+          <widget class="QCheckBox" name="repeatTilesChecker">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Maximum occurance of same image</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="repeatTilesSpinner">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>16384</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_5">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="6" column="3">
-        <widget class="QSpinBox" name="minDistanceSpinner">
-         <property name="maximum">
-          <number>999999999</number>
-         </property>
-         <property name="value">
-          <number>5</number>
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="2">
-        <widget class="QCheckBox" name="repeatTilesChecker">
+       <item>
+        <layout class="QHBoxLayout" name="alphaChannelLayout">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Alpha channel of source image</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="alphaChannel"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>percent</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="resultLabel">
          <property name="text">
-          <string>Repeat tiles maximal</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="2">
-        <widget class="QSpinBox" name="repeatTilesSpinner">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>999999999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>times</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QSpinBox" name="tileWidth">
-         <property name="minimum">
-          <number>16</number>
-         </property>
-         <property name="maximum">
-          <number>4096</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>pixels x</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QSpinBox" name="tileHeight">
-         <property name="minimum">
-          <number>16</number>
-         </property>
-         <property name="maximum">
-          <number>4096</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>pixels</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="4">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Size of mosaic pieces</string>
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
@@ -307,23 +538,6 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_4">
-     <item row="0" column="2">
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="renderButton">
-       <property name="text">
-        <string>Render</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -337,10 +551,33 @@
        </property>
       </spacer>
      </item>
+     <item row="0" column="1">
+      <widget class="Button" name="renderBn" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>88</width>
+         <height>48</height>
+        </size>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Button</class>
+   <extends>QWidget</extends>
+   <header>widgets/button.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Slider</class>
+   <extends>QSlider</extends>
+   <header>widgets/slider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -57,7 +57,10 @@ private:
                            int xPos,
                            int yPos);
     int tileCountInMap(int **tileMap, int mapWidth, int mapHeight, int tileToSearch);
+    QImage imageMatchingTileSize(const QString &file);
+    QImage imageCroppedToDesiredAspectRatio(QImage image);
 
+    QString m_tileCacheDir;
     bool m_criticalError;
     PictureLibrary *m_pictureLibrary;
     QString m_imageFile;

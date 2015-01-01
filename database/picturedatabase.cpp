@@ -59,6 +59,18 @@ PictureDatabase::PictureDatabase()
             COLUMN_PICTURES_RGB " = ? "
             " WHERE " COLUMN_PICTURES_PATH " = ?";
     m_setPicturePropertiesQuery = new QSqlQuery(setPicturePropertiesCmd);
+
+    m_deletePictureQuery = new QSqlQuery(
+                "DELETE FROM " TABLE_PICTURES " WHERE " COLUMN_PICTURES_PATH " = ?");
+}
+
+bool PictureDatabase::deletePicture(const QString &path)
+{
+    m_lock.lock();
+    m_deletePictureQuery->addBindValue(path);
+    bool res = execSQLQuery(m_deletePictureQuery);
+    m_lock.unlock();
+    return res;
 }
 
 QVector<PictureInfo*> PictureDatabase::picturesProcessed()

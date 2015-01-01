@@ -44,6 +44,7 @@ private:
 private:
     PictureDatabase *m_database;
     QStringList m_directories;
+    QStringList m_directoriesToExclude;
 };
 
 #endif // INDEXFILESTHREAD_H

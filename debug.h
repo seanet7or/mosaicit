@@ -31,10 +31,6 @@ private:
     static void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 private:
-#ifdef QT_DEBUG
-	static QPointer<Window> m_debugWindow;
-	static QPointer<QTreeWidget> m_debugLogWidget;
-#endif
 };
 
 #endif // DEBUG_H

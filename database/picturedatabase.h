@@ -27,6 +27,7 @@
 #define PICTURE_STATE_PROCESSED                 3
 #define PICTURE_STATE_TOOSMALL                  4
 #define PICTURE_STATE_FILETOOSMALL              5
+#define PICTURE_STATE_WRONGASPECTRATIO          6
 
 class PictureDatabase
 {
@@ -47,6 +48,7 @@ public:
             int width,
             int height,
             quint32 rgb);
+    bool deletePicture(const QString &path);
 
     bool isOpened() const;
 
@@ -63,6 +65,7 @@ private:
     QSqlQuery *m_picturesNotProcessedQuery;
     QSqlQuery *m_setPicturePropertiesQuery;
     QSqlQuery *m_processedPicturesQuery;
+    QSqlQuery *m_deletePictureQuery;
     static QMutex m_lock;
 };
 

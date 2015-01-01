@@ -18,6 +18,7 @@ protected:
 
 private:
     void startFilesystemIndexers();
+    QList<QThread*> allManagedThreads();
 
 private:
     QList<IndexFilesThread*> m_filesystemIndexers;

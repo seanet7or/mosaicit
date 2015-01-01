@@ -6,7 +6,7 @@
 
 DatabaseWorkManager::DatabaseWorkManager()
 {
-    this->m_database = new PictureDatabase();    
+    this->m_database = new PictureDatabase();
 }
 
 DatabaseWorkManager::~DatabaseWorkManager()
@@ -26,10 +26,28 @@ DatabaseWorkManager::~DatabaseWorkManager()
     m_pictureAnalyzers.clear();
 }
 
+QList<QThread*> DatabaseWorkManager::allManagedThreads()
+{
+    QList<QThread*> result;
+    foreach (QThread *t, m_filesystemIndexers) {
+        result.append(t);
+    }
+    foreach (QThread *t, m_pictureAnalyzers) {
+        result.append(t);
+    }
+    return result;
+}
+
 void DatabaseWorkManager::requestCancel()
 {
     requestInterruption();
-    foreach (IndexFilesThread *t, m_filesystemIndexers)
+    if (!wait(30 * 1000)) {
+        qWarning() << "DatabaseWorkManager cancel timeout, shutting down.";
+        quit();
+    }
+
+    QList<QThread*> managedThreads = allManagedThreads();
+    foreach (QThread *t, managedThreads)
     {
         if (t->isRunning())
         {
@@ -37,13 +55,13 @@ void DatabaseWorkManager::requestCancel()
         }
     }
 
-    foreach (IndexFilesThread *t, m_filesystemIndexers)
+    foreach (QThread *t, managedThreads)
     {
         if (t->isRunning())
         {
             if (!t->wait(30 * 1000))
             {
-                qWarning() << "IndexFilesThread cancel timeout, shutting it down.";
+                qWarning() << "DatabaseWorkManager child thread cancel timeout, shutting it down.";
                 t->quit();
             }
         }
@@ -71,12 +89,7 @@ void DatabaseWorkManager::run()
 
     while (!isInterruptionRequested())
     {
-        QStringList picturesNotProcessed = m_database->picturesNotProcessed();
-        if (picturesNotProcessed.length() == 0)
-        {
-            sleep(10);
-        }
-
+        QStringList picturesNotProcessed = m_database->picturesNotProcessed();     
         while (picturesNotProcessed.length() > 0)
         {
             if (isInterruptionRequested())
@@ -107,7 +120,17 @@ void DatabaseWorkManager::run()
             analyzerThread->startAnalyzer(picture);
             picturesNotProcessed.removeAt(0);
             m_pictureAnalyzers.append(analyzerThread);
-        }        
+        }
+
+        QVector<PictureInfo*> filesToCheck = m_database->picturesProcessed();
+        foreach (PictureInfo* p, filesToCheck) {
+            QFileInfo fileinfo(p->getPath());
+            if (!fileinfo.exists()) {
+                qDebug() << "Deleting nonexisting file" << p->getPath() << "from database.";
+                m_database->deletePicture(p->getPath());
+            }
+            delete p;
+        }
     }
 
     if (isInterruptionRequested())
@@ -135,16 +158,16 @@ void DatabaseWorkManager::startFilesystemIndexers()
     QMap<QChar, QStringList> dirsByDrive;
     foreach (QString dir, dirs)
     {
-         QChar drive = '?';
-         if ((dir.length() >= 2) && (dir.at(1) == ':'))
-         {
+        QChar drive = '?';
+        if ((dir.length() >= 2) && (dir.at(1) == ':'))
+        {
             drive = dir.at(0);
-         }
-         if (!dirsByDrive.contains(drive))
-         {
-             dirsByDrive.insert(drive, QStringList());
-         }
-         dirsByDrive[drive].append(dir);
+        }
+        if (!dirsByDrive.contains(drive))
+        {
+            dirsByDrive.insert(drive, QStringList());
+        }
+        dirsByDrive[drive].append(dir);
     }
 
     foreach (QChar drive, dirsByDrive.keys())

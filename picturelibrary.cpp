@@ -40,3 +40,16 @@ PictureInfo* PictureLibrary::pictureAt(int index) const
 {
     return m_processedPictures.at(index);
 }
+
+ QMap<QString, QVector<PictureInfo*> > PictureLibrary::picturesByDirectory() const
+ {
+     QMap<QString, QVector<PictureInfo*> > result;
+     foreach (PictureInfo *p, m_processedPictures) {
+        QString directory = p->getDirectory();
+        if (!result.contains(directory)) {
+            result.insert(directory, QVector<PictureInfo*>());
+        }
+        result[directory].append(p);
+     }
+     return result;
+ }

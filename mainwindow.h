@@ -32,14 +32,15 @@ public:
     ~MainWindow();
 
 protected:
-    void changeEvent(QEvent *e);
+    virtual void changeEvent(QEvent *e);
+    virtual void showEvent(QShowEvent*);
 
 private slots:
     void newMosaicBnClicked();
-    void editDatabaseBnClicked();
     void aboutBnClicked();
     void exitBnClicked();
     void helpBnClicked();
+    void pictureLibraryBnClicked();
     void closeEvent(QCloseEvent *e);
 
 private:

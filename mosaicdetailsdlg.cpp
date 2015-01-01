@@ -26,22 +26,17 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
         ui(new Ui::MosaicDetailsDlg)
 {
     ui->setupUi(this);
+    ui->renderBn->setText(tr("Render"));
+    ui->renderBn->setHorizontalAlignment(Qt::AlignHCenter);
 
-    setTabOrder(ui->tileWidth, ui->tileHeight);
-    setTabOrder(ui->tileHeight, ui->aspect11);
     setTabOrder(ui->aspect11, ui->aspect43);
     setTabOrder(ui->aspect43, ui->aspect169);
-    setTabOrder(ui->aspect169, ui->aspectFree);
-    setTabOrder(ui->aspectFree, ui->cutTileEdges);
     setTabOrder(ui->cutTileEdges, ui->scaleTile);
-    setTabOrder(ui->scaleTile, ui->totalTiles);
-    setTabOrder(ui->totalTiles, ui->minDistanceChecker);
     setTabOrder(ui->minDistanceChecker, ui->minDistanceSpinner);
     setTabOrder(ui->minDistanceSpinner, ui->repeatTilesChecker);
     setTabOrder(ui->repeatTilesChecker, ui->repeatTilesSpinner);
     setTabOrder(ui->repeatTilesSpinner, ui->alphaChannel);
-    setTabOrder(ui->alphaChannel, ui->renderButton);
-    setTabOrder(ui->renderButton, ui->cancelButton);
+    setTabOrder(ui->alphaChannel, ui->renderBn);
 
     this->m_canceled = true;
     m_image = QImage(imageFile);
@@ -59,22 +54,14 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
                         )
                     );
     }
-    connect(ui->cancelButton,
-            SIGNAL(pressed()),
+    connect(ui->renderBn,
+            &Button::pressed,
             this,
-            SLOT(cancelButtonPressed()));
-    connect(ui->renderButton,
-            SIGNAL(pressed()),
+            &MosaicDetailsDlg::renderButtonPressed);
+    connect(ui->tileSizeSlider,
+            &Slider::valueChanged,
             this,
-            SLOT(renderButtonPressed()));
-    connect(ui->tileHeight,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(tileHeightChanged()));
-    connect(ui->tileWidth,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(tileWidthChanged()));
+            &MosaicDetailsDlg::tileWidthChanged);
     connect(ui->aspect11,
             SIGNAL(toggled(bool)),
             this,
@@ -87,14 +74,10 @@ MosaicDetailsDlg::MosaicDetailsDlg(QWidget *parent, const QString &imageFile) :
             SIGNAL(toggled(bool)),
             this,
             SLOT(aspectRatioChanged()));
-    connect(ui->aspectFree,
-            SIGNAL(toggled(bool)),
+    connect(ui->totalTilesSlider,
+            &Slider::valueChanged,
             this,
-            SLOT(aspectRatioChanged()));
-    connect(ui->totalTiles,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(updateResultLabel()));
+            &MosaicDetailsDlg::totalTilesCountChanged);
     this->readSettings();
 }
 
@@ -103,65 +86,32 @@ bool MosaicDetailsDlg::exitedCorrectly()
     return !this->m_canceled;
 }
 
-void MosaicDetailsDlg::updateResultLabel()
+void MosaicDetailsDlg::updateResultLabels()
 {
+    ui->tileCountLabel->setText(tr("The mosaic will be made of %1 pieces").arg(QString::number(tileCount())));
+    ui->tileSizeLabel->setText(tr("%1 x %2 pixels").arg(QString::number(tileWidth()), QString::number(tileHeight())));
     ui->resultLabel->setText(
             tr("The resulting mosaic image will have a size of %1 megapixels.").arg(
-                    QString::number((float)ui->totalTiles->value()
-                                    * (float)ui->tileWidth->value()
-                                    * (float)ui->tileHeight->value()
+                    QString::number((float)ui->totalTilesSlider->value()
+                                    * (float)tileWidth()
+                                    * (float)tileHeight()
                                     / 1000000.f)));
 }
 
-void MosaicDetailsDlg::tileWidthChanged()
-{
-    ui->tileHeight->disconnect();
-    if (ui->aspect11->isChecked()) {
-        ui->tileHeight->setValue(ui->tileWidth->value());
-    } else if (ui->aspect169->isChecked()) {
-        ui->tileHeight->setValue((ui->tileWidth->value() * 9) / 16);
-    } else if (ui->aspect43->isChecked()) {
-        ui->tileHeight->setValue((ui->tileWidth->value() * 3) / 4);
-    }
-    connect(ui->tileHeight,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(tileHeightChanged()));
-    this->updateResultLabel();
+void MosaicDetailsDlg::tileWidthChanged(int)
+{  
+    this->updateResultLabels();
 }
 
-void MosaicDetailsDlg::tileHeightChanged()
+void MosaicDetailsDlg::totalTilesCountChanged(int)
 {
-    ui->tileWidth->disconnect();
-    if (ui->aspect11->isChecked()) {
-        ui->tileWidth->setValue(ui->tileHeight->value());
-    } else if (ui->aspect169->isChecked()) {
-        ui->tileWidth->setValue((ui->tileHeight->value() * 16) / 9);
-    } else if (ui->aspect43->isChecked()) {
-        ui->tileWidth->setValue((ui->tileHeight->value() * 4) / 3);
-    }
-    connect(ui->tileWidth,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(tileWidthChanged()));
-    this->updateResultLabel();
+    this->updateResultLabels();
 }
 
 void MosaicDetailsDlg::aspectRatioChanged()
 {
-    ui->tileHeight->disconnect();
-    if (ui->aspect11->isChecked()) {
-        ui->tileHeight->setValue(ui->tileWidth->value());
-    } else if (ui->aspect169->isChecked()) {
-        ui->tileHeight->setValue((ui->tileWidth->value() * 9) / 16);
-    } else if (ui->aspect43->isChecked()) {
-        ui->tileHeight->setValue((ui->tileWidth->value() * 3) / 4);
-    }
-    connect(ui->tileHeight,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(tileHeightChanged()));
-    }
+    this->updateResultLabels();
+}
 
 MosaicDetailsDlg::~MosaicDetailsDlg()
 {
@@ -182,19 +132,26 @@ void MosaicDetailsDlg::renderButtonPressed()
     done(0);
 }
 
-int MosaicDetailsDlg::tileWidth()
+int MosaicDetailsDlg::tileWidth() const
 {
-    return this->m_tileWidth;
+    return ui->tileSizeSlider->value();
 }
 
-int MosaicDetailsDlg::tileHeight()
+int MosaicDetailsDlg::tileHeight() const
 {
-    return this->m_tileHeight;
+    if (ui->aspect11->isChecked()) {
+        return tileWidth();
+    } else if (ui->aspect169->isChecked()) {
+        return ((tileWidth() * 9) / 16);
+    } else if (ui->aspect43->isChecked()) {
+        return ((tileWidth() * 3) / 4);
+    }
+    return tileWidth();
 }
 
-int MosaicDetailsDlg::tileCount()
+int MosaicDetailsDlg::tileCount() const
 {
-    return this->m_tileCount;
+    return ui->totalTilesSlider->value();
 }
 
 bool MosaicDetailsDlg::cutEdges()
@@ -234,8 +191,7 @@ void MosaicDetailsDlg::writeSettings()
     settings.setValue("pos", this->pos());
     settings.endGroup();
     settings.beginGroup("InputMosaicDetailsDlg");
-    settings.setValue("tilewidth", this->m_tileWidth);
-    settings.setValue("tileheight", this->m_tileHeight);
+    settings.setValue("tilewidth", tileWidth());
     int tileAspectRatioSelection = 3;
     if (ui->aspect11->isChecked()) {
         tileAspectRatioSelection = 1;
@@ -243,12 +199,10 @@ void MosaicDetailsDlg::writeSettings()
         tileAspectRatioSelection = 2;
     } else if (ui->aspect43->isChecked()) {
         tileAspectRatioSelection = 3;
-    } else if (ui->aspectFree->isChecked()) {
-        tileAspectRatioSelection = 4;
     }
     settings.setValue("tileaspectratioselection", tileAspectRatioSelection);
     settings.setValue("cutedges", this->m_cutEdges);
-    settings.setValue("totaltilenumber", this->m_tileCount);
+    settings.setValue("totaltilenumber", tileCount());
     settings.setValue("alphachannel", this->m_alphaChannel);
     settings.setValue("mindistancechecker", this->m_minDistanceChecker);
     settings.setValue("mindistancespinner", this->m_minDistance);
@@ -261,9 +215,6 @@ void MosaicDetailsDlg::updateValuesFromForms()
 {
     this->m_alphaChannel = ui->alphaChannel->value();
     this->m_cutEdges = ui->cutTileEdges->isChecked();
-    this->m_tileCount = ui->totalTiles->value();
-    this->m_tileHeight = ui->tileHeight->value();
-    this->m_tileWidth = ui->tileWidth->value();
     this->m_minDistanceChecker = ui->minDistanceChecker->isChecked();
     this->m_minDistance = ui->minDistanceSpinner->value();
     this->m_repeatTilesChecker = ui->repeatTilesChecker->isChecked();
@@ -278,8 +229,7 @@ void MosaicDetailsDlg::readSettings()
     this->move(settings.value("pos", QPoint(180, 175)).toPoint());
     settings.endGroup();
     settings.beginGroup("InputMosaicDetailsDlg");
-    ui->tileWidth->setValue(settings.value("tilewidth", 150).toInt());
-    ui->tileHeight->setValue(settings.value("tileheight", 150).toInt());
+    ui->tileSizeSlider->setValue(settings.value("tilewidth", 128).toInt());
     int tileAspectRatioSelection = settings.value("tileaspectratioselection", 3).toInt();
     switch (tileAspectRatioSelection) {
     case 1:
@@ -291,9 +241,6 @@ void MosaicDetailsDlg::readSettings()
     case 3:
         ui->aspect43->setChecked(true);
         break;
-    case 4:
-        ui->aspectFree->setChecked(true);
-        break;
     default:
         ui->aspect43->setChecked(true);
     }
@@ -302,14 +249,14 @@ void MosaicDetailsDlg::readSettings()
     } else {
         ui->scaleTile->setChecked(true);
     }
-    ui->totalTiles->setValue(settings.value("totaltilenumber", 800).toInt());
+    ui->totalTilesSlider->setValue(settings.value("totaltilenumber", 8000).toInt());
     ui->alphaChannel->setValue(settings.value("alphachannel", 30).toInt());
     ui->minDistanceChecker->setChecked(settings.value("mindistancechecker", true).toBool());
     ui->minDistanceSpinner->setValue(settings.value("mindistancespinner", 3).toInt());
     ui->repeatTilesChecker->setChecked(settings.value("repeattileschecker", false).toBool());
     ui->repeatTilesSpinner->setValue(settings.value("repeattilesspinner", 300).toInt());
     settings.endGroup();
-    this->updateResultLabel();
+    this->updateResultLabels();
 }
 
 bool MosaicDetailsDlg::minDistanceChecker()

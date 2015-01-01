@@ -30,9 +30,9 @@ public:
     MosaicDetailsDlg(QWidget *parent, const QString &imageFile);
     ~MosaicDetailsDlg();
     bool exitedCorrectly();
-    int tileWidth();
-    int tileHeight();
-    int tileCount();
+    int tileWidth() const;
+    int tileHeight() const;
+    int tileCount() const;
     bool cutEdges();
     int alphaChannel();
     bool minDistanceChecker();
@@ -44,10 +44,10 @@ protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void tileWidthChanged();
-    void tileHeightChanged();
+    void tileWidthChanged(int);
+    void totalTilesCountChanged(int);
     void aspectRatioChanged();
-    void updateResultLabel();
+    void updateResultLabels();
     void renderButtonPressed();
     void cancelButtonPressed();
     void closeEvent(QCloseEvent *e);
@@ -60,9 +60,6 @@ private:
     Ui::MosaicDetailsDlg *ui;
     QString m_imageFile;
     QImage m_image;
-    int m_tileWidth;
-    int m_tileHeight;
-    int m_tileCount;
     bool m_cutEdges;
     int m_alphaChannel;
     bool m_canceled;
