@@ -19,6 +19,7 @@
 
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QDebug>
 
 #include "debug.h"
 #include "appsettings.h"

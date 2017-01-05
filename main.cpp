@@ -17,6 +17,8 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QLocale>
+#include <QDebug>
+
 #include "mainwindow.h"
 #include "debug.h"
 #include "appsettings.h"
@@ -38,14 +40,14 @@ int main(int argc, char *argv[])
 	{
 		return 2;
 	}
-	if (!Debug::init())
+	/*if (!Debug::init())
 	{
 		return 3;
-	}
+	}*/
 
 	qDebug() << "Starting up.";
 
-    MainWindow w(a.applicationDirPath());
+    MainWindow w;
     w.show();
     return a.exec();
 }

@@ -20,6 +20,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDataStream>
+#include <QDebug>
 
 #include "debug.h"
 

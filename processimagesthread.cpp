@@ -18,6 +18,7 @@
 
 #include <QImage>
 #include <QFileInfo>
+#include <QDebug>
 
 #include "debug.h"
 

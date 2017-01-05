@@ -19,8 +19,8 @@
 
 
 Window::Window(const QString &title,
-		const QString &windowID,
-		QSize defaultSize)
+        const QString & /*windowID*/,
+        QSize /*defaultSize*/)
 	: QDialog(NULL, Qt::Window)
 {
 	setWindowIcon(QIcon(DEF_APPLICATION_ICON));

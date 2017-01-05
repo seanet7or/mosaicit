@@ -18,6 +18,7 @@
 
 #include <QDir>
 #include <QStringList>
+#include <QDebug>
 
 #include "debug.h"
 

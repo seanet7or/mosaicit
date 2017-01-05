@@ -31,14 +31,14 @@
 #include "editdatabasedlg.h"
 #include "aboutdlg.h"
 
-MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
 	qDebug() << "Creating main window";
     ui->setupUi(this);
 
-    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(appPath + "/mosaicit_logo.jpg")));
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(":/mosaicit_logo3.jpg")));
 
     setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
     setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
