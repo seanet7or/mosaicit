@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  Header file for the about dialog
 *
@@ -22,12 +22,10 @@ AboutDlg::AboutDlg(QWidget *parent) :
     ui(new Ui::AboutDlg)
 {
     ui->setupUi(this);
-    ui->okBn->setText(tr("OK"));
-    ui->okBn->setHorizontalAlignment(Qt::AlignHCenter);
-    connect(ui->okBn,
-            &Button::pressed,
+    connect(ui->pushButton,
+            SIGNAL(pressed()),
             this,
-            &AboutDlg::onOkButtonPressed);
+            SLOT(onOkButtonPressed()));
     this->readSettings();
 }
 

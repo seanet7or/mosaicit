@@ -1,12 +1,12 @@
 /***************************************************************************************************
 *
-* FILE:     indexdirdlg.h
+* FILE:     editdatabasedlg.h
 *
-* CREATED:  07-08-2010
+* CREATED:  02-08-2010
 *
 * AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
-* PURPOSE:  this dialog shows the progress when indexing the files in a directory
+* PURPOSE:  dialog to edit database files
 *
 * This program is licensed under the terms of the GPL Version 2
 *
@@ -14,22 +14,22 @@
 *
 ***************************************************************************************************/
 
-#ifndef INDEXDIRDLG_H
-#define INDEXDIRDLG_H
+#ifndef EDITDATABASEDLG_H
+#define EDITDATABASEDLG_H
 
 #include <QDialog>
 
 #include "picturedatabase.h"
 
 namespace Ui {
-    class IndexDirDlg;
+    class EditDatabaseDlg;
 }
 
-class IndexDirDlg : public QDialog {
+class EditDatabaseDlg : public QDialog {
     Q_OBJECT
 public:
-    IndexDirDlg(QWidget *parent, PictureDatabase *database, const QString &newDir);
-    ~IndexDirDlg();
+    EditDatabaseDlg(QWidget *parent, const QString &databaseFile);
+    ~EditDatabaseDlg();
 
 public slots:
     void closeEvent(QCloseEvent *e);
@@ -39,15 +39,22 @@ protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void onCancelButtonPressed();
-    void onIndexingFinished();
+    void onFileSelected(int row);
+    void onDelEntryButtonPressed();
+    void onUpdateDBButtonPressed();
+    void onAddDirButtonPressed();
+    void onAddFileButtonPressed();
+    void onCloseButtonPressed();
+    void onRemoveInvalidButtonPressed();
 
 private:
+    void updateUIElements();
     void readSettings();
     void writeSettings();
 
-    Ui::IndexDirDlg *ui;
+    Ui::EditDatabaseDlg *ui;
     PictureDatabase *m_database;
+    QString m_databaseFile;
 };
 
-#endif // INDEXDIRDLG_H
+#endif // EDITDATABASEDLG_H

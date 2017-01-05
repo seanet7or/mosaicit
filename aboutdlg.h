@@ -2,9 +2,9 @@
 *
 * FILE:     aboutdlg.h
 *
-* CREATED:  2010-08-02
+* CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  Header file for the about dialog
 *

@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  allows to render the mosaic in a seperate tread
 *
@@ -13,19 +13,23 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
+
 #ifndef RENDERMOSAICTHREAD_H
 #define RENDERMOSAICTHREAD_H
+
 #include <QThread>
 #include <QString>
 #include <QWidget>
-#include "picturelibrary.h"
+
+#include "picturedatabase.h"
 
 class RenderMosaicThread : public QThread
 {
     Q_OBJECT
 public:
     explicit RenderMosaicThread(QObject *parent = 0);
-    void renderMosaic(const QString &imageFile,
+    void renderMosaic(PictureDatabase *database,
+                      const QString &imageFile,
                       int tileWidth,
                       int tileHeight,
                       int tileCount,
@@ -37,7 +41,9 @@ public:
                       int minDinstance,
                       bool maxTileRepeatChecker,
                       int maxTileRepeatCount);
+    void cancel();
     bool criticalError();
+    bool wasCanceled();
     QString outputFile();
 
 signals:
@@ -57,12 +63,10 @@ private:
                            int xPos,
                            int yPos);
     int tileCountInMap(int **tileMap, int mapWidth, int mapHeight, int tileToSearch);
-    QImage imageMatchingTileSize(const QString &file);
-    QImage imageCroppedToDesiredAspectRatio(QImage image);
 
-    QString m_tileCacheDir;
+    bool m_cancelNow;
     bool m_criticalError;
-    PictureLibrary *m_pictureLibrary;
+    PictureDatabase *m_database;
     QString m_imageFile;
     int m_tileWidth;
     int m_tileHeight;

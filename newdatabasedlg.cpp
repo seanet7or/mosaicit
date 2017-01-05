@@ -4,7 +4,7 @@
 *
 * CREATED:  13-05-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  dialog to create a new database file
 *

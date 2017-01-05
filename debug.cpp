@@ -19,8 +19,48 @@
 #include <QStack>
 #include "window.h"
 
+#ifdef QT_DEBUG
+QPointer<Window> Debug::m_debugWindow = NULL;
+QPointer<QTreeWidget> Debug::m_debugLogWidget = NULL;
+#endif
+
+
 void Debug::messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
+	static QStack<QTreeWidgetItem*> parentWidget;
+	static QStack<QString> parentContext;
+
+	QTreeWidgetItem *newItem;
+	if (parentWidget.isEmpty())
+	{
+		newItem = new QTreeWidgetItem(m_debugLogWidget);
+		parentWidget.push(newItem);
+		parentContext.push(QString(context.function));
+	}
+	else
+	{
+		if (QString(context.function) == parentContext.top())
+		{
+			newItem = new QTreeWidgetItem(parentWidget.top()->parent());
+			parentWidget.push(newItem);
+			parentContext.push(QString(context.function));
+		}
+		else if ((parentContext.size() > 1) 
+			&& (parentContext.at(parentContext.size() - 2) == QString(context.function)))
+		{
+			parentWidget.pop();
+			parentContext.pop();
+			newItem = new QTreeWidgetItem(parentWidget.top());
+		}
+		else
+		{
+			newItem = new QTreeWidgetItem(parentWidget.top());
+			parentWidget.push(newItem);
+			parentContext.push(QString(context.function));
+		}
+	}
+	newItem->setText(0, msg);
+
     QByteArray localMsg = msg.toLocal8Bit();
     switch (type) {
     case QtDebugMsg:
@@ -38,8 +78,21 @@ void Debug::messageHandler(QtMsgType type, const QMessageLogContext &context, co
     }
 }
 
+
 bool Debug::init()
 {
-    //qInstallMessageHandler(Debug::messageHandler);
+#ifdef QT_DEBUG
+	if (!m_debugWindow)
+	{
+		m_debugWindow = new Window(QObject::tr("Debug"));
+		QVBoxLayout *layout = new QVBoxLayout(m_debugWindow);
+		m_debugWindow->setLayout(layout);
+		m_debugLogWidget = new QTreeWidget(m_debugWindow);
+		layout->addWidget(m_debugLogWidget);
+	}
+	m_debugWindow->show();
+#endif
+
+	qInstallMessageHandler(Debug::messageHandler);
 	return true;
 }

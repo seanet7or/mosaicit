@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  shows the progress when rendering a mosaic
 *
@@ -13,10 +13,14 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
+
 #ifndef RENDERMOSAICDLG_H
 #define RENDERMOSAICDLG_H
+
 #include <QDialog>
 #include <QString>
+
+#include "picturedatabase.h"
 #include "rendermosaicthread.h"
 
 namespace Ui {
@@ -27,6 +31,7 @@ class RenderMosaicDlg : public QDialog {
     Q_OBJECT
 public:
     RenderMosaicDlg(QWidget *parent,
+                    PictureDatabase *database,
                     const QString &imageFile,
                     int tileWidth,
                     int tileHeight,

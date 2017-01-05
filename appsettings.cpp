@@ -4,7 +4,7 @@
 *
 * CREATED:  03-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  Sigleton class to store and load application wide settings
 *

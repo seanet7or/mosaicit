@@ -1,6 +1,6 @@
 MosaicIt! Version 1.0
 Copyright 2010 by Benjamin Caspari
-Written in 2010 by Benjamin Caspari (mail@becait.de) using C++ and the Qt Toolkit by Nokia.
+Written in 2010 by Benjamin Caspari (becaspari@googlemail.com) using C++ and the Qt Toolkit by Nokia.
 This program is licensed under the GPL.
 To make this software work, it must be linked to the Qt Library (http://qt.nokia.com/), which is available under the Lesser GPL. 
 For the Qt libraries: Copyright (C) 2010 Nokia Corporation and/or its subsidiary(-ies).

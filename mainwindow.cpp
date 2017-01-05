@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  the applications main window
 *
@@ -13,49 +13,63 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QCloseEvent>
 #include <QProcess>
 #include <QDebug>
-#include <QStandardPaths>
 #include "newdatabasedlg.h"
-#include "database/picturedatabase.h"
+#include "builddatabasedlg.h"
+#include "createmosaicdlg.h"
+#include "picturedatabase.h"
 #include "mosaicdetailsdlg.h"
 #include "rendermosaicdlg.h"
+#include "editdatabasedlg.h"
 #include "aboutdlg.h"
-#include "picturedatabasedlg.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(const QString &appPath, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
 	qDebug() << "Creating main window";
     ui->setupUi(this);
 
-    ui->newMosaicBn->setText(tr("Create New Mosaic"));
-    ui->pictureLibraryBn->setText(tr("Edit Picture Library"));
-    ui->aboutBn->setText(tr("About MosaicIt!"));
+    ui->logo_label->setPixmap(QPixmap::fromImage(QImage(appPath + "/mosaicit_logo.jpg")));
 
-    QPalette* palette = new QPalette();
-    palette->setBrush(QPalette::Window,
-                      QBrush(QImage(":/app_logo")));
-    setPalette(*palette);
+    setTabOrder(ui->createDatabaseBn, ui->newMosaicButton);
+    setTabOrder(ui->newMosaicButton, ui->editDatabaseButton);
+    setTabOrder(ui->editDatabaseButton, ui->helpButton);
+    setTabOrder(ui->helpButton, ui->aboutButton);
+    setTabOrder(ui->aboutButton, ui->exitButton);
 
-    connect(ui->newMosaicBn,
-            &Button::pressed,
+    connect(this->ui->createDatabaseBn,
+            SIGNAL(pressed()),
             this,
-            &MainWindow::newMosaicBnClicked);
-    connect(ui->aboutBn,
-            &Button::pressed,
+            SLOT(createDatabaseBnClicked()));
+    connect(ui->newMosaicButton,
+            SIGNAL(pressed()),
             this,
-            &MainWindow::aboutBnClicked);
-    connect(ui->pictureLibraryBn,
-            &Button::pressed,
+            SLOT(newMosaicBnClicked()));
+    connect(ui->editDatabaseButton,
+            SIGNAL(pressed()),
             this,
-            &MainWindow::pictureLibraryBnClicked);
+            SLOT(editDatabaseBnClicked()));
+    connect(ui->aboutButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(aboutBnClicked()));
+    connect(ui->exitButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(exitBnClicked()));
+    connect(ui->helpButton,
+            SIGNAL(pressed()),
+            this,
+            SLOT(helpBnClicked()));
     this->readSettings();
 }
 
@@ -83,18 +97,6 @@ void MainWindow::changeEvent(QEvent *e)
     }
 }
 
-void MainWindow::showEvent(QShowEvent *)
-{
-
-}
-
-void MainWindow::pictureLibraryBnClicked()
-{
-    PictureDatabaseDlg dlg;
-    dlg.show();
-    dlg.exec();
-}
-
 void MainWindow::helpBnClicked()
 {
     QString command;
@@ -104,88 +106,51 @@ void MainWindow::helpBnClicked()
     QProcess::startDetached(command);
 }
 
-QString MainWindow::targetFileFor(const QString &sourceFile)
+void MainWindow::createDatabaseBnClicked()
 {
-    QString extension = sourceFile.split('.').last();
-    QString targetFile = sourceFile;
-    int pointPos = targetFile.lastIndexOf('.');
-    if (pointPos != -1) {
-        targetFile = targetFile.left(pointPos);
+	qDebug() << "Opening create new DB dlg";
+    NewDatabaseDlg newDBDlg(this);
+    newDBDlg.show();
+    newDBDlg.exec();
+    if (newDBDlg.exitedCorrectly()) {
+        BuildDatabaseDlg buildDlg(this,
+                                  newDBDlg.name(),
+                                  newDBDlg.directory(),
+                                  newDBDlg.includeSubdirectories()
+                                  );
+        buildDlg.show();
+        buildDlg.exec();
     }
-    targetFile.append("Mosaic");
-
-    QFileInfo targetFileInfo(targetFile + "." + extension);
-    if (targetFileInfo.exists())
-    {
-        int index = 1;
-        bool fileExists = false;
-        do
-        {
-            QString strIndex = QString::number(index);
-            if (strIndex.length() < 2)
-            {
-                strIndex = "0" + strIndex;
-            }
-            QFileInfo targetFileWithIndexInfo(targetFile + "-" + strIndex + "." + extension);
-            fileExists = targetFileWithIndexInfo.exists();
-            if (!fileExists) {
-                targetFile += "-" + strIndex;
-            } else {
-                index++;
-            }
-        }
-        while (fileExists);
-    }
-
-    targetFile.append("." + extension);
-    return targetFile;
+	qDebug() << "Returned to mainwindow";
 }
 
 void MainWindow::newMosaicBnClicked()
 {
-    QString startDir;
-    QStringList pictureLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-    if (pictureLocations.length() > 0)
-    {
-        startDir = pictureLocations.first();
-    }
-    else
-    {
-        QStringList documentLocations =
-                QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
-        if (documentLocations.length() > 0)
-        {
-            startDir = documentLocations.first();
+    CreateMosaicDlg createDlg(this);
+    createDlg.show();
+    createDlg.exec();
+    if (createDlg.exitedCorrectly()) {
+        PictureDatabase database;
+        if (!database.fromFile(createDlg.database())) {
+            QMessageBox::warning(this,
+                                 tr("Error"),
+                                 tr("The selected database could not be loaded!"),
+                                 QMessageBox::Ok);
+            return;
         }
-        else
-        {
-            startDir = QString();
-        }
-    }
-
-    QString imageFile = QFileDialog::getOpenFileName(this,
-                                                     tr("Select original image"),
-                                                     startDir,
-                                                     tr("Images (*.png *.bmp *.xpm *.jpg *.jpeg);;"\
-                                                        "All files (*.*)")
-                                                     );
-    if ((imageFile != NULL) && (imageFile.length() > 0))
-    {
-        imageFile = QDir::toNativeSeparators(QDir::cleanPath(imageFile));
-        MosaicDetailsDlg detailsDlg(this, imageFile);
+        MosaicDetailsDlg detailsDlg(this, createDlg.image());
         detailsDlg.show();
         detailsDlg.exec();
         if (detailsDlg.exitedCorrectly()) {
-            QString targetFile = targetFileFor(imageFile);
-
             RenderMosaicDlg renderDlg(this,
-                                      imageFile,
+                                      &database,
+                                      createDlg.image(),
                                       detailsDlg.tileWidth(),
                                       detailsDlg.tileHeight(),
                                       detailsDlg.tileCount(),
                                       detailsDlg.cutEdges(),
                                       detailsDlg.alphaChannel(),
-                                      targetFile,
+                                      createDlg.outputImage(),
                                       detailsDlg.minDistanceChecker(),
                                       detailsDlg.minDistance(),
                                       detailsDlg.repeatTilesMaxChecker(),
@@ -194,6 +159,36 @@ void MainWindow::newMosaicBnClicked()
             renderDlg.exec();
         }
     }
+}
+
+void MainWindow::editDatabaseBnClicked()
+{
+    QSettings settings;
+    settings.beginGroup("InputMainWindow");
+    QString databaseFile = settings.value("databasefiletoedit",
+                                           QDir::toNativeSeparators(
+                                                   QDir::cleanPath(QDir::homePath()))).toString();
+    settings.endGroup();
+    databaseFile = QFileDialog::getOpenFileName(this,
+                                                tr("Select database file"),
+                                                QDir::toNativeSeparators(QDir::cleanPath(
+                                                        databaseFile)),
+                                                tr("Database files (*.mib);;All files (*.*)"));
+    if (databaseFile.isNull() || (databaseFile.length()==0)) {
+        QMessageBox::warning(this,
+                             tr("Error"),
+                             tr("You have to select a valid image database to edit!"),
+                             QMessageBox::Ok,
+                             QMessageBox::Ok);
+        return;
+    }
+    settings.beginGroup("InputMainWindow");
+    settings.setValue("databasefiletoedit", databaseFile);
+    settings.endGroup();
+
+    EditDatabaseDlg editDBDlg(this, databaseFile);
+    editDBDlg.show();
+    editDBDlg.exec();
 }
 
 void MainWindow::aboutBnClicked()
@@ -213,7 +208,7 @@ void MainWindow::writeSettings()
 {
     QSettings settings;
     settings.beginGroup("GUIStateMainWindow");
-    //settings.setValue("size", this->size());
+    settings.setValue("size", this->size());
     settings.setValue("pos", this->pos());
     settings.endGroup();
 }
@@ -222,7 +217,7 @@ void MainWindow::readSettings()
 {
     QSettings settings;
     settings.beginGroup("GUIStateMainWindow");
-    //this->resize(settings.value("size", QSize(670, 545)).toSize());
+    this->resize(settings.value("size", QSize(670, 545)).toSize());
     this->move(settings.value("pos", QPoint(90, 90)).toPoint());
     settings.endGroup();
 }

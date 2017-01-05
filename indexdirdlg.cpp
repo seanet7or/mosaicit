@@ -4,7 +4,7 @@
 *
 * CREATED:  07-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  this dialog shows the progress when indexing the files in a directory
 *
@@ -45,11 +45,11 @@ IndexDirDlg::IndexDirDlg(QWidget *parent,
             SIGNAL(pressed()),
             this,
             SLOT(onCancelButtonPressed()));
-    /*connect(database,
+    connect(database,
             SIGNAL(indexFinished()),
             this,
             SLOT(onIndexingFinished()));
-    database->indexFiles(newDir, subDirs);*/
+    database->indexFiles(newDir, subDirs);
     this->readSettings();
 }
 
@@ -61,14 +61,14 @@ IndexDirDlg::~IndexDirDlg()
 
 void IndexDirDlg::onCancelButtonPressed()
 {
-    /*if (this->m_database->isIndexingRunning()) {
+    if (this->m_database->isIndexingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel indexing?"),
                                   tr("Do you want to cancel? Not all files in the selected directory will be added!"),
                                   QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
             this->m_database->cancelIndexing();
         }
-    }*/
+    }
 }
 
 void IndexDirDlg::reject()
@@ -78,7 +78,7 @@ void IndexDirDlg::reject()
 
 void IndexDirDlg::closeEvent(QCloseEvent *e)
 {
-   /* if (this->m_database->isIndexingRunning()) {
+    if (this->m_database->isIndexingRunning()) {
         if (QMessageBox::question(this,
                                   tr("Cancel indexing?"),
                                   tr("Do you want to cancel? Not all files in the selected directory will be added!"),
@@ -92,7 +92,7 @@ void IndexDirDlg::closeEvent(QCloseEvent *e)
     } else {
         this->writeSettings();
         e->accept();
-    }*/
+    }
 }
 
 void IndexDirDlg::onIndexingFinished()

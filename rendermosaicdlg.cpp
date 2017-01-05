@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  shows the progress when rendering a mosaic
 *
@@ -21,10 +21,11 @@
 #include <QDir>
 
 #include "rendermosaicthread.h"
-#include "database/picturedatabase.h"
+#include "picturedatabase.h"
 #include "appsettings.h"
 
 RenderMosaicDlg::RenderMosaicDlg(QWidget *parent,
+                                 PictureDatabase *database,
                                  const QString &imageFile,
                                  int tileWidth,
                                  int tileHeight,
@@ -58,7 +59,8 @@ ui(new Ui::RenderMosaicDlg)
             SIGNAL(finished()),
             this,
             SLOT(renderThreadFinished()));
-    this->m_renderThread->renderMosaic(imageFile,
+    this->m_renderThread->renderMosaic(database,
+                                       imageFile,
                                        tileWidth,
                                        tileHeight,
                                        tileCount,
@@ -79,7 +81,7 @@ RenderMosaicDlg::~RenderMosaicDlg()
     delete ui;
     if (this->m_renderThread) {
         while (this->m_renderThread->isRunning()) {
-            this->m_renderThread->requestInterruption();
+            this->m_renderThread->cancel();
         }
         delete this->m_renderThread;
         this->m_renderThread = 0;
@@ -118,7 +120,7 @@ void RenderMosaicDlg::cancelBnPressed()
                                       QMessageBox::No | QMessageBox::Yes
                                       ) == QMessageBox::Yes) {
                 while (this->m_renderThread->isRunning()) {
-                    this->m_renderThread->requestInterruption();
+                    this->m_renderThread->cancel();
                 }
             }
         } else {
@@ -146,7 +148,7 @@ void RenderMosaicDlg::closeEvent(QCloseEvent *e)
                                       QMessageBox::No | QMessageBox::Yes
                                       ) == QMessageBox::Yes) {
                 while (this->m_renderThread->isRunning()) {
-                    this->m_renderThread->requestInterruption();
+                    this->m_renderThread->cancel();
                 }
                 this->writeSettings();
                 e->accept();
@@ -168,7 +170,7 @@ void RenderMosaicDlg::renderThreadFinished()
     if (this->m_renderThread) {
         disconnect(this->m_renderThread,
                    SIGNAL(finished()));
-        if (this->m_renderThread->isInterruptionRequested()) {
+        if (this->m_renderThread->wasCanceled()) {
             ui->label->setText(tr("Building the mosaic was canceled, no mosaic was saved!"));
         } else if (this->m_renderThread->criticalError()) {
             ui->label->setText(tr("A critical error occured, view the detailed output!"));

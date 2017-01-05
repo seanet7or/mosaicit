@@ -4,7 +4,7 @@
 *
 * CREATED:  13-05-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  dialog to set detailed options for a mosaic
 *
@@ -30,9 +30,9 @@ public:
     MosaicDetailsDlg(QWidget *parent, const QString &imageFile);
     ~MosaicDetailsDlg();
     bool exitedCorrectly();
-    int tileWidth() const;
-    int tileHeight() const;
-    int tileCount() const;
+    int tileWidth();
+    int tileHeight();
+    int tileCount();
     bool cutEdges();
     int alphaChannel();
     bool minDistanceChecker();
@@ -44,10 +44,10 @@ protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void tileWidthChanged(int);
-    void totalTilesCountChanged(int);
+    void tileWidthChanged();
+    void tileHeightChanged();
     void aspectRatioChanged();
-    void updateResultLabels();
+    void updateResultLabel();
     void renderButtonPressed();
     void cancelButtonPressed();
     void closeEvent(QCloseEvent *e);
@@ -60,6 +60,9 @@ private:
     Ui::MosaicDetailsDlg *ui;
     QString m_imageFile;
     QImage m_image;
+    int m_tileWidth;
+    int m_tileHeight;
+    int m_tileCount;
     bool m_cutEdges;
     int m_alphaChannel;
     bool m_canceled;

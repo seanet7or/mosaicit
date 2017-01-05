@@ -4,7 +4,7 @@
 *
 * CREATED:  13-05-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  seperate thread to index all files in a directory
 *
@@ -13,38 +13,41 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
+
 #ifndef INDEXFILESTHREAD_H
 #define INDEXFILESTHREAD_H
+
 #include <QThread>
 #include <QVector>
 #include <QString>
-#include <QStringList>
-#include "../database/picturedatabase.h"
+
+#include "pictureinfo.h"
 
 class IndexFilesThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit IndexFilesThread(
-            QStringList directories);
-    ~IndexFilesThread();
-
-    void startIndexing();
+    explicit IndexFilesThread(QObject *parent = 0);
+    void indexDirectory(QVector<PictureInfo*> *pictures,
+                        QString directory,
+                        bool subdirs);
 
 signals:
 
 public slots:
+    void cancel();
 
 protected:
     void run();
 
 private:
-    void checkFile(const QString &file);
+    void addDirectory(QString directory, bool subdirs);
+    void addFile(QString file);
 
-private:
-    PictureDatabase *m_database;
-    QStringList m_directories;
-    QStringList m_directoriesToExclude;
+    bool m_canceled;
+    QString m_directory;
+    QVector<PictureInfo*> *m_pictures;
+    bool m_includeSubdirectories;
 };
 
 #endif // INDEXFILESTHREAD_H

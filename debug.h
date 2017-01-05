@@ -4,7 +4,7 @@
 *
 * CREATED:  10-05-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  allows to print debug messages to the console
 *
@@ -31,6 +31,10 @@ private:
     static void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 private:
+#ifdef QT_DEBUG
+	static QPointer<Window> m_debugWindow;
+	static QPointer<QTreeWidget> m_debugLogWidget;
+#endif
 };
 
 #endif // DEBUG_H

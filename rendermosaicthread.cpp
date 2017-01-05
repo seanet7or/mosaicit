@@ -4,7 +4,7 @@
 *
 * CREATED:  02-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  allows to render the mosaic in a seperate tread
 *
@@ -13,25 +13,25 @@
 * Copyright 2010 by Benjamin Caspari
 *
 ***************************************************************************************************/
+
 #include "rendermosaicthread.h"
+
 #include <math.h>
 
 #include <QImage>
 #include <QPainter>
 #include <QMessageBox>
 #include <QFileDialog>
-#include <QCryptographicHash>
-#include <QDebug>
-
-#include "settings.h"
 
 RenderMosaicThread::RenderMosaicThread(QObject *parent) :
-    QThread(parent)
+        QThread(parent)
 {
+    m_cancelNow = false;
     m_criticalError = false;
 }
 
-void RenderMosaicThread::renderMosaic(const QString &imageFile,
+void RenderMosaicThread::renderMosaic(PictureDatabase *database,
+                                      const QString &imageFile,
                                       int tileWidth,
                                       int tileHeight,
                                       int tileCount,
@@ -44,8 +44,9 @@ void RenderMosaicThread::renderMosaic(const QString &imageFile,
                                       bool maxTileRepeatChecker,
                                       int maxTileRepeatCount)
 {
+    m_cancelNow = false;
     this->m_criticalError = false;
-    this->m_pictureLibrary = new PictureLibrary();
+    this->m_database = database;
     this->m_imageFile = imageFile;
     this->m_tileWidth = tileWidth;
     this->m_tileHeight = tileHeight;
@@ -58,20 +59,12 @@ void RenderMosaicThread::renderMosaic(const QString &imageFile,
     this->m_minDistance = minDistance;
     this->m_maxTileRepeatCount = maxTileRepeatCount;
     this->m_maxTileRepeatChecker = maxTileRepeatChecker;
-
-    m_tileCacheDir = Settings::configDirectory();
-    m_tileCacheDir += "/" + QString::number(m_tileWidth) + "x" + QString::number(m_tileHeight);
-    if (m_cutEdges) {
-        m_tileCacheDir += "cropped";
-    }
-    QDir dir(m_tileCacheDir);
-    if (!dir.mkpath(m_tileCacheDir))
-    {
-        qWarning() << "Failed to create directory "
-            << QDir::toNativeSeparators(m_tileCacheDir);
-    }
-
     start();
+}
+
+void RenderMosaicThread::cancel()
+{
+    this->m_cancelNow = true;
 }
 
 float RenderMosaicThread::smallestDistance(int**tileMap,
@@ -110,7 +103,7 @@ void RenderMosaicThread::run()
     emit renderComplete(0.f);
     emit logText(tr("Rendering the mosaic..."));
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -124,7 +117,7 @@ void RenderMosaicThread::run()
         return;
     }
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -142,11 +135,11 @@ void RenderMosaicThread::run()
       => ty = sqrt(tileCount / aspectFactor)
       */
     double aspectFactor = ((double)this->m_tileHeight / (double)this->m_tileWidth)
-            * ((double)originalImage.width() / (double)originalImage.height());
+                          * ((double)originalImage.width() / (double)originalImage.height());
     int tilesY = qRound(sqrt(((double)this->m_tileCount) / aspectFactor));
     int tilesX = this->m_tileCount / tilesY;
     emit logText(tr("The mosaic will be built of %1 x %2 tiles.").arg(
-                     QString::number(tilesX), QString::number(tilesY)));
+            QString::number(tilesX), QString::number(tilesY)));
 
     //resize the original file to get the color values for the
     //unique tiles
@@ -160,7 +153,7 @@ void RenderMosaicThread::run()
         return;
     }
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -187,9 +180,8 @@ void RenderMosaicThread::run()
     }
 
     //reserve image for the mosaic
-    QImage mosaic(tilesX * this->m_tileWidth,
-                  tilesY * this->m_tileHeight,
-                  QImage::Format_ARGB32_Premultiplied);
+    QImage mosaic(tilesX * this->m_tileWidth, tilesY * this->m_tileHeight,
+                  QImage::Format_ARGB32);
     if (mosaic.isNull()) {
         emit logText(tr("Error reserving memory for the mosaic image!"));
         this->m_criticalError = true;
@@ -199,7 +191,7 @@ void RenderMosaicThread::run()
 
     emit renderComplete(1.f);
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -209,7 +201,7 @@ void RenderMosaicThread::run()
     for (int i = 0; i < tilesX; i++) {
         for (int j = 0; j < tilesY; j++) {
 
-            if (isInterruptionRequested()) {
+            if (this->m_cancelNow) {
                 emit logText(tr("Rendering was canceled - no mosaic was saved!"));
                 return;
             }
@@ -220,55 +212,109 @@ void RenderMosaicThread::run()
             int nearestIndex = -1;
             //loop through all tiles and look for the one with the best matching
             //color
-            for (int k = 0; k < this->m_pictureLibrary->size(); k++) {
-                int diff = 0;
-                diff += qAbs(qRed(thisPixel)
-                             - this->m_pictureLibrary->pictureAt(k)->getRed());
-                diff += qAbs(qGreen(thisPixel)
-                             - this->m_pictureLibrary->pictureAt(k)->getGreen());
-                diff += qAbs(qBlue(thisPixel)
-                             - this->m_pictureLibrary->pictureAt(k)->getBlue());
-                if (diff < minDiff) {
-                    bool tileIsOk = true;
-                    //potentially found a matching tile, but check for min distance condition
-                    if (this->m_minDistanceChecker) {
-                        float distance = this->smallestDistance(tilesMap,
-                                                                tilesX,
-                                                                tilesY,
-                                                                k,
-                                                                i,
-                                                                j);
-                        if (distance >= 0.f) {
-                            if (distance < (float)this->m_minDistance) {
-                                tileIsOk = false;
-                                //emit logText(tr("distance too small to equal tile!"));
+            for (int k = 0; k < this->m_database->size(); k++) {
+                if ((this->m_database->pictureAt(k)->processed())
+                    && (this->m_database->pictureAt(k)->validFile())) {
+                    int diff = 0;
+                    diff += qAbs(qRed(thisPixel)
+                                 - this->m_database->pictureAt(k)->getRed());
+                    diff += qAbs(qGreen(thisPixel)
+                                 - this->m_database->pictureAt(k)->getGreen());
+                    diff += qAbs(qBlue(thisPixel)
+                                 - this->m_database->pictureAt(k)->getBlue());
+                    if (diff < minDiff) {
+                        bool tileIsOk = true;
+                        //potentially found a matching tile, but check for min distance condition
+                        if (this->m_minDistanceChecker) {
+                            float distance = this->smallestDistance(tilesMap,
+                                                                    tilesX,
+                                                                    tilesY,
+                                                                    k,
+                                                                    i,
+                                                                    j);
+                            if (distance >= 0.f) {
+                                if (distance < (float)this->m_minDistance) {
+                                    tileIsOk = false;
+                                    //emit logText(tr("distance too small to equal tile!"));
+                                }
                             }
                         }
-                    }
-                    //check for max tile repeat count condition
-                    if (this->m_maxTileRepeatChecker) {
-                        int tileInMap = this->tileCountInMap(tilesMap, tilesX, tilesY, k);
-                        if (tileInMap >= this->m_maxTileRepeatCount) {
-                            tileIsOk = false;
+                        //check for max tile repeat count condition
+                        if (this->m_maxTileRepeatChecker) {
+                            int tileInMap = this->tileCountInMap(tilesMap, tilesX, tilesY, k);
+                            if (tileInMap >= this->m_maxTileRepeatCount) {
+                                tileIsOk = false;
+                            }
+                        }
+                        if (tileIsOk) {
+                            minDiff = diff;
+                            nearestIndex = k;
                         }
                     }
-                    if (tileIsOk) {
-                        minDiff = diff;
-                        nearestIndex = k;
-                    }
                 }
-
             }
-
             //found matching tile
             if (nearestIndex != -1) {
                 tilesMap[i][j] = nearestIndex;
-                //emit logText(tr("Found matching tile: Filename is %1").arg(
-                //                 this->m_pictureLibrary->pictureAt(nearestIndex)->getPath()));
-                QImage tileImage = imageMatchingTileSize(this->m_pictureLibrary->pictureAt(nearestIndex)->getPath());
+                //emit logText(tr("found matching tile!"));
+                //emit logText(tr("filename is %1").arg(
+                //        this->m_database->pictureAt(nearestIndex)->getFile()));
+                //load tile image
+                QImage tileImage(this->m_database->pictureAt(nearestIndex)->getFile());
                 if (tileImage.isNull()) {
-                    emit logText(tr("Error loading the image %1 in tile size!").arg(
-                                     this->m_pictureLibrary->pictureAt(nearestIndex)->getPath()));
+                    emit logText(tr("Error loading the tile image %1!").arg(
+                            this->m_database->pictureAt(nearestIndex)->getFile()));
+                    this->m_criticalError = true;
+                    return;
+                }
+                //if tile aspect ratio doesn't fit the tile aspect ratio given
+                //for the mosaic
+                float currentTileAspectRatio = ((float)tileImage.width()/(float)tileImage.height());
+                float generalTileAspectRatio = ((float)m_tileWidth/(float)m_tileHeight);
+                if (qAbs(currentTileAspectRatio - generalTileAspectRatio)
+                    > 0.001) {
+                    //do we have to cut the edges?
+                    if (this->m_cutEdges) {
+                        if (currentTileAspectRatio > generalTileAspectRatio) {
+                            //example: tileWidth = 100
+                            //tileHeight = 100
+                            //tileImage.width() = 2000
+                            //tileImage.height() = 1000
+                            // => currentTileAspectRatio = 2.0
+                            // => generalTileAspectRatio = 1.0
+                            // => newCurrentTileWith = (1000 / 100) * 100 = 1000
+                            int newCurrentTileWidth =
+                                    ((float)tileImage.height() / (float)m_tileHeight) * m_tileWidth;
+                            tileImage = tileImage.copy(
+                                    (tileImage.width()-newCurrentTileWidth) / 2,
+                                    0,
+                                    newCurrentTileWidth,
+                                    tileImage.height());
+                        } else {
+                            //example: tileWidth = 100
+                            //tileHeight = 100
+                            //tileImage.width() = 10
+                            //tileImage.height() = 20
+                            // => currentTileAspectRatio = 0.5
+                            // => generalTileAspectRatio = 1.0
+                            // => newCurrentTileHeight = (10 / 100) * 100 = 10
+                            int newCurrentTileHeight =
+                                    ((float)tileImage.width()  / (float)m_tileWidth) * m_tileHeight;
+                            tileImage = tileImage.copy(
+                                    0,
+                                    (tileImage.height()-newCurrentTileHeight)/2,
+                                    tileImage.width(),
+                                    newCurrentTileHeight);
+                        }
+                    }
+                }
+                tileImage = tileImage.scaled(this->m_tileWidth,
+                                             this->m_tileHeight,
+                                             Qt::IgnoreAspectRatio,
+                                             Qt::SmoothTransformation);
+                if (tileImage.isNull()) {
+                    emit logText(tr("Error scaling the tile image %1!").arg(
+                            this->m_database->pictureAt(nearestIndex)->getFile()));
                     this->m_criticalError = true;
                     return;
                 }
@@ -293,7 +339,7 @@ void RenderMosaicThread::run()
         }
     }
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -308,7 +354,7 @@ void RenderMosaicThread::run()
                                 srcRect);
     }
 
-    if (isInterruptionRequested()) {
+    if (this->m_cancelNow) {
         emit logText(tr("Rendering was canceled - no mosaic was saved!"));
         return;
     }
@@ -320,17 +366,17 @@ void RenderMosaicThread::run()
             if (QMessageBox::question(this->m_parentWindow,
                                       tr("Error saving mosaic"),
                                       tr("The mosaic could not be saved as \"%1\"! Do you want to select another file to write to?").arg(
-                                          QDir::toNativeSeparators(
-                                              QDir::cleanPath(
-                                                  this->m_outputFile))),
+                                              QDir::toNativeSeparators(
+                                                      QDir::cleanPath(
+                                                              this->m_outputFile))),
                                       QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
                 this->m_outputFile =
                         QFileDialog::getSaveFileName(this->m_parentWindow,
                                                      tr("Select mosaic output file"),
                                                      QDir::toNativeSeparators(
-                                                         QDir::cleanPath(
-                                                             QDir::homePath()
-                                                             + "/mosaic.jpg")),
+                                                             QDir::cleanPath(
+                                                                     QDir::homePath()
+                                                                     + "/mosaic.jpg")),
                                                      tr("Images (*.jpg)"));
                 if (mosaic.save(this->m_outputFile)) {
                     tryAgain = false;
@@ -351,96 +397,17 @@ void RenderMosaicThread::run()
 
     emit renderComplete(100.f);
     emit logText(tr("The mosaic was created."));
-}
 
-QImage RenderMosaicThread::imageMatchingTileSize(const QString &file)
-{
-    QString extension = file.split('.').last();
-    if (!extension.length()) {
-        extension = "jpg";
-    }
-
-    QCryptographicHash hash(QCryptographicHash::Md5);
-    hash.addData(file.toUtf8());
-    QString cacheFile = m_tileCacheDir + "/" + hash.result().toBase64().replace('=', "").replace('/', '-') + "." + extension;
-    QImage imageFromCache(cacheFile);
-    if (!imageFromCache.isNull()) {
-        //emit logText(tr("Loaded tile for %1 from cache.").arg(file));
-        return imageFromCache;
-    }
-
-    //load tile image
-    QImage tileImage(file);
-    if (tileImage.isNull()) {
-        emit logText(tr("Error loading the tile image %1!").arg(file));
-        return tileImage;
-    }
-
-    //do we have to cut the edges?
-    if (this->m_cutEdges) {
-        tileImage = imageCroppedToDesiredAspectRatio(tileImage);
-    }
-
-    tileImage = tileImage.scaled(this->m_tileWidth,
-                            this->m_tileHeight,
-                            Qt::IgnoreAspectRatio,
-                            Qt::SmoothTransformation);
-
-    if (!tileImage.save(cacheFile)) {
-        qWarning() << "Error saving cached image as" << cacheFile;
-    };
-    //emit logText(tr("Saved tile cache for %1.").arg(file));
-
-    return tileImage;
-}
-
-QImage RenderMosaicThread::imageCroppedToDesiredAspectRatio(QImage image)
-{
-    //if tile aspect ratio doesn't fit the tile aspect ratio given
-    //for the mosaic
-    float currentTileAspectRatio = ((float)image.width()/(float)image.height());
-    float desiredTileAspectRatio = ((float)m_tileWidth/(float)m_tileHeight);
-
-    if (!qFuzzyCompare(currentTileAspectRatio, desiredTileAspectRatio)) {
-        //emit logText("Cutting images edges.");
-        if (currentTileAspectRatio > desiredTileAspectRatio) {
-            // example: tileWidth = 100
-            // tileHeight = 100
-            // tileImage.width() = 2000
-            // tileImage.height() = 1000
-            //  => currentTileAspectRatio = 2.0
-            //  => generalTileAspectRatio = 1.0
-            //  => newCurrentTileWith = (1000 / 100) * 100 = 1000
-            int newCurrentTileWidth = ((float)image.height() / (float)m_tileHeight) * m_tileWidth;
-            return image.copy(
-                        (image.width()-newCurrentTileWidth) / 2,
-                        0,
-                        newCurrentTileWidth,
-                        image.height());
-        } else {
-            // example: tileWidth = 100
-            // tileHeight = 100
-            // tileImage.width() = 10
-            // tileImage.height() = 20
-            //  => currentTileAspectRatio = 0.5
-            //  => generalTileAspectRatio = 1.0
-            //  => newCurrentTileHeight = (10 / 100) * 100 = 10
-            int newCurrentTileHeight = ((float)image.width()  / (float)m_tileWidth) * m_tileHeight;
-            //emit logText(tr("Cutting top and bottom, new height will be %1.").arg(QString::number(newCurrentTileHeight)));
-            return image.copy(
-                        0,
-                        (image.height() - newCurrentTileHeight) / 2,
-                        image.width(),
-                        newCurrentTileHeight);
-        }
-    } else {
-        return image;
-    }
 }
 
 bool RenderMosaicThread::criticalError()
 {
     return this->m_criticalError;
+}
+
+bool RenderMosaicThread::wasCanceled()
+{
+    return this->m_cancelNow;
 }
 
 QString RenderMosaicThread::outputFile()

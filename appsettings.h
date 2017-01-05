@@ -2,9 +2,9 @@
 *
 * FILE:     appsettings.h
 *
-* CREATED:  2010-08-03
+* CREATED:  03-08-2010
 *
-* AUTHOR:   Benjamin Caspari (mail@becait.de)
+* AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
 * PURPOSE:  singleton to store application-wide settings
 *

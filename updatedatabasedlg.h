@@ -1,12 +1,12 @@
 /***************************************************************************************************
 *
-* FILE:     newdatabasedlg.h
+* FILE:     updatedatabasedlg.h
 *
-* CREATED:  13-05-2010
+* CREATED:  02-08-2010
 *
 * AUTHOR:   Benjamin Caspari (becaspari@googlemail.com)
 *
-* PURPOSE:  dialog to create a new database file
+* PURPOSE:  dialog that shows the process when updating a database
 *
 * This program is licensed under the terms of the GPL Version 2
 *
@@ -14,48 +14,41 @@
 *
 ***************************************************************************************************/
 
-#ifndef NEWDATABASEDLG_H
-#define NEWDATABASEDLG_H
+#ifndef UPDATEDATABASEDLG_H
+#define UPDATEDATABASEDLG_H
 
 #include <QDialog>
-#include <QString>
+
+#include "picturedatabase.h"
 
 namespace Ui {
-    class NewDatabaseDlg;
+    class UpdateDatabaseDlg;
 }
 
-class NewDatabaseDlg : public QDialog {
+class UpdateDatabaseDlg : public QDialog {
     Q_OBJECT
 public:
-    NewDatabaseDlg(QWidget *parent = 0);
-    ~NewDatabaseDlg();
-    bool exitedCorrectly();
-    QString name();
-    QString directory();
-    bool includeSubdirectories();
+    UpdateDatabaseDlg(QWidget *parent, PictureDatabase *database);
+    ~UpdateDatabaseDlg();
 
 public slots:
     void closeEvent(QCloseEvent *e);
+    void reject();
 
 protected:
     void changeEvent(QEvent *e);
 
 private slots:
-    void buildButtonPressed();
-    void selectDirButtonPressed();
     void cancelButtonPressed();
-    void selectFileButtonPressed();
+    void processDone(float percent);
+    void processComplete(bool wasCanceled);
 
 private:
     void readSettings();
     void writeSettings();
 
-    Ui::NewDatabaseDlg *ui;
-
-    QString m_name;
-    QString m_directory;
-    bool m_includeSubdirs;
-    bool m_canceled;
+    Ui::UpdateDatabaseDlg *ui;
+    PictureDatabase *m_database;
 };
 
-#endif // NEWDATABASEDLG_H
+#endif // UPDATEDATABASEDLG_H

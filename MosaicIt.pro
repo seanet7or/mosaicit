@@ -2,7 +2,7 @@
 TARGET = MosaicIt
 TEMPLATE = app
 
-QT += core gui widgets sql
+QT += core gui widgets
 
 OTHER_FILES += doc/header.txt \
     lupdate_project.cmd \
@@ -66,32 +66,35 @@ OTHER_FILES += doc/header.txt \
     doc/end-user/html/ger/pics/builddbcompl.png \
     doc/end-user/html/ger/pics/builddb.png \
     doc/end-user/html/ger/pics/browseresults.png
-HEADERS += \
+HEADERS += updatedatabasedlg.h \
     rendermosaicthread.h \
     rendermosaicdlg.h \
+    processimagesthread.h \
+    pictureinfo.h \
+    picturedatabase.h \
     newdatabasedlg.h \
     mosaicdetailsdlg.h \
     mainwindow.h \
+    indexfilesthread.h \
+    editdatabasedlg.h \
     debug.h \
+    createmosaicdlg.h \
+    builddatabasedlg.h \
     indexdirdlg.h \
     aboutdlg.h \
     appsettings.h \
-    window.h \
-    settings.h \
-    database_workers/databaseworkmanager.h \
-    database_workers/indexfilesthread.h \
-    database_workers/pictureanalyzerthread.h \
-    picturelibrary.h \
-    database/pictureinfo.h \
-    database/picturedatabase.h \
-    picturedatabasedlg.h \
-    widgets/button.h \
-    widgets/Animator.h \
-    widgets/widgets.h \
-    widgets/slider.h
+    window.h
 SOURCES += main.cpp \
+    indexfilesthread.cpp \
+    editdatabasedlg.cpp \
+    createmosaicdlg.cpp \
+    builddatabasedlg.cpp \
+    updatedatabasedlg.cpp \
     rendermosaicthread.cpp \
     rendermosaicdlg.cpp \
+    processimagesthread.cpp \
+    pictureinfo.cpp \
+    picturedatabase.cpp \
     newdatabasedlg.cpp \
     mosaicdetailsdlg.cpp \
     mainwindow.cpp \
@@ -99,27 +102,17 @@ SOURCES += main.cpp \
     aboutdlg.cpp \
     appsettings.cpp \
     debug.cpp \
-    window.cpp \
-    settings.cpp \
-    database_workers/databaseworkmanager.cpp \
-    database_workers/indexfilesthread.cpp \
-    database_workers/pictureanalyzerthread.cpp \
-    picturelibrary.cpp \
-    database/pictureinfo.cpp \
-    database/picturedatabase.cpp \
-    picturedatabasedlg.cpp \
-    widgets/button.cpp \
-    widgets/Animator.cpp \
-    widgets/slider.cpp
+    window.cpp
 FORMS += updatedatabasedlg.ui \
     rendermosaicdlg.ui \
     newdatabasedlg.ui \
     mosaicdetailsdlg.ui \
     mainwindow.ui \
+    editdatabasedlg.ui \
+    createmosaicdlg.ui \
+    builddatabasedlg.ui \
     indexdirdlg.ui \
-    aboutdlg.ui \
-    picturedatabasedlg.ui
+    aboutdlg.ui
 TRANSLATIONS += mosaicit_de.ts
 RC_FILE += appicon.rc
-RESOURCES += \ 
-    bundled_resources/resources.qrc
+RESOURCES += 
