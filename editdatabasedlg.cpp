@@ -114,11 +114,12 @@ void EditDatabaseDlg::onUpdateDBButtonPressed()
 
 void EditDatabaseDlg::onDelEntryButtonPressed()
 {
-    if ((ui->fileList->currentRow() >= 0)
-        && (ui->fileList->currentRow() < this->m_database->size())) {
-        this->m_database->removeEntry(ui->fileList->currentRow());
-        this->updateUIElements();
-    }
+	QListWidgetItem *entry;
+	foreach(entry, ui->fileList->selectedItems()) {
+		const QString &path = entry->text();
+		this->m_database->removeEntry(path);
+	}
+	this->updateUIElements();
 }
 
 void EditDatabaseDlg::updateUIElements()

@@ -79,9 +79,6 @@
     <ClCompile Include="createmosaicdlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="editdatabasedlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,9 +222,6 @@
     <CustomBuild Include="createmosaicdlg.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <CustomBuild Include="editdatabasedlg.h">
       <Filter>Header Files</Filter>
     </CustomBuild>

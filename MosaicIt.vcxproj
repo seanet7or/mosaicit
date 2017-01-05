@@ -142,7 +142,6 @@
     <ClCompile Include="appsettings.cpp" />
     <ClCompile Include="builddatabasedlg.cpp" />
     <ClCompile Include="createmosaicdlg.cpp" />
-    <ClCompile Include="debug.cpp" />
     <ClCompile Include="Debug\moc_aboutdlg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -280,7 +279,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
     </CustomBuild>
-    <ClInclude Include="debug.h" />
     <CustomBuild Include="editdatabasedlg.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG  "-I." "-I.\..\..\..\qt\5.7\msvc2015_64\include" "-I.\..\..\..\qt\5.7\msvc2015_64\include\QtWidgets" "-I.\..\..\..\qt\5.7\msvc2015_64\include\QtGui" "-I.\..\..\..\qt\5.7\msvc2015_64\include\QtANGLE" "-I.\..\..\..\qt\5.7\msvc2015_64\include\QtCore" "-I.\release" "-I.\..\..\..\qt\5.7\msvc2015_64\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing editdatabasedlg.h...</Message>

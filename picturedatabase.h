@@ -44,6 +44,7 @@ public:
     int size();
     PictureInfo *pictureAt(int index);
     void removeEntry(int index);
+	void removeEntry(const QString &file);
     bool allUpToDate();
     int filesNotUpToDate();
     bool doubleFiles();

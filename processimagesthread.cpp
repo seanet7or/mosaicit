@@ -20,8 +20,6 @@
 #include <QFileInfo>
 #include <QDebug>
 
-#include "debug.h"
-
 #define log(text) Debug::log(text)
 
 ProcessImagesThread::ProcessImagesThread()

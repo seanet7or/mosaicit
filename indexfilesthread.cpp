@@ -20,9 +20,6 @@
 #include <QStringList>
 #include <QDebug>
 
-#include "debug.h"
-
-
 IndexFilesThread::IndexFilesThread(QObject *parent) :
     QThread(parent)
 {

@@ -20,7 +20,6 @@
 #include <QDebug>
 
 #include "mainwindow.h"
-#include "debug.h"
 #include "appsettings.h"
 
 

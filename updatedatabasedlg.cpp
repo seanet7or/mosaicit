@@ -21,7 +21,6 @@
 #include <QCloseEvent>
 #include <QDebug>
 
-#include "debug.h"
 #include "appsettings.h"
 
 #define log(text) Debug::log(text)

@@ -22,9 +22,6 @@
 #include <QDataStream>
 #include <QDebug>
 
-#include "debug.h"
-
-
 #define FILE_ID     0x4D494442
 
 bool PictureDatabase::toFile(const QString &file)
@@ -111,6 +108,16 @@ void PictureDatabase::removeEntry(int index)
         delete this->m_pictureInfo->value(index);
         this->m_pictureInfo->remove(index);
     }
+}
+
+void PictureDatabase::removeEntry(const QString &file)
+{
+	for (int i = 0; i < this->m_pictureInfo->size(); i++) {
+		if (m_pictureInfo->value(i)->getFile().compare(file, Qt::CaseInsensitive) == 0) {
+			removeEntry(i);
+			return;
+		}
+	}
 }
 
 bool PictureDatabase::fromFile(const QString &file)
